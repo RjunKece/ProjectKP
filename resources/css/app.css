@@ -1,0 +1,294 @@
+/* =========================================================
+   ERP GLOBAL DESIGN SYSTEM (LIGHT + GOLD THEME)
+   ========================================================= */
+
+/* ---------- ROOT THEME ---------- */
+:root {
+    /* Background */
+    --bg-main: #ffffff;
+    --bg-card: #f9fafb;
+    --bg-soft: #ffffff;
+    --border-main: #e5e7eb;
+
+    /* Gold Accent */
+    --gold: #d4af37;
+    --gold-soft: #f5e6b3;
+
+    /* Functional Colors */
+    --blue: #2563eb;
+    --green: #16a34a;
+    --yellow: #ca8a04;
+    --red: #dc2626;
+
+    /* Text */
+    --text-main: #1f2937;
+    --text-muted: #6b7280;
+}
+
+/* ---------- BODY ---------- */
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-family: ui-sans-serif, system-ui, -apple-system;
+}
+
+/* =========================================================
+   CARD SYSTEM
+   ========================================================= */
+
+.card,
+.kpi-card,
+.report-card {
+    position: relative;
+    background: var(--bg-card);
+    border: 1px solid var(--border-main);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 6px 18px rgba(0,0,0,.06);
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
+}
+
+/* Hover */
+.card:hover,
+.kpi-card:hover,
+.report-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--gold);
+    box-shadow: 0 12px 28px rgba(212,175,55,.18);
+}
+
+/* =========================================================
+   FORM SYSTEM
+   ========================================================= */
+
+.input{
+    width:100%;
+    padding:.65rem .85rem;
+    border-radius:.75rem;
+    border:1px solid #e5e7eb;
+    font-size:.875rem;
+}
+.input:focus{
+    outline:none;
+    border-color:#d4af37;
+    box-shadow:0 0 0 3px rgba(212,175,55,.2);
+}
+
+.label{
+    font-size:.875rem;
+    font-weight:500;
+    color:#374151;
+}
+
+.box{
+    border:1px solid #f5e6b3;
+    border-radius:1rem;
+    padding:1.5rem;
+    background:#fff;
+    space-y:1rem;
+}
+
+.box.highlight{
+    border:2px solid #d4af37;
+    background:#fffdf7;
+}
+
+.box.dashed{
+    border:2px dashed #f5e6b3;
+}
+
+.section-title{
+    font-weight:600;
+    color:#1f2937;
+    margin-bottom:.5rem;
+}
+
+.btn-primary{
+    padding:.65rem 1.5rem;
+    border-radius:.75rem;
+    font-weight:600;
+    background:linear-gradient(135deg,#f5e6b3,#d4af37);
+}
+
+.btn-secondary{
+    padding:.65rem 1.5rem;
+    border-radius:.75rem;
+    border:1px solid #e5e7eb;
+}
+
+
+/* =========================================================
+   BUTTON SYSTEM
+   ========================================================= */
+
+.btn-primary {
+    background: linear-gradient(135deg, #f5e6b3, #d4af37);
+    color: #1f2937;
+    padding: .55rem 1.25rem;
+    border-radius: .75rem;
+    font-weight: 600;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(212,175,55,.35);
+}
+
+/* =========================================================
+   TABLE SYSTEM
+   ========================================================= */
+
+.th {
+    padding: .75rem 1.25rem;
+    text-align: left;
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+.td {
+    padding: .85rem 1.25rem;
+    color: var(--text-main);
+}
+
+/* =========================================================
+   BADGE
+   ========================================================= */
+
+.badge-green {
+    background: rgba(22,163,74,.12);
+    color: var(--green);
+    padding: .2rem .6rem;
+    border-radius: 999px;
+    font-size: .7rem;
+}
+
+.badge-yellow {
+    background: rgba(202,138,4,.15);
+    color: var(--yellow);
+    padding: .2rem .6rem;
+    border-radius: 999px;
+    font-size: .7rem;
+}
+
+/* =========================================================
+   AVATAR
+   ========================================================= */
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, #f5e6b3, #d4af37);
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .75rem;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+/* =========================================================
+   ACTION TEXT
+   ========================================================= */
+
+.action {
+    font-size: .8rem;
+    font-weight: 500;
+}
+
+.action.edit { color: var(--blue); }
+.action.warn { color: var(--yellow); }
+.action.danger { color: var(--red); }
+
+/* =========================================================
+   SELECT INPUT
+   ========================================================= */
+
+select.input {
+    background-color: #ffffff;
+    color: var(--text-main);
+    border: 1px solid var(--border-main);
+}
+
+select.input option {
+    background-color: #ffffff;
+    color: var(--text-main);
+}
+
+select.input option:checked,
+select.input option:hover {
+    background-color: var(--gold-soft);
+    color: #1f2937;
+}
+
+/* =========================================================
+   PROFILE PAGE
+   ========================================================= */
+
+.profile-container {
+    padding: 30px;
+    max-width: 1200px;
+    margin: auto;
+    color: var(--text-main);
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    background: linear-gradient(135deg, #ffffff, #f9fafb);
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 30px;
+    border: 1px solid var(--border-main);
+}
+
+.profile-avatar {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f5e6b3, #d4af37);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    font-weight: bold;
+    color: #1f2937;
+}
+
+.profile-info .role {
+    color: var(--text-muted);
+}
+
+/* Cards */
+.profile-card,
+.stat-box {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    border: 1px solid var(--border-main);
+}
+
+/* Progress */
+.progress-bar {
+    background: #e5e7eb;
+    border-radius: 10px;
+}
+
+.progress-fill {
+    height: 8px;
+    background: linear-gradient(90deg, #f5e6b3, #d4af37);
+}
+
+/* Activity */
+.activity-list li {
+    border-bottom: 1px solid var(--border-main);
+}
+
+.activity-list small {
+    color: var(--text-muted);
+}
