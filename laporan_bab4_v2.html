@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="id">
+<head><meta charset="UTF-8"><title>BAB IV - Hasil dan Pembahasan</title>
+<style>@page{margin:3cm 3cm 3cm 4cm}
+body{font-family:'Times New Roman',Times,serif;font-size:12pt;color:#000;line-height:1.5;text-align:justify;margin:3cm 3cm 3cm 4cm;max-width:none}
+h1{text-align:center;font-size:14pt;font-weight:bold;margin-bottom:24pt}
+h2{font-size:12pt;font-weight:bold;margin-top:18pt;margin-bottom:6pt}
+h3{font-size:12pt;font-weight:bold;margin-top:12pt;margin-bottom:6pt}
+h4{font-size:12pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt}
+p{margin-bottom:6pt;text-indent:1.27cm}
+table{border-collapse:collapse;width:100%;margin:12pt 0;font-size:11pt}
+th,td{border:1px solid #000;padding:6px 8px;text-align:left}
+th{background:#f0f0f0;font-weight:bold}
+.no-indent{text-indent:0}
+.img-placeholder{border:2px dashed #999;padding:40px;text-align:center;margin:12pt auto;color:#555;font-style:italic;background:#fafafa;max-width:80%}
+ol,ul{margin-left:1cm;margin-bottom:6pt}
+li{margin-bottom:4pt}
+.center{text-align:center}
+pre{font-family:'Courier New',monospace;font-size:10pt;background:#f5f5f5;padding:8px;border:1px solid #ccc;overflow-x:auto;margin:8pt 0}</style></head>
+<body>
+
+<h1>BAB IV<br>HASIL DAN PEMBAHASAN</h1>
+
+<h2>4.1 Gambaran Umum Sistem</h2>
+<p>Pada Bab IV ini diuraikan hasil perancangan dan implementasi Sistem Enterprise Resource Planning (ERP) sederhana berbasis web yang dikembangkan selama pelaksanaan Kerja Praktik di PT. Golden Intan Berlian. Sistem ini dirancang sebagai prototype pendukung proses bisnis perusahaan dengan tujuan mengintegrasikan fungsi-fungsi operasional ke dalam satu platform terpadu yang dapat diakses melalui browser.</p>
+
+<p>Pengembangan sistem dilakukan dengan menggunakan metode Rapid Application Development (RAD), yang memungkinkan proses pembangunan aplikasi secara cepat dan iteratif. Metode RAD dipilih karena sesuai dengan keterbatasan waktu pelaksanaan Kerja Praktik, serta memungkinkan penyesuaian kebutuhan secara fleksibel berdasarkan umpan balik yang diperoleh selama proses pengembangan.</p>
+
+<p>Sistem ERP Prototype ini dibangun menggunakan framework Laravel 12 dengan bahasa pemrograman PHP 8.2 dan berjalan di atas arsitektur Model-View-Controller (MVC). Basis data yang digunakan adalah MySQL, sementara antarmuka pengguna dikembangkan menggunakan Blade Template Engine dengan dukungan TailwindCSS 4.0 untuk styling responsif, Alpine.js untuk interaktivitas sisi klien, dan Chart.js untuk visualisasi data dalam bentuk grafik. Vite 7 digunakan sebagai build tool untuk pengelolaan aset frontend. Sistem dijalankan pada server lokal menggunakan Laragon sebagai lingkungan pengembangan.</p>
+
+<p>Sistem ini dirancang untuk dua aktor utama, yaitu <b>Super Admin</b> dan <b>Karyawan</b>. Super Admin memiliki hak akses penuh terhadap seluruh fitur sistem, termasuk manajemen pengguna, monitoring aktivitas, dan pembuatan laporan. Sementara itu, aktor Karyawan dirancang untuk memiliki akses terbatas pada dashboard pribadi dan pencatatan aktivitas harian. Meskipun implementasi fitur untuk aktor Karyawan pada tahap prototype ini belum sepenuhnya lengkap, perancangan sistem telah mempertimbangkan peran tersebut untuk pengembangan di masa mendatang.</p>
+
+<h2>4.2 Analisis Sistem</h2>
+
+<h3>4.2.1 Analisis Sistem Berjalan</h3>
+<p>Berdasarkan hasil observasi selama pelaksanaan Kerja Praktik, proses bisnis yang berjalan di PT. Golden Intan Berlian masih menggunakan metode konvensional dalam beberapa aspek operasionalnya. Pencatatan aktivitas karyawan, pengelolaan data pengguna, dan pembuatan laporan dilakukan secara manual menggunakan spreadsheet atau dokumen tercetak. Hal ini menimbulkan beberapa permasalahan, antara lain:</p>
+<ol>
+<li><b>Inefisiensi waktu</b> &mdash; Proses pencarian data dan penyusunan laporan memerlukan waktu yang cukup lama karena harus dilakukan secara manual.</li>
+<li><b>Risiko kesalahan data</b> &mdash; Input data secara manual rentan terhadap human error seperti duplikasi data, kesalahan pengetikan, atau inkonsistensi format.</li>
+<li><b>Keterbatasan akses informasi</b> &mdash; Data yang tersebar di berbagai dokumen menyulitkan proses monitoring dan pengambilan keputusan secara real-time.</li>
+<li><b>Tidak adanya audit trail</b> &mdash; Tidak tersedia mekanisme pencatatan otomatis atas setiap perubahan dan aktivitas yang terjadi dalam proses bisnis.</li>
+</ol>
+
+<h3>4.2.2 Analisis Sistem Usulan</h3>
+<p>Berdasarkan permasalahan pada sistem berjalan, diusulkan pengembangan Sistem ERP Prototype berbasis web yang mampu mengintegrasikan proses pengelolaan data pengguna, pencatatan aktivitas, dan pembuatan laporan ke dalam satu platform terpusat. Sistem usulan ini memiliki karakteristik sebagai berikut:</p>
+<ol>
+<li><b>Sentralisasi data</b> &mdash; Seluruh data tersimpan dalam satu basis data MySQL yang terstruktur dan dapat diakses secara terpusat.</li>
+<li><b>Otomatisasi pencatatan aktivitas</b> &mdash; Setiap aksi yang dilakukan pengguna dalam sistem dicatat secara otomatis melalui service ActivityLogger.</li>
+<li><b>Manajemen pengguna berbasis role</b> &mdash; Sistem mendukung pembagian hak akses berdasarkan role (Super Admin dan Karyawan) sehingga keamanan data terjaga.</li>
+<li><b>Pembuatan laporan digital</b> &mdash; Laporan dapat dibuat, disimpan, dan diakses kembali secara digital melalui modul Reports Center.</li>
+<li><b>Antarmuka responsif dan modern</b> &mdash; Tampilan sistem dirancang responsif menggunakan TailwindCSS sehingga dapat diakses dari berbagai perangkat.</li>
+</ol>
+
+<h2>4.3 Perancangan Sistem</h2>
+<p>Tahap perancangan sistem merupakan fase kedua dalam metode RAD setelah fase perencanaan kebutuhan (<i>Requirements Planning</i>). Pada tahap ini dilakukan pemodelan proses bisnis dan struktur data menggunakan diagram UML (Unified Modeling Language) serta Entity Relationship Diagram (ERD). Perancangan ini menjadi acuan dalam proses implementasi sistem.</p>
+
+<h3>4.3.1 Use Case Diagram</h3>
+<p>Use Case Diagram digunakan untuk memodelkan interaksi antara aktor dengan sistem. Dalam Sistem ERP Prototype ini terdapat dua aktor utama, yaitu Super Admin dan Karyawan. Setiap aktor memiliki hak akses dan fungsionalitas yang berbeda sesuai dengan perannya masing-masing dalam sistem.</p>
+
+<p>Super Admin sebagai aktor dengan hak akses tertinggi dapat melakukan seluruh fungsionalitas sistem yang meliputi: login ke sistem, mengakses dashboard admin yang menampilkan Key Performance Indicator (KPI), mengelola data pengguna (tambah user dan reset password), melakukan monitoring aktivitas seluruh pengguna, membuat dan mengelola laporan (Reports), serta mengelola profil akun. Sementara itu, aktor Karyawan memiliki akses terbatas yang meliputi: login ke sistem, mengakses dashboard karyawan, melihat profil pribadi, dan melakukan logout. Meskipun pada tahap prototype ini fitur Karyawan belum diimplementasikan secara lengkap, use case untuk aktor tersebut tetap dimodelkan sebagai bagian dari perancangan sistem secara keseluruhan.</p>
+
+<div class="img-placeholder">[Gambar 4.1 Use Case Diagram Sistem ERP]</div>
+<p class="center no-indent"><b>Gambar 4.1</b> Use Case Diagram Sistem ERP</p>
+
+
+<h3>4.3.2 Activity Diagram</h3>
+<p>Activity Diagram digunakan untuk memodelkan alur kerja (<i>workflow</i>) dari proses-proses utama dalam sistem. Diagram aktivitas ini menggambarkan urutan langkah-langkah yang dilakukan oleh aktor dalam menjalankan fungsionalitas tertentu, termasuk percabangan kondisi dan alur alternatif.</p>
+
+<p>Alur utama yang dimodelkan dalam Activity Diagram meliputi: (1) Proses Login, yang dimulai dari pengisian kredensial oleh pengguna, validasi oleh sistem, pengecekan role, hingga redirect ke dashboard yang sesuai; (2) Proses Manajemen User, yang mencakup alur penambahan user baru dengan validasi input dan pencatatan aktivitas; (3) Proses Monitoring Aktivitas, yang menggambarkan alur akses dan filter data aktivitas; serta (4) Proses Pembuatan Laporan, yang meliputi pemilihan jenis laporan, pengisian detail, preview, konfirmasi, dan penyimpanan.</p>
+
+<div class="img-placeholder">[Gambar 4.2 Activity Diagram Sistem ERP]</div>
+<p class="center no-indent"><b>Gambar 4.2</b> Activity Diagram Sistem ERP</p>
+
+
+<h3>4.3.3 Entity Relationship Diagram (ERD)</h3>
+<p>Entity Relationship Diagram (ERD) digunakan untuk memodelkan struktur basis data serta hubungan antar entitas dalam sistem. ERD Sistem ERP Prototype ini menggambarkan lima entitas utama beserta atribut dan relasinya. Entitas-entitas tersebut adalah: <b>users</b> (menyimpan data pengguna), <b>roles</b> (menyimpan data hak akses), <b>divisions</b> (menyimpan data divisi perusahaan), <b>activities</b> (menyimpan log aktivitas), dan <b>reports</b> (menyimpan data laporan).</p>
+
+<p>Relasi yang terdapat dalam ERD meliputi: relasi one-to-many antara tabel roles dan users (satu role dimiliki oleh banyak user), relasi one-to-many antara tabel divisions dan users (satu divisi memiliki banyak user), relasi one-to-many antara tabel users dan activities (satu user memiliki banyak aktivitas), serta relasi one-to-many antara tabel users dan reports (satu user dapat membuat banyak laporan). Seluruh relasi diimplementasikan menggunakan foreign key constraint pada MySQL.</p>
+
+<div class="img-placeholder">[Gambar 4.3 Entity Relationship Diagram (ERD) Sistem ERP]</div>
+<p class="center no-indent"><b>Gambar 4.3</b> Entity Relationship Diagram (ERD) Sistem ERP</p>
+
+
+<h2>4.4 Implementasi Sistem</h2>
+<p>Tahap implementasi merupakan fase ketiga dalam metode RAD yang disebut <i>Construction Phase</i>. Pada tahap ini, hasil perancangan diterjemahkan ke dalam kode program menggunakan teknologi yang telah ditentukan. Berikut adalah uraian implementasi setiap halaman dan fitur utama dalam Sistem ERP Prototype.</p>
+
+<h3>4.4.1 Halaman Login</h3>
+<p>Halaman login merupakan titik masuk utama (<i>entry point</i>) bagi seluruh pengguna untuk mengakses Sistem ERP. Halaman ini menampilkan formulir autentikasi yang terdiri dari dua field input, yaitu email dan password. Desain halaman login menggunakan layout dua kolom (<i>split screen</i>) dengan bagian kiri menampilkan formulir login dan bagian kanan menampilkan branding perusahaan PT. Golden Intan Berlian dengan skema warna emas (gold) sebagai identitas visual.</p>
+
+<p>Fungsi utama halaman login adalah melakukan proses autentikasi pengguna menggunakan facade <code>Auth::attempt()</code> pada Laravel. Setelah kredensial divalidasi, sistem melakukan regenerasi session untuk mencegah serangan session fixation, kemudian mengarahkan pengguna ke halaman dashboard sesuai dengan role yang dimiliki. Apabila Super Admin yang login, sistem akan melakukan redirect ke <code>/admin/dashboard</code>, sedangkan Karyawan akan diarahkan ke <code>/karyawan/dashboard</code>. Jika kredensial tidak valid, sistem menampilkan pesan error "Email atau password salah."</p>
+
+<div class="img-placeholder">[Gambar 4.4 Halaman Login Sistem ERP]</div>
+<p class="center no-indent"><b>Gambar 4.4</b> Halaman Login Sistem ERP</p>
+
+
+<h3>4.4.2 Dashboard Admin</h3>
+<p>Dashboard Admin merupakan halaman utama yang ditampilkan setelah Super Admin berhasil melakukan login. Halaman ini berfungsi sebagai pusat informasi (<i>control center</i>) yang menyajikan ringkasan data operasional sistem secara real-time. Dashboard dirancang untuk memberikan gambaran menyeluruh tentang kondisi sistem melalui visualisasi data yang informatif dan mudah dipahami.</p>
+
+<p>Dashboard Admin terdiri dari tiga komponen utama: (1) <b>System Snapshot</b> yang menampilkan enam Key Performance Indicator (KPI) meliputi Total Users, Active Employees, Total Activities, Today Activity, Productivity (estimasi persentase produktivitas bulanan), dan Growth (persentase pertumbuhan); (2) <b>Activity Analytics</b> yang menampilkan grafik line chart menggunakan library Chart.js untuk memvisualisasikan tren aktivitas karyawan dan super admin selama 12 bulan terakhir; serta (3) <b>Quick Actions</b> yang menyediakan pintasan navigasi cepat ke fitur Manage Users, Review Activities, dan Generate Reports.</p>
+
+<div class="img-placeholder">[Gambar 4.5 Halaman Dashboard Admin]</div>
+<p class="center no-indent"><b>Gambar 4.5</b> Halaman Dashboard Admin</p>
+
+
+<h3>4.4.3 Dashboard Karyawan</h3>
+<p>Dashboard Karyawan merupakan halaman yang dirancang untuk pengguna dengan role karyawan setelah berhasil login. Halaman ini bertujuan untuk menyediakan antarmuka yang memungkinkan karyawan melihat informasi terkait tugas, aktivitas harian, dan profil pribadi mereka. Pada tahap prototype saat ini, dashboard karyawan telah memiliki halaman dasar dengan tampilan informasi pengguna yang sedang login.</p>
+
+<p>Secara konseptual, dashboard karyawan dirancang untuk menyediakan fitur-fitur seperti: ringkasan aktivitas pribadi, pencatatan aktivitas harian, notifikasi dari admin, dan akses ke profil. Meskipun implementasi fitur-fitur tersebut belum sepenuhnya lengkap pada tahap prototype ini, arsitektur sistem telah disiapkan untuk mengakomodasi pengembangan di masa mendatang melalui routing terpisah dengan prefix <code>/karyawan</code> dan controller yang independen.</p>
+
+<div class="img-placeholder">[Gambar 4.6 Halaman Dashboard Karyawan]</div>
+<p class="center no-indent"><b>Gambar 4.6</b> Halaman Dashboard Karyawan</p>
+
+
+<h3>4.4.4 Manajemen User</h3>
+<p>Halaman Manajemen User (<i>User Management</i>) merupakan fitur yang memungkinkan Super Admin untuk mengelola seluruh akun pengguna yang terdaftar dalam sistem. Fitur ini merupakan salah satu komponen inti dari modul Human Resource Management dalam konsep ERP.</p>
+
+<p>Halaman ini terdiri dari beberapa komponen: (1) <b>Summary Cards</b> yang menampilkan statistik Total Users, Active Users, Super Admin, dan Pending Approval; (2) <b>Filter dan Pencarian</b> berupa toolbar untuk mencari pengguna berdasarkan nama atau email; (3) <b>Tabel Data Pengguna</b> yang menampilkan daftar pengguna dengan informasi nama, email, role, divisi, status, dan tombol aksi; (4) <b>Tambah User</b> melalui modal form dengan field nama, email, role, dan divisi, dimana password default ditetapkan sebagai "password123" yang di-hash menggunakan bcrypt; serta (5) <b>Reset Password</b> untuk mereset password pengguna ke default melalui modal konfirmasi.</p>
+
+<div class="img-placeholder">[Gambar 4.7 Halaman Manajemen User]</div>
+<p class="center no-indent"><b>Gambar 4.7</b> Halaman Manajemen User</p>
+
+
+<h3>4.4.5 Monitoring Aktivitas</h3>
+<p>Halaman Monitoring Aktivitas berfungsi sebagai pusat pemantauan seluruh log aktivitas yang tercatat dalam sistem. Fitur ini memungkinkan Super Admin untuk melacak dan mengawasi setiap aksi yang dilakukan oleh pengguna, sehingga mendukung fungsi audit trail dan pengawasan operasional.</p>
+
+<p>Komponen utama halaman ini meliputi: (1) <b>KPI Summary</b> berupa empat kartu indikator yang menampilkan Total Aktivitas, Aktivitas Hari Ini, Aktivitas Admin, dan Aktivitas Karyawan; (2) <b>Filter Bar</b> berupa toolbar pencarian dengan filter berdasarkan role, divisi, dan tanggal; serta (3) <b>Activity Table</b> berupa tabel yang menampilkan informasi user, role, divisi, deskripsi aktivitas, dan waktu dengan paginasi 15 item per halaman menggunakan fitur pagination bawaan Laravel.</p>
+
+<div class="img-placeholder">[Gambar 4.8 Halaman Monitoring Aktivitas]</div>
+<p class="center no-indent"><b>Gambar 4.8</b> Halaman Monitoring Aktivitas</p>
+
+
+<h3>4.4.6 Halaman Reports</h3>
+<p>Halaman Reports Center merupakan pusat pembuatan dan pengelolaan laporan strategis dalam sistem ERP. Fitur ini memungkinkan Super Admin untuk menghasilkan berbagai jenis laporan yang mendukung proses pengambilan keputusan manajemen.</p>
+
+<p>Halaman ini terdiri dari: (1) <b>KPI Strip</b> yang menampilkan lima indikator berupa Total Reports, Generated This Month, Scheduled, System Coverage, dan Storage Used; (2) <b>Report Builder</b> dengan empat modul pembuatan laporan yaitu Financial Intelligence, Department Performance, Growth &amp; Trends, dan Custom Intelligence, dimana masing-masing modul membuka modal form untuk mengisi detail laporan; (3) <b>Recent Reports</b> berupa tabel laporan terbaru dengan informasi judul, tipe, periode, status, dan aksi (View/Download) dengan paginasi 10 item per halaman; serta (4) <b>System Insight</b> yang menampilkan statistik penggunaan laporan.</p>
+
+<div class="img-placeholder">[Gambar 4.9 Halaman Reports Center]</div>
+<p class="center no-indent"><b>Gambar 4.9</b> Halaman Reports Center</p>
+
+
+<h3>4.4.7 Halaman Profil Pengguna</h3>
+<p>Halaman Profil menampilkan informasi detail akun pengguna yang sedang login. Halaman ini dapat diakses oleh seluruh pengguna baik Super Admin maupun Karyawan. Fitur ini berfungsi untuk memberikan transparansi informasi akun kepada pengguna.</p>
+
+<p>Komponen halaman profil meliputi: (1) <b>Profile Overview</b> berupa avatar inisial, nama, email, badge role, dan status aktif; (2) <b>Account Information</b> menampilkan detail role, divisi, dan tanggal registrasi; serta (3) <b>Activity Summary</b> yang menampilkan ringkasan total aktivitas dan aktivitas bulan berjalan.</p>
+
+<div class="img-placeholder">[Gambar 4.10 Halaman Profil Pengguna]</div>
+<p class="center no-indent"><b>Gambar 4.10</b> Halaman Profil Pengguna</p>
+
+
+<h2>4.5 Implementasi Basis Data</h2>
+<p>Struktur basis data Sistem ERP Prototype dibangun menggunakan fitur migration pada Laravel yang memungkinkan pembuatan dan pengelolaan skema basis data secara terprogram dan terversioning. Basis data menggunakan MySQL dengan lima tabel utama yang saling berelasi. Berikut adalah penjelasan detail setiap tabel beserta relasinya.</p>
+
+<h3>4.5.1 Tabel Roles</h3>
+<p>Tabel <code>roles</code> berfungsi menyimpan data hak akses pengguna dalam sistem. Tabel ini menjadi referensi utama untuk menentukan level akses setiap pengguna. Terdapat tiga role yang dikonfigurasi melalui RoleSeeder, yaitu: super_admin, admin, dan karyawan.</p>
+<table>
+<tr><th>Kolom</th><th>Tipe Data</th><th>Keterangan</th></tr>
+<tr><td>id</td><td>bigint unsigned (PK, AI)</td><td>Primary key, auto increment</td></tr>
+<tr><td>nama_role</td><td>varchar (unique)</td><td>Nama role: super_admin, admin, karyawan</td></tr>
+<tr><td>created_at</td><td>timestamp</td><td>Waktu pembuatan record</td></tr>
+<tr><td>updated_at</td><td>timestamp</td><td>Waktu pembaruan record</td></tr>
+</table>
+
+
+<h3>4.5.2 Tabel Divisions</h3>
+<p>Tabel <code>divisions</code> menyimpan data divisi atau departemen yang ada di perusahaan. Tabel ini digunakan untuk mengelompokkan pengguna berdasarkan unit kerja. Terdapat delapan divisi yang dikonfigurasi melalui DivisionSeeder, yaitu: Marketing, Sales, Keuangan, Konten Kreator, Gudang, CRM, YouTube, dan Admin Marketplace.</p>
+<table>
+<tr><th>Kolom</th><th>Tipe Data</th><th>Keterangan</th></tr>
+<tr><td>id</td><td>bigint unsigned (PK, AI)</td><td>Primary key, auto increment</td></tr>
+<tr><td>nama_divisi</td><td>varchar (unique)</td><td>Nama divisi perusahaan</td></tr>
+<tr><td>created_at</td><td>timestamp</td><td>Waktu pembuatan record</td></tr>
+<tr><td>updated_at</td><td>timestamp</td><td>Waktu pembaruan record</td></tr>
+</table>
+
+
+<h3>4.5.3 Tabel Users</h3>
+<p>Tabel <code>users</code> merupakan tabel inti yang menyimpan data seluruh pengguna sistem. Tabel ini memiliki relasi foreign key ke tabel roles dan divisions untuk menentukan hak akses dan unit kerja setiap pengguna.</p>
+<table>
+<tr><th>Kolom</th><th>Tipe Data</th><th>Keterangan</th></tr>
+<tr><td>id</td><td>bigint unsigned (PK, AI)</td><td>Primary key, auto increment</td></tr>
+<tr><td>name</td><td>varchar(255)</td><td>Nama lengkap pengguna</td></tr>
+<tr><td>email</td><td>varchar(255) (unique)</td><td>Alamat email sebagai identitas login</td></tr>
+<tr><td>email_verified_at</td><td>timestamp (nullable)</td><td>Waktu verifikasi email</td></tr>
+<tr><td>password</td><td>varchar(255) (hashed)</td><td>Kata sandi terenkripsi bcrypt</td></tr>
+<tr><td>role_id</td><td>bigint unsigned (FK)</td><td>Foreign key ke tabel roles</td></tr>
+<tr><td>division_id</td><td>bigint unsigned (FK, nullable)</td><td>Foreign key ke tabel divisions</td></tr>
+<tr><td>remember_token</td><td>varchar(100)</td><td>Token untuk fitur remember me</td></tr>
+<tr><td>created_at</td><td>timestamp</td><td>Waktu pembuatan akun</td></tr>
+<tr><td>updated_at</td><td>timestamp</td><td>Waktu pembaruan data akun</td></tr>
+</table>
+
+
+<h3>4.5.4 Tabel Activities</h3>
+<p>Tabel <code>activities</code> berfungsi mencatat seluruh log aktivitas yang dilakukan pengguna dalam sistem. Tabel ini memiliki foreign key ke tabel users dengan constraint cascade on delete, yang berarti apabila data user dihapus maka seluruh aktivitas terkait juga akan terhapus secara otomatis.</p>
+<table>
+<tr><th>Kolom</th><th>Tipe Data</th><th>Keterangan</th></tr>
+<tr><td>id</td><td>bigint unsigned (PK, AI)</td><td>Primary key, auto increment</td></tr>
+<tr><td>user_id</td><td>bigint unsigned (FK, cascade delete)</td><td>Foreign key ke tabel users</td></tr>
+<tr><td>tanggal</td><td>datetime</td><td>Tanggal dan waktu aktivitas dilakukan</td></tr>
+<tr><td>deskripsi</td><td>text</td><td>Deskripsi detail aktivitas</td></tr>
+<tr><td>status</td><td>varchar (default: submitted)</td><td>Status aktivitas (submitted, created, dll)</td></tr>
+<tr><td>created_at</td><td>timestamp</td><td>Waktu pembuatan record</td></tr>
+<tr><td>updated_at</td><td>timestamp</td><td>Waktu pembaruan record</td></tr>
+</table>
+
+
+<h3>4.5.5 Tabel Reports</h3>
+<p>Tabel <code>reports</code> menyimpan data laporan yang dibuat oleh Super Admin melalui modul Reports Center. Tabel ini mendukung empat jenis laporan yaitu financial, department, growth, dan custom.</p>
+<table>
+<tr><th>Kolom</th><th>Tipe Data</th><th>Keterangan</th></tr>
+<tr><td>id</td><td>bigint unsigned (PK, AI)</td><td>Primary key, auto increment</td></tr>
+<tr><td>title</td><td>varchar(255)</td><td>Judul laporan</td></tr>
+<tr><td>type</td><td>varchar</td><td>Jenis laporan (financial, department, growth, custom)</td></tr>
+<tr><td>description</td><td>text (nullable)</td><td>Deskripsi atau isi laporan</td></tr>
+<tr><td>start_date</td><td>date (nullable)</td><td>Tanggal mulai periode laporan</td></tr>
+<tr><td>end_date</td><td>date (nullable)</td><td>Tanggal akhir periode laporan</td></tr>
+<tr><td>status</td><td>enum (generated, ready, failed)</td><td>Status pemrosesan laporan</td></tr>
+<tr><td>created_by</td><td>bigint unsigned (FK, nullable)</td><td>Foreign key ke tabel users (pembuat)</td></tr>
+<tr><td>created_at</td><td>timestamp</td><td>Waktu pembuatan laporan</td></tr>
+<tr><td>updated_at</td><td>timestamp</td><td>Waktu pembaruan laporan</td></tr>
+</table>
+
+
+<h3>4.5.6 Relasi Antar Tabel</h3>
+<p>Seluruh relasi antar tabel dalam sistem ERP ini menggunakan pola Eloquent Relationship pada Laravel. Hubungan antar entitas didefinisikan dalam model masing-masing menggunakan method <code>belongsTo()</code> dan <code>hasMany()</code>. Berikut adalah ringkasan relasi antar tabel:</p>
+<table>
+<tr><th>Relasi</th><th>Tipe</th><th>Penjelasan</th></tr>
+<tr><td>Role &rarr; Users</td><td>One-to-Many (hasMany)</td><td>Satu role dapat dimiliki oleh banyak user</td></tr>
+<tr><td>Division &rarr; Users</td><td>One-to-Many (hasMany)</td><td>Satu divisi dapat memiliki banyak user</td></tr>
+<tr><td>User &rarr; Role</td><td>Many-to-One (belongsTo)</td><td>Setiap user memiliki satu role</td></tr>
+<tr><td>User &rarr; Division</td><td>Many-to-One (belongsTo)</td><td>Setiap user memiliki satu divisi (nullable)</td></tr>
+<tr><td>User &rarr; Activities</td><td>One-to-Many (hasMany)</td><td>Satu user dapat memiliki banyak aktivitas</td></tr>
+<tr><td>Activity &rarr; User</td><td>Many-to-One (belongsTo)</td><td>Setiap aktivitas dimiliki oleh satu user</td></tr>
+<tr><td>User &rarr; Reports</td><td>One-to-Many</td><td>Satu user dapat membuat banyak laporan</td></tr>
+<tr><td>Report &rarr; User (creator)</td><td>Many-to-One (belongsTo)</td><td>Setiap laporan dibuat oleh satu user</td></tr>
+</table>
+
+<p>Seluruh foreign key diimplementasikan dengan constraint yang sesuai. Foreign key <code>user_id</code> pada tabel activities menggunakan <code>cascadeOnDelete()</code> sehingga data aktivitas otomatis terhapus ketika user dihapus. Sementara foreign key <code>created_by</code> pada tabel reports menggunakan <code>nullOnDelete()</code> sehingga data laporan tetap tersimpan meskipun user pembuat dihapus.</p>
+
+<h2>4.6 Implementasi Backend (MVC Laravel)</h2>
+
+<h3>4.6.1 Arsitektur Model-View-Controller</h3>
+<p>Sistem ERP Prototype ini mengimplementasikan pola arsitektur Model-View-Controller (MVC) yang merupakan standar bawaan framework Laravel. Pola MVC memisahkan logika aplikasi menjadi tiga komponen utama yang saling terhubung namun memiliki tanggung jawab yang berbeda:</p>
+<ol>
+<li><b>Model</b> &mdash; Terdapat lima model utama yaitu <code>User</code>, <code>Role</code>, <code>Division</code>, <code>Activity</code>, dan <code>Report</code>. Setiap model mendefinisikan fillable attributes untuk mass assignment protection, casting untuk konversi tipe data otomatis, dan relasi Eloquent untuk menghubungkan antar entitas.</li>
+<li><b>View</b> &mdash; Menggunakan Blade Template Engine dengan sistem layout inheritance. Layout utama <code>layouts/admin.blade.php</code> menjadi template induk untuk seluruh halaman panel admin. TailwindCSS 4.0 dan Alpine.js digunakan untuk styling dan interaktivitas.</li>
+<li><b>Controller</b> &mdash; Terdapat delapan controller yang menangani logika bisnis, meliputi <code>AdminDashboardController</code>, <code>UserController</code>, <code>ActivityController</code>, <code>ReportController</code>, <code>LoginController</code>, <code>ProfileController</code>, <code>DashboardController</code>, dan <code>AuthenticatedSessionController</code>.</li>
+</ol>
+
+<h3>4.6.2 Sistem Autentikasi</h3>
+<p>Proses autentikasi diimplementasikan melalui <code>LoginController</code> dengan alur sebagai berikut: (1) Pengguna mengakses halaman login melalui route GET <code>/login</code>; (2) Pengguna mengisi email dan password, kemudian mengirim form melalui route POST <code>/login</code>; (3) Sistem memvalidasi input dengan aturan required dan email; (4) <code>Auth::attempt()</code> memverifikasi kredensial terhadap data di tabel users; (5) Jika valid, session diregenerasi untuk keamanan dan pengguna diarahkan ke route <code>/dashboard</code>; (6) Route <code>/dashboard</code> memeriksa role pengguna dan melakukan redirect ke dashboard yang sesuai.</p>
+
+<h3>4.6.3 Sistem Routing</h3>
+<p>Routing sistem dikonfigurasi dalam file <code>routes/web.php</code> dengan pengelompokan berdasarkan middleware dan prefix. Terdapat empat kelompok route utama:</p>
+<table>
+<tr><th>Kelompok Route</th><th>Prefix</th><th>Middleware</th><th>Keterangan</th></tr>
+<tr><td>Auth Routes</td><td>/login</td><td>guest</td><td>Route untuk halaman login (GET dan POST)</td></tr>
+<tr><td>Admin Routes</td><td>/admin</td><td>auth</td><td>Dashboard, Users, Activities, Reports</td></tr>
+<tr><td>Karyawan Routes</td><td>/karyawan</td><td>auth</td><td>Dashboard karyawan</td></tr>
+<tr><td>Utility Routes</td><td>/</td><td>-</td><td>Profile, Logout, Root redirect</td></tr>
+</table>
+
+
+<h3>4.6.4 Fitur Dark Mode</h3>
+<p>Sistem mendukung fitur dark mode yang diimplementasikan menggunakan Alpine.js dengan penyimpanan preferensi di localStorage browser. TailwindCSS dikonfigurasi dengan <code>darkMode: 'class'</code> untuk mendukung styling kondisional berdasarkan tema aktif. Fitur ini meningkatkan kenyamanan pengguna dalam menggunakan sistem.</p>
+
+<h2>4.7 Pengujian Sistem</h2>
+<p>Pengujian sistem dilakukan menggunakan metode <i>Black Box Testing</i>, yaitu metode pengujian yang berfokus pada fungsionalitas sistem tanpa memperhatikan struktur internal kode program. Pengujian dilakukan untuk memastikan bahwa setiap fitur sistem berjalan sesuai dengan kebutuhan yang telah didefinisikan pada tahap perancangan.</p>
+
+<h3>4.7.1 Hasil Pengujian Black Box</h3>
+<p class="no-indent">Berikut adalah tabel hasil pengujian Black Box Testing pada Sistem ERP Prototype:</p>
+<table>
+<tr><th>No</th><th>Skenario Pengujian</th><th>Langkah Pengujian</th><th>Hasil yang Diharapkan</th><th>Status</th></tr>
+<tr><td>1</td><td>Login Valid</td><td>Memasukkan email dan password yang benar, klik Sign In</td><td>Pengguna berhasil login dan diarahkan ke dashboard sesuai role</td><td>Berhasil</td></tr>
+<tr><td>2</td><td>Login Tidak Valid</td><td>Memasukkan email atau password yang salah, klik Sign In</td><td>Muncul pesan error "Email atau password salah"</td><td>Berhasil</td></tr>
+<tr><td>3</td><td>Redirect Super Admin</td><td>Login menggunakan akun Super Admin</td><td>Diarahkan ke halaman /admin/dashboard</td><td>Berhasil</td></tr>
+<tr><td>4</td><td>Redirect Karyawan</td><td>Login menggunakan akun Karyawan</td><td>Diarahkan ke halaman /karyawan/dashboard</td><td>Berhasil</td></tr>
+<tr><td>5</td><td>Tampilan Dashboard Admin</td><td>Mengakses halaman /admin/dashboard</td><td>Menampilkan KPI, grafik analytics, dan quick actions</td><td>Berhasil</td></tr>
+<tr><td>6</td><td>Menambahkan User Baru</td><td>Klik Add User, mengisi form lengkap, klik submit</td><td>User baru tersimpan dan muncul di daftar pengguna</td><td>Berhasil</td></tr>
+<tr><td>7</td><td>Validasi Form User</td><td>Submit form tambah user dengan field kosong</td><td>Muncul pesan validasi error pada field yang kosong</td><td>Berhasil</td></tr>
+<tr><td>8</td><td>Pencarian User</td><td>Mengetik nama/email pada kolom search</td><td>Tabel menampilkan hasil pencarian yang sesuai</td><td>Berhasil</td></tr>
+<tr><td>9</td><td>Reset Password User</td><td>Klik Reset Password pada user, konfirmasi reset</td><td>Password user berhasil direset ke default</td><td>Berhasil</td></tr>
+<tr><td>10</td><td>Monitoring Aktivitas</td><td>Mengakses halaman /admin/activities</td><td>Menampilkan log aktivitas dengan KPI dan paginasi</td><td>Berhasil</td></tr>
+<tr><td>11</td><td>Generate Report</td><td>Memilih jenis report, mengisi form, submit</td><td>Report berhasil disimpan dan tampil di daftar</td><td>Berhasil</td></tr>
+<tr><td>12</td><td>Melihat Detail Report</td><td>Klik View pada report di tabel recent reports</td><td>Menampilkan halaman detail report</td><td>Berhasil</td></tr>
+<tr><td>13</td><td>Akses Halaman Profil</td><td>Klik avatar pengguna, pilih Profile</td><td>Menampilkan informasi akun dan ringkasan aktivitas</td><td>Berhasil</td></tr>
+<tr><td>14</td><td>Toggle Dark Mode</td><td>Klik tombol toggle Dark/Light di header</td><td>Tampilan berubah sesuai tema yang dipilih</td><td>Berhasil</td></tr>
+<tr><td>15</td><td>Logout</td><td>Klik tombol Logout pada dropdown profil</td><td>Session dihapus dan diarahkan kembali ke halaman login</td><td>Berhasil</td></tr>
+<tr><td>16</td><td>Akses Tanpa Login</td><td>Mengakses URL /admin/dashboard tanpa login</td><td>Diarahkan kembali ke halaman login</td><td>Berhasil</td></tr>
+<tr><td>17</td><td>Duplikasi Email</td><td>Menambahkan user dengan email yang sudah terdaftar</td><td>Muncul pesan error validasi email unique</td><td>Berhasil</td></tr>
+<tr><td>18</td><td>Paginasi Data</td><td>Mengakses halaman activities dengan data lebih dari 15</td><td>Data ditampilkan dengan pagination 15 per halaman</td><td>Berhasil</td></tr>
+</table>
+
+<h3>4.7.2 Pengujian Validasi Input</h3>
+<p>Sistem menerapkan validasi input pada sisi server (<i>server-side validation</i>) menggunakan fitur Request Validation bawaan Laravel. Validasi ini memastikan bahwa data yang dikirimkan oleh pengguna memenuhi aturan yang telah ditetapkan sebelum diproses lebih lanjut. Berikut adalah aturan validasi yang diterapkan pada setiap form dalam sistem:</p>
+<table>
+<tr><th>Form</th><th>Field</th><th>Aturan Validasi</th></tr>
+<tr><td>Login</td><td>email</td><td>required, email</td></tr>
+<tr><td>Login</td><td>password</td><td>required</td></tr>
+<tr><td>Tambah User</td><td>name</td><td>required, string, max:255</td></tr>
+<tr><td>Tambah User</td><td>email</td><td>required, email, unique:users</td></tr>
+<tr><td>Tambah User</td><td>role_id</td><td>required, exists:roles,id</td></tr>
+<tr><td>Tambah User</td><td>division_id</td><td>required, exists:divisions,id</td></tr>
+<tr><td>Generate Report</td><td>title</td><td>required, string, max:255</td></tr>
+<tr><td>Generate Report</td><td>type</td><td>required, string</td></tr>
+<tr><td>Generate Report</td><td>report_date</td><td>required, date</td></tr>
+<tr><td>Generate Report</td><td>attachment</td><td>nullable, file, max:2048</td></tr>
+</table>
+
+
+<h2>4.8 Pembahasan</h2>
+<p>Pada subbab ini diuraikan pembahasan mengenai hasil implementasi Sistem ERP Prototype yang telah dibangun selama pelaksanaan Kerja Praktik. Pembahasan mencakup analisis kelebihan dan kekurangan sistem berdasarkan hasil implementasi dan pengujian yang telah dilakukan.</p>
+
+<h3>4.8.1 Kelebihan Sistem</h3>
+<p>Berdasarkan hasil implementasi dan pengujian, Sistem ERP Prototype PT. Golden Intan Berlian memiliki beberapa kelebihan sebagai berikut:</p>
+<ol>
+<li><b>Arsitektur Terstruktur</b> &mdash; Penggunaan pola MVC pada framework Laravel memastikan pemisahan yang jelas antara logika bisnis (Controller), tampilan antarmuka (View), dan pengelolaan data (Model), sehingga kode program lebih terorganisir, mudah dipelihara, dan dapat dikembangkan secara modular.</li>
+<li><b>Keamanan Data</b> &mdash; Sistem menerapkan beberapa mekanisme keamanan yang meliputi: hashing password menggunakan algoritma bcrypt, proteksi CSRF (<i>Cross-Site Request Forgery</i>) pada setiap form, regenerasi session setelah proses login, dan validasi input pada sisi server untuk mencegah injeksi data berbahaya.</li>
+<li><b>Antarmuka Responsif dan Modern</b> &mdash; Antarmuka pengguna dibangun menggunakan TailwindCSS 4.0 yang memastikan tampilan responsif di berbagai ukuran layar. Dukungan fitur dark mode meningkatkan kenyamanan dan fleksibilitas penggunaan sistem.</li>
+<li><b>Pencatatan Aktivitas Otomatis</b> &mdash; Setiap aksi penting yang dilakukan dalam sistem dicatat secara otomatis ke dalam tabel activities, sehingga tersedia audit trail yang komprehensif untuk keperluan monitoring dan evaluasi.</li>
+<li><b>Visualisasi Data Informatif</b> &mdash; Penggunaan Chart.js untuk menampilkan grafik tren aktivitas pada dashboard membantu pengambilan keputusan berbasis data secara visual dan intuitif.</li>
+<li><b>Pengembangan Cepat dengan RAD</b> &mdash; Penerapan metode RAD memungkinkan pengembangan sistem secara iteratif dan cepat, sesuai dengan keterbatasan waktu pelaksanaan Kerja Praktik.</li>
+</ol>
+
+<h3>4.8.2 Kekurangan Sistem</h3>
+<p>Meskipun demikian, sebagai sebuah prototype, sistem ini juga memiliki beberapa kekurangan dan keterbatasan yang perlu diperhatikan secara realistis:</p>
+<ol>
+<li><b>Status Prototype</b> &mdash; Sistem masih berupa prototype sehingga beberapa fitur, khususnya fitur untuk aktor Karyawan seperti pencatatan aktivitas harian dan dashboard karyawan, belum diimplementasikan secara lengkap dan memerlukan pengembangan lebih lanjut.</li>
+<li><b>Belum Terdapat Middleware Role</b> &mdash; Sistem belum memiliki middleware khusus untuk memvalidasi role pengguna pada setiap route admin. Saat ini pembatasan akses hanya berdasarkan redirect di route <code>/dashboard</code>, sehingga secara teoritis pengguna dengan role karyawan yang mengetahui URL admin dapat mengaksesnya.</li>
+<li><b>Penyimpanan File Lokal</b> &mdash; Fitur upload lampiran pada modul report masih menggunakan penyimpanan lokal (<i>local storage</i>) dan belum terintegrasi dengan layanan cloud storage seperti Amazon S3 atau Google Cloud Storage untuk skalabilitas yang lebih baik.</li>
+<li><b>Belum Terdapat Sistem Notifikasi</b> &mdash; Sistem belum memiliki fitur notifikasi real-time untuk memberitahu admin tentang aktivitas penting atau perubahan data dalam sistem.</li>
+<li><b>Ekspor Data Terbatas</b> &mdash; Fitur download report belum sepenuhnya diimplementasikan untuk menghasilkan file dalam format PDF atau Excel, yang merupakan kebutuhan umum dalam konteks pelaporan bisnis.</li>
+<li><b>Belum Dilakukan Performance Testing</b> &mdash; Pengujian yang dilakukan masih sebatas black box testing fungsional. Belum dilakukan pengujian performa (<i>performance testing</i>) untuk mengukur kemampuan sistem dalam menangani beban pengguna dalam jumlah besar.</li>
+</ol>
+
+<h3>4.8.3 Kesesuaian dengan Metode RAD</h3>
+<p>Penerapan metode Rapid Application Development (RAD) dalam pengembangan Sistem ERP Prototype ini telah berjalan sesuai dengan tahapan yang didefinisikan. Fase <i>Requirements Planning</i> dilaksanakan melalui analisis kebutuhan dan observasi proses bisnis perusahaan. Fase <i>User Design</i> direalisasikan melalui perancangan diagram UML dan ERD. Fase <i>Construction</i> dilaksanakan melalui implementasi kode program menggunakan Laravel. Fase <i>Cutover</i> dilaksanakan melalui pengujian black box testing untuk memastikan fungsionalitas sistem.</p>
+
+<p>Metode RAD terbukti efektif untuk pengembangan prototype ini karena memungkinkan iterasi yang cepat dalam proses pembangunan sistem. Namun demikian, keterbatasan waktu pelaksanaan Kerja Praktik menyebabkan beberapa fitur belum dapat diselesaikan secara sempurna dan memerlukan iterasi pengembangan tambahan di masa mendatang.</p>
+
+</body>
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>BAB IV - Hasil dan Pembahasan</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Times+New+Roman&display=swap');
+@page{margin:3cm 3cm 3cm 4cm}
+body{font-family:'Times New Roman',Times,serif;font-size:12pt;color:#000;line-height:1.25;text-align:justify;margin-top:3cm;margin-bottom:3cm;margin-left:4cm;margin-right:3cm;max-width:none}
+h1{text-align:center;font-size:14pt;font-weight:bold;margin-bottom:24pt}
+h2{font-size:12pt;font-weight:bold;margin-top:18pt;margin-bottom:6pt}
+h3{font-size:12pt;font-weight:bold;margin-top:12pt;margin-bottom:6pt}
+p{margin-bottom:6pt;text-indent:1.27cm}
+table{border-collapse:collapse;width:100%;margin:12pt 0;font-size:11pt}
+th,td{border:1px solid #000;padding:6px 8px;text-align:left}
+th{background:#f0f0f0;font-weight:bold}
+.no-indent{text-indent:0}
+ol,ul{margin-left:1cm;margin-bottom:6pt}
+li{margin-bottom:4pt}
+.center{text-align:center}
+pre{font-family:'Courier New',monospace;font-size:10pt;background:#f5f5f5;padding:8px;border:1px solid #ccc;overflow-x:auto;margin:8pt 0}
+img.screenshot{max-width:100%;border:1px solid #ccc;margin:8pt 0}
+</style>
+</head>
+<body>
+
+<h1>BAB IV<br>HASIL DAN PEMBAHASAN</h1>
+
+<h2>4.1 Hasil Implementasi Sistem</h2>
+<p>Pada bab ini diuraikan hasil implementasi Sistem ERP Prototype untuk PT. Golden Intan Berlian yang telah dibangun menggunakan framework Laravel 12 dengan bahasa pemrograman PHP 8.2. Sistem ini dirancang sebagai aplikasi web berbasis arsitektur Model-View-Controller (MVC) yang berjalan di lingkungan server lokal menggunakan Laragon. Basis data yang digunakan adalah MySQL dengan nama database <i>erp-prototype</i>. Frontend dikembangkan menggunakan Blade template engine dengan dukungan TailwindCSS 4.0 dan Alpine.js untuk interaktivitas sisi klien, serta Vite 7 sebagai build tool untuk asset bundling.</p>
+
+<p>Sistem ERP ini memiliki dua peran utama pengguna, yaitu <b>Super Admin</b> dan <b>Karyawan</b>. Super Admin memiliki akses penuh terhadap seluruh fitur sistem termasuk manajemen pengguna, monitoring aktivitas, dan pembuatan laporan. Sementara itu, Karyawan memiliki akses terbatas pada dashboard pribadi dan profil masing-masing.</p>
+
+<h2>4.2 Implementasi Basis Data</h2>
+<p>Struktur basis data sistem ERP dibangun menggunakan fitur migration pada Laravel. Terdapat lima tabel utama yang menjadi fondasi sistem, yaitu tabel users, roles, divisions, activities, dan reports. Selain itu terdapat tabel pendukung bawaan Laravel seperti sessions, password_reset_tokens, cache, dan jobs.</p>
+
+<h3>4.2.1 Tabel Roles</h3>
+<p class="no-indent">Tabel roles menyimpan data hak akses pengguna dalam sistem.</p>
+<table>
+<tr><th>Kolom</th><th>Tipe Data</th><th>Keterangan</th></tr>
+<tr><td>id</td><td>bigint (PK, AI)</td><td>Primary key</td></tr>
+<tr><td>nama_role</td><td>varchar (unique)</td><td>Nama role (super_admin, admin, karyawan)</td></tr>
+<tr><td>timestamps</td><td>timestamp</td><td>Waktu created/updated</td></tr>
+</table>
+
+<h3>4.2.2 Tabel Divisions</h3>
+<p class="no-indent">Tabel divisions menyimpan data divisi/departemen perusahaan.</p>
+<table>
+<tr><th>Kolom</th><th>Tipe Data</th><th>Keterangan</th></tr>
+<tr><td>id</td><td>bigint (PK, AI)</td><td>Primary key</td></tr>
+<tr><td>nama_divisi</td><td>varchar (unique)</td><td>Nama divisi</td></tr>
+<tr><td>timestamps</td><td>timestamp</td><td>Waktu created/updated</td></tr>
+</table>
+<p>Terdapat delapan divisi yang telah dikonfigurasi dalam sistem melalui DivisionSeeder, yaitu: Marketing, Sales, Keuangan, Konten Kreator, Gudang, CRM, YouTube, dan Admin Marketplace.</p>
+
+<h3>4.2.3 Tabel Users</h3>
+<p class="no-indent">Tabel users menyimpan data pengguna sistem dengan relasi ke tabel roles dan divisions.</p>
+<table>
+<tr><th>Kolom</th><th>Tipe Data</th><th>Keterangan</th></tr>
+<tr><td>id</td><td>bigint (PK, AI)</td><td>Primary key</td></tr>
+<tr><td>name</td><td>varchar</td><td>Nama lengkap pengguna</td></tr>
+<tr><td>email</td><td>varchar (unique)</td><td>Alamat email</td></tr>
+<tr><td>email_verified_at</td><td>timestamp (nullable)</td><td>Waktu verifikasi email</td></tr>
+<tr><td>password</td><td>varchar (hashed)</td><td>Kata sandi terenkripsi</td></tr>
+<tr><td>role_id</td><td>bigint (FK)</td><td>Foreign key ke tabel roles</td></tr>
+<tr><td>division_id</td><td>bigint (FK, nullable)</td><td>Foreign key ke tabel divisions</td></tr>
+<tr><td>remember_token</td><td>varchar</td><td>Token remember me</td></tr>
+<tr><td>timestamps</td><td>timestamp</td><td>Waktu created/updated</td></tr>
+</table>
+
+<h3>4.2.4 Tabel Activities</h3>
+<p class="no-indent">Tabel activities mencatat seluruh log aktivitas pengguna dalam sistem.</p>
+<table>
+<tr><th>Kolom</th><th>Tipe Data</th><th>Keterangan</th></tr>
+<tr><td>id</td><td>bigint (PK, AI)</td><td>Primary key</td></tr>
+<tr><td>user_id</td><td>bigint (FK, cascade delete)</td><td>Foreign key ke tabel users</td></tr>
+<tr><td>tanggal</td><td>datetime</td><td>Tanggal dan waktu aktivitas</td></tr>
+<tr><td>deskripsi</td><td>text</td><td>Deskripsi aktivitas</td></tr>
+<tr><td>status</td><td>varchar (default: submitted)</td><td>Status aktivitas</td></tr>
+<tr><td>timestamps</td><td>timestamp</td><td>Waktu created/updated</td></tr>
+</table>
+
+<h3>4.2.5 Tabel Reports</h3>
+<p class="no-indent">Tabel reports menyimpan data laporan yang dibuat oleh Super Admin.</p>
+<table>
+<tr><th>Kolom</th><th>Tipe Data</th><th>Keterangan</th></tr>
+<tr><td>id</td><td>bigint (PK, AI)</td><td>Primary key</td></tr>
+<tr><td>title</td><td>varchar</td><td>Judul laporan</td></tr>
+<tr><td>type</td><td>varchar</td><td>Jenis laporan (financial, department, growth, custom)</td></tr>
+<tr><td>description</td><td>text (nullable)</td><td>Deskripsi/isi laporan</td></tr>
+<tr><td>start_date</td><td>date (nullable)</td><td>Tanggal mulai periode</td></tr>
+<tr><td>end_date</td><td>date (nullable)</td><td>Tanggal akhir periode</td></tr>
+<tr><td>status</td><td>enum (generated, ready, failed)</td><td>Status laporan</td></tr>
+<tr><td>created_by</td><td>bigint (FK, nullable)</td><td>Foreign key ke tabel users</td></tr>
+<tr><td>timestamps</td><td>timestamp</td><td>Waktu created/updated</td></tr>
+</table>
+
+<h3>4.2.6 Relasi Antar Tabel</h3>
+<p>Relasi antar tabel dalam sistem ERP ini menggunakan pola Eloquent Relationship pada Laravel. Berikut adalah hubungan antar entitas:</p>
+<ul>
+<li><b>User belongsTo Role</b> &mdash; Setiap pengguna memiliki satu role.</li>
+<li><b>User belongsTo Division</b> &mdash; Setiap pengguna dapat memiliki satu divisi (nullable).</li>
+<li><b>User hasMany Activity</b> &mdash; Satu pengguna dapat memiliki banyak aktivitas.</li>
+<li><b>Activity belongsTo User</b> &mdash; Setiap aktivitas dimiliki oleh satu pengguna.</li>
+<li><b>Report belongsTo User (creator)</b> &mdash; Setiap laporan dibuat oleh satu pengguna.</li>
+<li><b>Role hasMany User</b> &mdash; Satu role dapat dimiliki oleh banyak pengguna.</li>
+<li><b>Division hasMany User</b> &mdash; Satu divisi dapat memiliki banyak pengguna.</li>
+</ul>
+
+<h2>4.3 Implementasi Antarmuka Pengguna</h2>
+
+<h3>4.3.1 Halaman Login</h3>
+<p>Halaman login merupakan pintu masuk utama sistem ERP. Desain halaman login menggunakan layout dua kolom (split screen) dengan bagian kiri berisi formulir login dan bagian kanan menampilkan branding perusahaan PT. Golden Intan Berlian. Halaman ini menggunakan skema warna emas (gold) sebagai identitas visual perusahaan dengan gradien dari #f5e6b3 ke #d4af37.</p>
+<p>Formulir login memvalidasi dua field yaitu email dan password. Proses autentikasi ditangani oleh LoginController yang menggunakan facade Auth::attempt() dari Laravel. Jika kredensial valid, pengguna akan diarahkan ke dashboard sesuai role masing-masing. Jika gagal, sistem menampilkan pesan error "Email atau password salah."</p>
+
+<h3>4.3.2 Dashboard Admin</h3>
+<p>Dashboard admin merupakan halaman utama setelah Super Admin berhasil login. Halaman ini menampilkan ringkasan performa sistem yang terbagi menjadi tiga bagian utama:</p>
+<ol>
+<li><b>System Snapshot</b> &mdash; Menampilkan enam KPI (Key Performance Indicator) berupa Total Users, Active Employees, Total Activities, Today Activity, Productivity (estimasi bulanan), dan Growth (persentase pertumbuhan).</li>
+<li><b>Activity Analytics</b> &mdash; Menampilkan grafik line chart menggunakan library Chart.js yang memvisualisasikan tren aktivitas karyawan dan super admin selama 12 bulan terakhir.</li>
+<li><b>Quick Actions</b> &mdash; Menyediakan pintasan navigasi cepat ke fitur Manage Users, Review Activities, dan Generate Reports.</li>
+</ol>
+
+<h3>4.3.3 Halaman User Management</h3>
+<p>Halaman User Management menyediakan antarmuka untuk mengelola akun pengguna dalam sistem. Fitur-fitur yang tersedia meliputi:</p>
+<ol>
+<li><b>Summary Cards</b> &mdash; Menampilkan statistik Total Users, Active Users, Super Admin, dan Pending Approval.</li>
+<li><b>Filter dan Pencarian</b> &mdash; Toolbar untuk mencari pengguna berdasarkan nama atau email, serta filter berdasarkan role dan divisi.</li>
+<li><b>Tabel Data Pengguna</b> &mdash; Menampilkan daftar pengguna dengan informasi nama, email, role, divisi, status, dan tombol aksi.</li>
+<li><b>Tambah User</b> &mdash; Modal form untuk menambahkan pengguna baru dengan field nama, email, role, dan divisi. Password default ditetapkan sebagai "password123" yang di-hash menggunakan bcrypt.</li>
+<li><b>Reset Password</b> &mdash; Fitur untuk mereset password pengguna kembali ke default melalui modal konfirmasi.</li>
+</ol>
+
+<h3>4.3.4 Halaman Monitoring Aktivitas</h3>
+<p>Halaman Monitoring Aktivitas menampilkan seluruh log aktivitas yang terjadi dalam sistem. Halaman ini memiliki komponen:</p>
+<ol>
+<li><b>KPI Summary</b> &mdash; Empat kartu indikator menampilkan Total Aktivitas, Aktivitas Hari Ini, Aktivitas Admin, dan Aktivitas Karyawan.</li>
+<li><b>Filter Bar</b> &mdash; Toolbar pencarian dengan filter berdasarkan role, divisi, dan tanggal.</li>
+<li><b>Activity Table</b> &mdash; Tabel yang menampilkan informasi user, role, divisi, deskripsi aktivitas, dan waktu. Data ditampilkan dengan paginasi 15 item per halaman.</li>
+</ol>
+
+<h3>4.3.5 Halaman Reports Center</h3>
+<p>Halaman Reports Center merupakan pusat analisis dan pembuatan laporan strategis. Halaman ini terdiri dari:</p>
+<ol>
+<li><b>KPI Strip</b> &mdash; Lima indikator menampilkan Total Reports, Generated (Month), Scheduled, System Coverage, dan Storage Used.</li>
+<li><b>Report Builder</b> &mdash; Empat modul pembuatan laporan yaitu Financial Intelligence, Department Performance, Growth & Trends, dan Custom Intelligence. Masing-masing modul membuka modal form untuk mengisi detail laporan.</li>
+<li><b>Recent Reports</b> &mdash; Tabel laporan terbaru dengan informasi judul, tipe, periode, status, dan aksi (View/Download). Data dipaginasi 10 item per halaman.</li>
+<li><b>System Insight</b> &mdash; Panel informasi menampilkan statistik penggunaan laporan seperti Most Used Report, Least Active Module, Last Generated, dan Automation Status.</li>
+</ol>
+
+<h3>4.3.6 Halaman Profil Pengguna</h3>
+<p>Halaman profil menampilkan informasi akun pengguna yang sedang login. Terdapat tiga section utama:</p>
+<ol>
+<li><b>Profile Overview</b> &mdash; Avatar inisial, nama, email, badge role, dan status aktif.</li>
+<li><b>Account Information</b> &mdash; Detail informasi role, divisi, dan tanggal registrasi.</li>
+<li><b>Activity Summary</b> &mdash; Ringkasan total aktivitas dan aktivitas bulan berjalan.</li>
+</ol>
+
+<h2>4.4 Implementasi Backend</h2>
+
+<h3>4.4.1 Arsitektur MVC</h3>
+<p>Sistem ERP ini mengimplementasikan pola arsitektur Model-View-Controller (MVC) yang merupakan standar pada framework Laravel. Struktur kode dibagi menjadi tiga lapisan utama:</p>
+<ol>
+<li><b>Model</b> &mdash; Terdapat lima model utama yaitu User, Role, Division, Activity, dan Report. Setiap model mendefinisikan fillable attributes, casting, dan relasi Eloquent.</li>
+<li><b>View</b> &mdash; Menggunakan Blade template engine dengan sistem layout inheritance. Layout utama admin (layouts/admin.blade.php) menjadi template induk untuk seluruh halaman panel admin.</li>
+<li><b>Controller</b> &mdash; Terdapat delapan controller yang menangani logika bisnis, termasuk AdminDashboardController, UserController, ActivityController, ReportController, LoginController, dan ProfileController.</li>
+</ol>
+
+<h3>4.4.2 Sistem Autentikasi</h3>
+<p>Sistem autentikasi menggunakan Laravel Breeze sebagai scaffolding. Proses login diimplementasikan melalui LoginController dengan alur: validasi input email dan password, autentikasi menggunakan Auth::attempt(), regenerasi session untuk keamanan, dan redirect ke dashboard berdasarkan role pengguna. Sistem membedakan redirect antara Super Admin (ke admin/dashboard) dan Karyawan (ke karyawan/dashboard) melalui middleware auth pada route /dashboard.</p>
+
+<h3>4.4.3 Sistem Routing</h3>
+<p>Routing sistem dikonfigurasi dalam file routes/web.php dengan pengelompokan route berdasarkan middleware dan prefix. Terdapat empat kelompok route utama:</p>
+<ol>
+<li><b>Auth Routes</b> &mdash; Route untuk login (GET dan POST /login).</li>
+<li><b>Admin Routes</b> &mdash; Route dengan prefix /admin dan middleware auth, mencakup dashboard, users, activities, dan reports.</li>
+<li><b>Karyawan Routes</b> &mdash; Route dengan prefix /karyawan dan middleware auth untuk dashboard karyawan.</li>
+<li><b>Utility Routes</b> &mdash; Route untuk profile dan logout.</li>
+</ol>
+
+<h3>4.4.4 Service Layer</h3>
+<p>Sistem mengimplementasikan service layer melalui kelas ActivityLogger yang berfungsi sebagai helper untuk mencatat aktivitas pengguna secara konsisten. Service ini menyediakan method statis log() yang menerima parameter deskripsi dan status, kemudian membuat record baru pada tabel activities dengan informasi user_id, tanggal, deskripsi, dan status.</p>
+
+<h3>4.4.5 Fitur Dark Mode</h3>
+<p>Sistem mendukung fitur dark mode yang diimplementasikan menggunakan Alpine.js. Tema disimpan di localStorage browser dengan key 'erp_theme'. Fungsi themeManager() mengelola inisialisasi tema, toggle antara light dan dark mode, serta penerapan class 'dark' pada elemen HTML root. TailwindCSS dikonfigurasi dengan darkMode: 'class' untuk mendukung styling kondisional berdasarkan tema aktif.</p>
+
+<h2>4.5 Pengujian Sistem</h2>
+
+<h3>4.5.1 Pengujian Fungsional</h3>
+<p>Pengujian fungsional dilakukan untuk memastikan setiap fitur sistem berjalan sesuai dengan kebutuhan. Berikut hasil pengujian menggunakan metode black-box testing:</p>
+
+<table>
+<tr><th>No</th><th>Skenario Pengujian</th><th>Langkah Pengujian</th><th>Hasil yang Diharapkan</th><th>Status</th></tr>
+<tr><td>1</td><td>Login dengan kredensial valid</td><td>Masukkan email dan password yang benar, klik Sign In</td><td>Pengguna diarahkan ke dashboard sesuai role</td><td>Berhasil</td></tr>
+<tr><td>2</td><td>Login dengan kredensial tidak valid</td><td>Masukkan email atau password yang salah, klik Sign In</td><td>Muncul pesan error "Email atau password salah"</td><td>Berhasil</td></tr>
+<tr><td>3</td><td>Redirect berdasarkan role</td><td>Login sebagai Super Admin</td><td>Diarahkan ke /admin/dashboard</td><td>Berhasil</td></tr>
+<tr><td>4</td><td>Redirect berdasarkan role</td><td>Login sebagai Karyawan</td><td>Diarahkan ke /karyawan/dashboard</td><td>Berhasil</td></tr>
+<tr><td>5</td><td>Menampilkan dashboard admin</td><td>Akses halaman /admin/dashboard</td><td>Menampilkan KPI, grafik, dan quick actions</td><td>Berhasil</td></tr>
+<tr><td>6</td><td>Menambahkan user baru</td><td>Klik Add User, isi form, submit</td><td>User baru tersimpan dan muncul di daftar</td><td>Berhasil</td></tr>
+<tr><td>7</td><td>Pencarian user</td><td>Ketik nama/email pada kolom search, klik Filter</td><td>Tabel menampilkan hasil yang sesuai</td><td>Berhasil</td></tr>
+<tr><td>8</td><td>Reset password user</td><td>Klik Reset Password pada user, konfirmasi</td><td>Password user direset ke default</td><td>Berhasil</td></tr>
+<tr><td>9</td><td>Monitoring aktivitas</td><td>Akses halaman /admin/activities</td><td>Menampilkan log aktivitas dengan paginasi</td><td>Berhasil</td></tr>
+<tr><td>10</td><td>Generate report</td><td>Pilih jenis report, isi form, submit</td><td>Report tersimpan dan tampil di daftar</td><td>Berhasil</td></tr>
+<tr><td>11</td><td>Melihat detail report</td><td>Klik View pada report di tabel</td><td>Menampilkan halaman detail report</td><td>Berhasil</td></tr>
+<tr><td>12</td><td>Melihat profil pengguna</td><td>Klik avatar, pilih Profile</td><td>Menampilkan informasi akun dan aktivitas</td><td>Berhasil</td></tr>
+<tr><td>13</td><td>Toggle dark mode</td><td>Klik tombol Dark/Light di header</td><td>Tampilan berubah sesuai tema</td><td>Berhasil</td></tr>
+<tr><td>14</td><td>Logout</td><td>Klik Logout pada dropdown profil</td><td>Session dihapus, redirect ke login</td><td>Berhasil</td></tr>
+<tr><td>15</td><td>Validasi form tambah user</td><td>Submit form dengan field kosong</td><td>Muncul pesan validasi error</td><td>Berhasil</td></tr>
+</table>
+
+<h3>4.5.2 Pengujian Validasi Input</h3>
+<p>Sistem menerapkan validasi input pada sisi server menggunakan fitur Request Validation Laravel. Berikut aturan validasi yang diterapkan:</p>
+
+<table>
+<tr><th>Form</th><th>Field</th><th>Aturan Validasi</th></tr>
+<tr><td>Login</td><td>email</td><td>required, email</td></tr>
+<tr><td>Login</td><td>password</td><td>required</td></tr>
+<tr><td>Tambah User</td><td>name</td><td>required, string, max:255</td></tr>
+<tr><td>Tambah User</td><td>email</td><td>required, email, unique:users</td></tr>
+<tr><td>Tambah User</td><td>role_id</td><td>required, exists:roles</td></tr>
+<tr><td>Tambah User</td><td>division_id</td><td>required, exists:divisions</td></tr>
+<tr><td>Generate Report</td><td>title</td><td>required, string, max:255</td></tr>
+<tr><td>Generate Report</td><td>type</td><td>required, string</td></tr>
+<tr><td>Generate Report</td><td>report_date</td><td>required, date</td></tr>
+<tr><td>Generate Report</td><td>attachment</td><td>nullable, file, max:2048</td></tr>
+</table>
+
+<h2>4.6 Pembahasan</h2>
+
+<h3>4.6.1 Kelebihan Sistem</h3>
+<p>Berdasarkan hasil implementasi dan pengujian, sistem ERP Prototype PT. Golden Intan Berlian memiliki beberapa kelebihan sebagai berikut:</p>
+<ol>
+<li><b>Arsitektur Terstruktur</b> &mdash; Penggunaan pola MVC pada Laravel memastikan pemisahan antara logika bisnis, tampilan, dan data sehingga kode lebih mudah dipelihara dan dikembangkan.</li>
+<li><b>Keamanan</b> &mdash; Sistem menerapkan hashing password menggunakan bcrypt, CSRF protection pada setiap form, session regeneration setelah login, dan validasi input pada sisi server.</li>
+<li><b>Responsif dan Modern</b> &mdash; Antarmuka pengguna dibangun dengan TailwindCSS yang memastikan tampilan responsif di berbagai ukuran layar. Fitur dark mode meningkatkan kenyamanan pengguna.</li>
+<li><b>Logging Aktivitas</b> &mdash; Setiap aksi penting dalam sistem dicatat secara otomatis melalui ActivityLogger service, memungkinkan audit trail yang komprehensif.</li>
+<li><b>Modular</b> &mdash; Struktur kode yang modular memudahkan penambahan fitur baru tanpa mengganggu fitur yang sudah ada.</li>
+</ol>
+
+<h3>4.6.2 Keterbatasan Sistem</h3>
+<p>Meskipun demikian, sistem ini juga memiliki beberapa keterbatasan yang perlu diperhatikan:</p>
+<ol>
+<li><b>Prototipe</b> &mdash; Sistem masih berupa prototipe sehingga beberapa fitur seperti dashboard karyawan belum diimplementasikan secara lengkap.</li>
+<li><b>Middleware Role</b> &mdash; Belum ada middleware khusus untuk memvalidasi role pengguna pada setiap route admin, sehingga karyawan yang mengetahui URL admin secara teoritis dapat mengaksesnya.</li>
+<li><b>File Upload</b> &mdash; Fitur upload lampiran pada report masih menggunakan penyimpanan lokal dan belum terintegrasi dengan cloud storage.</li>
+<li><b>Notifikasi</b> &mdash; Belum ada sistem notifikasi real-time untuk memberitahu admin tentang aktivitas penting.</li>
+<li><b>Export Data</b> &mdash; Fitur download report belum diimplementasikan sepenuhnya untuk menghasilkan file PDF atau Excel.</li>
+</ol>
+
+<h3>4.6.3 Teknologi yang Digunakan</h3>
+<table>
+<tr><th>Komponen</th><th>Teknologi</th><th>Versi</th></tr>
+<tr><td>Backend Framework</td><td>Laravel</td><td>12.0</td></tr>
+<tr><td>Bahasa Pemrograman</td><td>PHP</td><td>8.2</td></tr>
+<tr><td>Database</td><td>MySQL</td><td>-</td></tr>
+<tr><td>Frontend CSS</td><td>TailwindCSS</td><td>4.0</td></tr>
+<tr><td>JavaScript Framework</td><td>Alpine.js</td><td>3.x</td></tr>
+<tr><td>Build Tool</td><td>Vite</td><td>7.0</td></tr>
+<tr><td>Charting Library</td><td>Chart.js</td><td>Latest</td></tr>
+<tr><td>Auth Scaffolding</td><td>Laravel Breeze</td><td>2.3</td></tr>
+<tr><td>Local Server</td><td>Laragon</td><td>-</td></tr>
+</table>
+
+</body>
+</html>

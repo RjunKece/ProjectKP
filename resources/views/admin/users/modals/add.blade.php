@@ -21,22 +21,20 @@
         </div>
 
         <!-- FORM -->
-        <div class="space-y-4">
+        <form method="POST" action="{{ route('admin.users.store') }}" class="space-y-4">
+            @csrf
 
             <!-- NAME -->
             <div>
                 <label class="block text-sm font-medium mb-1
                               text-slate-700 dark:text-slate-300">
-                    Full Name
+                    Full Name <span class="text-red-500">*</span>
                 </label>
-
-                <input
-                    type="text"
+                <input type="text" name="name" required
                     class="w-full px-4 py-2.5 rounded-lg
                            bg-white dark:bg-slate-800
                            border border-slate-300 dark:border-slate-600
                            text-slate-900 dark:text-white
-                           placeholder:text-slate-400
                            focus:ring-2 focus:ring-[#d4af37]
                            focus:border-[#d4af37]
                            outline-none transition"
@@ -47,16 +45,13 @@
             <div>
                 <label class="block text-sm font-medium mb-1
                               text-slate-700 dark:text-slate-300">
-                    Email Address
+                    Email Address <span class="text-red-500">*</span>
                 </label>
-
-                <input
-                    type="email"
+                <input type="email" name="email" required
                     class="w-full px-4 py-2.5 rounded-lg
                            bg-white dark:bg-slate-800
                            border border-slate-300 dark:border-slate-600
                            text-slate-900 dark:text-white
-                           placeholder:text-slate-400
                            focus:ring-2 focus:ring-[#d4af37]
                            focus:border-[#d4af37]
                            outline-none transition"
@@ -67,10 +62,9 @@
             <div>
                 <label class="block text-sm font-medium mb-1
                               text-slate-700 dark:text-slate-300">
-                    User Role
+                    User Role <span class="text-red-500">*</span>
                 </label>
-
-                <select
+                <select name="role_id" required
                     onchange="handleRoleChange(this)"
                     class="w-full px-4 py-2.5 rounded-lg
                            bg-white dark:bg-slate-800
@@ -79,24 +73,22 @@
                            focus:ring-2 focus:ring-[#d4af37]
                            focus:border-[#d4af37]
                            outline-none transition">
-
                     <option value="">Select role</option>
-                    <option value="super_admin">Super Admin</option>
-                    <option value="admin">Admin</option>
-                    <option value="karyawan">Karyawan</option>
-
+                    @foreach($roles as $role)
+                        <option value="{{ $role->id }}">
+                            {{ ucfirst(str_replace('_', ' ', $role->nama_role)) }}
+                        </option>
+                    @endforeach
                 </select>
             </div>
 
             <!-- DIVISION -->
-            <div id="divisionField" class="hidden">
+            <div>
                 <label class="block text-sm font-medium mb-1
                               text-slate-700 dark:text-slate-300">
-                    Division
+                    Division <span class="text-red-500">*</span>
                 </label>
-
-                <select
-                    id="divisionSelect"
+                <select name="division_id" id="divisionSelect" required
                     class="w-full px-4 py-2.5 rounded-lg
                            bg-white dark:bg-slate-800
                            border border-slate-300 dark:border-slate-600
@@ -104,58 +96,41 @@
                            focus:ring-2 focus:ring-[#d4af37]
                            focus:border-[#d4af37]
                            outline-none transition">
-
                     <option value="">Select division</option>
-                    <option>Marketing</option>
-                    <option>Sales</option>
-                    <option>Finance</option>
-
+                    @foreach($divisions as $division)
+                        <option value="{{ $division->id }}">
+                            {{ $division->nama_divisi }}
+                        </option>
+                    @endforeach
                 </select>
             </div>
 
-        </div>
+            <!-- PASSWORD INFO -->
+            <div class="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded-lg p-3">
+                <p class="text-xs text-amber-700 dark:text-amber-300">
+                    🔐 Password default: <strong>password123</strong> — User wajib ganti setelah login pertama.
+                </p>
+            </div>
 
-        <!-- ACTION -->
-        <div class="flex items-center justify-end gap-4 mt-8">
+            <!-- ACTION -->
+            <div class="flex items-center justify-end gap-4 mt-8">
+                <button type="button"
+                    onclick="closeModal('addUserModal')"
+                    class="text-sm text-slate-500 dark:text-slate-400
+                           hover:text-slate-700 dark:hover:text-white transition">
+                    Cancel
+                </button>
 
-            <button
-                onclick="closeModal('addUserModal')"
-                class="text-sm
-                       text-slate-500 dark:text-slate-400
-                       hover:text-slate-700 dark:hover:text-white
-                       transition">
-
-                Cancel
-
-            </button>
-
-            <button
-                class="px-5 py-2.5 rounded-lg text-sm font-semibold
-                       bg-[#d4af37] text-white
-                       hover:opacity-90
-                       shadow-md shadow-[#d4af37]/20
-                       transition">
-
-                Save User
-
-            </button>
-
-        </div>
+                <button type="submit"
+                    class="px-5 py-2.5 rounded-lg text-sm font-semibold
+                           bg-gradient-to-r from-[#f5e6b3] to-[#d4af37] text-slate-900
+                           hover:opacity-90
+                           shadow-md shadow-[#d4af37]/20
+                           transition">
+                    Save User
+                </button>
+            </div>
+        </form>
 
     </div>
-
 </div>
-
-<script>
-function handleRoleChange(select) {
-    const divisionField = document.getElementById('divisionField');
-    const divisionSelect = document.getElementById('divisionSelect');
-
-    if (select.value === 'karyawan') {
-        divisionField.classList.remove('hidden');
-    } else {
-        divisionField.classList.add('hidden');
-        if (divisionSelect) divisionSelect.value = '';
-    }
-}
-</script>

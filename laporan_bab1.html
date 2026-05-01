@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>BAB I - Pendahuluan</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Times+New+Roman&display=swap');
+@page{margin:3cm 3cm 3cm 4cm}
+body{font-family:'Times New Roman',Times,serif;font-size:12pt;color:#000;line-height:1.25;text-align:justify;margin-top:3cm;margin-bottom:3cm;margin-left:4cm;margin-right:3cm;max-width:none}
+h1{text-align:center;font-size:14pt;font-weight:bold;margin-bottom:24pt}
+h2{font-size:12pt;font-weight:bold;margin-top:18pt;margin-bottom:6pt}
+h3{font-size:12pt;font-weight:bold;margin-top:12pt;margin-bottom:6pt}
+p{margin-bottom:6pt;text-indent:1.27cm}
+.no-indent{text-indent:0}
+ol,ul{margin-left:1cm;margin-bottom:6pt}
+li{margin-bottom:4pt}
+.center{text-align:center}
+.ref{text-indent:-1.27cm;padding-left:1.27cm;margin-bottom:4pt}
+.page-break{page-break-before:always}
+</style>
+</head>
+<body>
+
+<h1>BAB I<br>PENDAHULUAN</h1>
+
+<h2>1.1 Latar Belakang</h2>
+
+<p>Perkembangan teknologi informasi yang semakin pesat telah membawa perubahan signifikan dalam cara perusahaan mengelola operasional bisnisnya. Menurut Laudon dan Laudon (2020), sistem informasi merupakan komponen yang saling bekerja sama untuk mengumpulkan, mengolah, menyimpan, dan mendistribusikan informasi guna mendukung pengambilan keputusan, koordinasi, pengendalian, analisis, dan visualisasi dalam suatu organisasi. Di era digital saat ini, perusahaan dituntut untuk mengadopsi sistem informasi yang terintegrasi agar dapat bersaing secara kompetitif di pasar yang semakin dinamis.</p>
+
+<p>Salah satu sistem informasi terintegrasi yang banyak diadopsi oleh perusahaan modern adalah <i>Enterprise Resource Planning</i> (ERP). Menurut Monk dan Wagner (2013), ERP merupakan program perangkat lunak inti yang digunakan oleh perusahaan untuk mengkoordinasikan informasi di setiap area bisnis. Sistem ERP membantu mengelola proses bisnis di seluruh perusahaan dengan menggunakan basis data bersama dan alat pelaporan manajemen bersama. Romney dan Steinbart (2018) menambahkan bahwa sistem ERP mengintegrasikan seluruh aspek aktivitas organisasi termasuk akuntansi, keuangan, pemasaran, sumber daya manusia, manufaktur, dan manajemen persediaan ke dalam satu sistem dengan basis data tunggal.</p>
+
+<p>Leon (2014) dalam bukunya menyatakan bahwa implementasi ERP pada perusahaan dapat memberikan berbagai keuntungan, antara lain: (1) integrasi data keuangan, (2) standarisasi proses operasional, (3) standarisasi data dan informasi sumber daya manusia, dan (4) peningkatan efisiensi dalam pengambilan keputusan. Hal ini sejalan dengan hasil penelitian yang dilakukan oleh Grabski, Leech, dan Schmidt (2011) yang dipublikasikan dalam <i>Journal of Information Systems</i>, yang menemukan bahwa implementasi ERP yang sukses dapat meningkatkan efisiensi operasional perusahaan secara signifikan melalui otomatisasi proses bisnis dan eliminasi redundansi data.</p>
+
+<p>PT. Golden Intan Berlian merupakan perusahaan yang bergerak di bidang perdagangan dan distribusi yang memiliki delapan divisi operasional, yaitu Marketing, Sales, Keuangan, Konten Kreator, Gudang, CRM (<i>Customer Relationship Management</i>), YouTube, dan Admin Marketplace. Dengan jumlah divisi yang cukup banyak, pengelolaan data karyawan, monitoring aktivitas harian, dan pembuatan laporan manajerial menjadi tantangan tersendiri bagi manajemen perusahaan.</p>
+
+<p>Saat ini, PT. Golden Intan Berlian masih mengelola sebagian besar proses bisnisnya secara manual atau menggunakan aplikasi yang berdiri sendiri (<i>standalone</i>) tanpa integrasi satu sama lain. Pengelolaan data karyawan dilakukan melalui <i>spreadsheet</i>, pencatatan aktivitas harian tidak terdokumentasi secara sistematis, dan pembuatan laporan manajerial memerlukan waktu yang lama karena harus mengkompilasi data dari berbagai sumber secara manual. Kondisi ini menyebabkan beberapa permasalahan operasional, antara lain: sulitnya melakukan monitoring aktivitas karyawan secara <i>real-time</i>, potensi terjadinya duplikasi dan inkonsistensi data antar divisi, serta lambatnya proses pengambilan keputusan manajerial karena keterbatasan akses terhadap informasi yang terintegrasi.</p>
+
+<p>Berdasarkan kondisi tersebut, diperlukan sebuah sistem ERP berbasis web yang dapat mengintegrasikan pengelolaan data karyawan, monitoring aktivitas, dan pembuatan laporan pada PT. Golden Intan Berlian. Pengembangan sistem ini menggunakan metode <i>Rapid Application Development</i> (RAD) yang diperkenalkan oleh James Martin pada tahun 1991. Menurut Kendall dan Kendall (2019), RAD merupakan pendekatan berorientasi objek untuk pengembangan sistem yang mencakup suatu metode pengembangan dan perangkat lunak. RAD bertujuan untuk memperpendek waktu yang diperlukan dalam siklus pengembangan sistem tradisional antara perancangan dan penerapan suatu sistem informasi.</p>
+
+<p>Pemilihan metode RAD didasarkan pada beberapa pertimbangan utama. Pertama, proyek ini memiliki batasan waktu pengembangan yang relatif singkat sehingga memerlukan metode yang mampu menghasilkan prototipe fungsional secara cepat. Kedua, ketersediaan framework modern seperti Laravel 12 beserta ekosistem pendukungnya (TailwindCSS, Alpine.js, Vite, Chart.js) memungkinkan penerapan prinsip RAD melalui pemanfaatan komponen siap pakai (<i>reusable components</i>). Ketiga, sifat proyek yang berupa prototipe memerlukan pendekatan iteratif sebagaimana ditekankan dalam metode RAD. Pressman dan Maxim (2019) menegaskan bahwa RAD sangat cocok untuk proyek-proyek yang membutuhkan penyelesaian cepat dengan tetap memperhatikan kualitas perangkat lunak yang dihasilkan.</p>
+
+<p>Sistem ERP yang dibangun merupakan sebuah prototipe (<i>prototype</i>) yang dirancang untuk menunjukkan bagaimana teknologi web modern dapat digunakan untuk mengembangkan sistem informasi terintegrasi pada perusahaan skala menengah. Sistem ini dibangun menggunakan framework Laravel 12 dengan arsitektur <i>Model-View-Controller</i> (MVC), basis data MySQL, dan antarmuka pengguna berbasis TailwindCSS 4.0 yang responsif dan modern.</p>
+
+<h2>1.2 Identifikasi Masalah</h2>
+
+<p>Berdasarkan latar belakang yang telah diuraikan di atas, dapat diidentifikasi beberapa permasalahan sebagai berikut:</p>
+<ol>
+<li>Pengelolaan data karyawan pada PT. Golden Intan Berlian masih dilakukan secara manual menggunakan <i>spreadsheet</i>, sehingga rentan terhadap kesalahan input dan inkonsistensi data antar divisi.</li>
+<li>Belum adanya sistem monitoring aktivitas karyawan secara terpusat yang memungkinkan manajemen untuk memantau produktivitas dan kinerja karyawan dari delapan divisi secara <i>real-time</i>.</li>
+<li>Proses pembuatan laporan manajerial masih memerlukan kompilasi data manual dari berbagai sumber yang terpisah, sehingga mengakibatkan lambatnya proses pengambilan keputusan strategis.</li>
+<li>Belum tersedianya sistem informasi terintegrasi berbasis web yang dapat diakses oleh seluruh pengguna (Super Admin dan Karyawan) sesuai dengan hak akses masing-masing.</li>
+</ol>
+
+<h2>1.3 Rumusan Masalah</h2>
+
+<p>Berdasarkan identifikasi masalah yang telah diuraikan, maka rumusan masalah dalam penelitian ini adalah sebagai berikut:</p>
+<ol>
+<li>Bagaimana merancang dan membangun sistem ERP berbasis web untuk PT. Golden Intan Berlian yang dapat mengintegrasikan pengelolaan data karyawan, monitoring aktivitas, dan pembuatan laporan manajerial menggunakan metode <i>Rapid Application Development</i> (RAD)?</li>
+<li>Bagaimana mengimplementasikan arsitektur <i>Model-View-Controller</i> (MVC) pada framework Laravel 12 untuk membangun sistem ERP yang terstruktur, aman, dan mudah dikembangkan?</li>
+<li>Bagaimana hasil pengujian fungsionalitas sistem ERP Prototype yang dibangun menggunakan metode <i>black-box testing</i>?</li>
+</ol>
+
+<h2>1.4 Batasan Masalah</h2>
+
+<p>Agar penelitian ini lebih terarah dan terfokus, maka ditetapkan batasan masalah sebagai berikut:</p>
+<ol>
+<li>Sistem yang dibangun merupakan prototipe (<i>prototype</i>) ERP yang berfokus pada tiga modul utama, yaitu: manajemen pengguna (<i>User Management</i>), monitoring aktivitas (<i>Activity Monitoring</i>), dan pusat laporan (<i>Reports Center</i>).</li>
+<li>Sistem dikembangkan menggunakan framework Laravel 12 dengan bahasa pemrograman PHP 8.2, basis data MySQL, dan antarmuka pengguna menggunakan TailwindCSS 4.0, Alpine.js, dan Chart.js.</li>
+<li>Sistem memiliki dua peran pengguna, yaitu Super Admin yang memiliki akses penuh terhadap seluruh fitur, dan Karyawan yang memiliki akses terbatas pada dashboard pribadi dan profil.</li>
+<li>Metode pengembangan sistem yang digunakan adalah <i>Rapid Application Development</i> (RAD) dengan empat tahapan: <i>Requirements Planning</i>, <i>User Design</i>, <i>Construction</i>, dan <i>Cutover</i>.</li>
+<li>Pengujian sistem dilakukan menggunakan metode <i>black-box testing</i> yang berfokus pada pengujian fungsionalitas sistem dari perspektif pengguna akhir.</li>
+<li>Sistem berjalan di lingkungan server lokal (<i>localhost</i>) menggunakan Laragon sebagai <i>local development server</i> dan belum di-deploy ke server produksi.</li>
+<li>Studi kasus penelitian dilakukan pada PT. Golden Intan Berlian dengan delapan divisi operasional: Marketing, Sales, Keuangan, Konten Kreator, Gudang, CRM, YouTube, dan Admin Marketplace.</li>
+</ol>
+
+<h2>1.5 Tujuan Penelitian</h2>
+
+<p>Tujuan dari penelitian ini adalah sebagai berikut:</p>
+<ol>
+<li>Merancang dan membangun sistem ERP Prototype berbasis web untuk PT. Golden Intan Berlian yang mengintegrasikan pengelolaan data karyawan, monitoring aktivitas, dan pembuatan laporan manajerial menggunakan metode <i>Rapid Application Development</i> (RAD).</li>
+<li>Mengimplementasikan arsitektur <i>Model-View-Controller</i> (MVC) pada framework Laravel 12 untuk menghasilkan sistem ERP yang terstruktur, aman, dan mudah dikembangkan lebih lanjut.</li>
+<li>Melakukan pengujian fungsionalitas sistem menggunakan metode <i>black-box testing</i> untuk memastikan setiap fitur berjalan sesuai dengan kebutuhan yang telah ditetapkan.</li>
+</ol>
+
+<h2>1.6 Manfaat Penelitian</h2>
+
+<p>Penelitian ini diharapkan dapat memberikan manfaat baik secara teoritis maupun praktis sebagai berikut:</p>
+
+<h3>1.6.1 Manfaat Teoritis</h3>
+<ol>
+<li>Memberikan kontribusi dalam pengembangan ilmu pengetahuan di bidang sistem informasi, khususnya terkait implementasi metode <i>Rapid Application Development</i> (RAD) dalam pembangunan sistem ERP berbasis web.</li>
+<li>Menjadi referensi bagi peneliti selanjutnya yang ingin mengembangkan sistem ERP menggunakan framework Laravel dan metode RAD.</li>
+<li>Membuktikan efektivitas penerapan metode RAD dalam menghasilkan prototipe sistem informasi yang fungsional dalam waktu pengembangan yang relatif singkat.</li>
+</ol>
+
+<h3>1.6.2 Manfaat Praktis</h3>
+<ol>
+<li><b>Bagi PT. Golden Intan Berlian</b> &mdash; Sistem ERP Prototype ini dapat menjadi landasan (<i>proof of concept</i>) untuk pengembangan sistem ERP yang lebih komprehensif di masa mendatang, serta memberikan gambaran mengenai potensi digitalisasi proses bisnis perusahaan.</li>
+<li><b>Bagi Manajemen Perusahaan</b> &mdash; Menyediakan dashboard analitik yang memudahkan manajemen dalam memantau aktivitas karyawan, mengelola data pengguna dari delapan divisi, dan menghasilkan laporan manajerial secara cepat dan akurat.</li>
+<li><b>Bagi Pengembang Perangkat Lunak</b> &mdash; Memberikan contoh implementasi nyata pengembangan sistem ERP menggunakan teknologi web modern (Laravel 12, TailwindCSS 4.0, Alpine.js, Chart.js, dan Vite 7) dengan penerapan <i>best practices</i> seperti arsitektur MVC, Eloquent ORM, dan CSRF protection.</li>
+</ol>
+
+<h2>1.7 Sistematika Penulisan</h2>
+
+<p>Sistematika penulisan laporan penelitian ini disusun dalam lima bab dengan rincian sebagai berikut:</p>
+
+<p><b>BAB I PENDAHULUAN</b></p>
+<p class="no-indent">Bab ini berisi latar belakang masalah, identifikasi masalah, rumusan masalah, batasan masalah, tujuan penelitian, manfaat penelitian, dan sistematika penulisan laporan.</p>
+
+<p><b>BAB II LANDASAN TEORI</b></p>
+<p class="no-indent">Bab ini memuat teori-teori yang menjadi dasar dalam penelitian, meliputi konsep <i>Enterprise Resource Planning</i> (ERP), metode <i>Rapid Application Development</i> (RAD), arsitektur <i>Model-View-Controller</i> (MVC), framework Laravel, dan teknologi-teknologi pendukung lainnya yang digunakan dalam pengembangan sistem.</p>
+
+<p><b>BAB III METODOLOGI PENELITIAN</b></p>
+<p class="no-indent">Bab ini menjelaskan metode pengembangan sistem yang digunakan yaitu <i>Rapid Application Development</i> (RAD) beserta tahapan-tahapannya, alat dan bahan penelitian, teknik pengumpulan data, dan teknik pengujian sistem.</p>
+
+<p><b>BAB IV HASIL DAN PEMBAHASAN</b></p>
+<p class="no-indent">Bab ini menguraikan hasil implementasi sistem ERP Prototype yang disusun berdasarkan empat fase metode RAD, meliputi: <i>Requirements Planning</i>, <i>User Design</i>, <i>Construction</i>, dan <i>Cutover</i>. Pembahasan mencakup implementasi basis data, antarmuka pengguna, arsitektur backend, pengujian fungsional, serta kelebihan dan keterbatasan sistem.</p>
+
+<p><b>BAB V PENUTUP</b></p>
+<p class="no-indent">Bab ini berisi kesimpulan dari hasil penelitian yang telah dilakukan serta saran-saran untuk pengembangan sistem ERP lebih lanjut di masa mendatang.</p>
+
+<!-- DAFTAR PUSTAKA -->
+<div class="page-break"></div>
+<h1>DAFTAR PUSTAKA</h1>
+
+<p class="ref">Ahmad, N., Mehmood, R., & Yanez, C. (2022). RAPD: Rapid and Participatory Application Development of Usable Systems During COVID19 Crisis. <i>IEEE Access</i>, 10, 90174–90193. <a href="https://doi.org/10.1109/ACCESS.2022.3201432">https://doi.org/10.1109/ACCESS.2022.3201432</a></p>
+
+<p class="ref">Al-Mashari, M., Al-Mudimigh, A., & Zairi, M. (2003). Enterprise Resource Planning: A Taxonomy of Critical Factors. <i>European Journal of Operational Research</i>, 146(2), 352–364. <a href="https://doi.org/10.1016/S0377-2217(02)00554-4">https://doi.org/10.1016/S0377-2217(02)00554-4</a></p>
+
+<p class="ref">Davenport, T. H. (1998). Putting the Enterprise into the Enterprise System. <i>Harvard Business Review</i>, 76(4), 121–131. <a href="https://hbr.org/1998/07/putting-the-enterprise-into-the-enterprise-system">https://hbr.org/1998/07/putting-the-enterprise-into-the-enterprise-system</a></p>
+
+<p class="ref">Dewan, S., & Ren, F. (2011). Information Technology and Firm Boundaries: Impact on Firm Risk and Return Performance. <i>Information Systems Research</i>, 22(2), 369–388. <a href="https://doi.org/10.1287/isre.1090.0261">https://doi.org/10.1287/isre.1090.0261</a></p>
+
+<p class="ref">Grabski, S. V., Leech, S. A., & Schmidt, P. J. (2011). A Review of ERP Research: A Future Agenda for Accounting Information Systems. <i>Journal of Information Systems</i>, 25(1), 37–78. <a href="https://doi.org/10.2308/jis.2011.25.1.37">https://doi.org/10.2308/jis.2011.25.1.37</a></p>
+
+<p class="ref">Kendall, K. E., & Kendall, J. E. (2019). <i>Systems Analysis and Design</i> (10th ed.). Pearson.</p>
+
+<p class="ref">Laudon, K. C., & Laudon, J. P. (2020). <i>Management Information Systems: Managing the Digital Firm</i> (16th ed.). Pearson.</p>
+
+<p class="ref">Leon, A. (2014). <i>ERP Demystified</i> (3rd ed.). McGraw Hill Education (India) Private Limited.</p>
+
+<p class="ref">Martin, J. (1991). <i>Rapid Application Development</i>. Macmillan Publishing Co., Inc.</p>
+
+<p class="ref">Monk, E. F., & Wagner, B. J. (2013). <i>Concepts in Enterprise Resource Planning</i> (4th ed.). Cengage Learning.</p>
+
+<p class="ref">Pressman, R. S., & Maxim, B. R. (2019). <i>Software Engineering: A Practitioner's Approach</i> (9th ed.). McGraw-Hill Education.</p>
+
+<p class="ref">Romney, M. B., & Steinbart, P. J. (2018). <i>Accounting Information Systems</i> (14th ed.). Pearson.</p>
+
+<p class="ref">Sommerville, I. (2016). <i>Software Engineering</i> (10th ed.). Pearson.</p>
+
+<p class="ref">Umble, E. J., Haft, R. R., & Umble, M. M. (2003). Enterprise Resource Planning: Implementation Procedures and Critical Success Factors. <i>European Journal of Operational Research</i>, 146(2), 241–257. <a href="https://doi.org/10.1016/S0377-2217(02)00547-7">https://doi.org/10.1016/S0377-2217(02)00547-7</a></p>
+
+</body>
+</html>

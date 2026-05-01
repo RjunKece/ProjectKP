@@ -14,23 +14,49 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-        $users = User::with(['role', 'division'])
-            ->when($request->search, function ($q) use ($request) {
-                $q->where('name', 'like', "%{$request->search}%")
-                  ->orWhere('email', 'like', "%{$request->search}%");
-            })
-            ->get();
+        $query = User::with(['role', 'division']);
+
+        // Hanya tampilkan admin dan karyawan yang aktif (contoh & contoh3)
+        $query->where(function ($q) {
+            $q->whereHas('role', fn($r) => $r->where('nama_role', 'super_admin'))
+              ->orWhereIn('email', ['contoh@gmail.com', 'contoh3@gmail.com']);
+        });
+
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                  ->orWhere('email', 'like', "%{$search}%");
+            });
+        }
+
+        if ($request->filled('role_id')) {
+            $query->where('role_id', $request->role_id);
+        }
+
+        if ($request->filled('division_id')) {
+            $query->where('division_id', $request->division_id);
+        }
+
+        $users = $query->latest()->get();
+
+        // KPI Stats
+        $totalUsers     = User::count();
+        $activeUsers    = User::count(); // all are active in this prototype
+        $adminAccounts  = User::whereHas('role', fn($q) => $q->where('nama_role', 'super_admin'))->count();
+        $pendingApproval = 0;
 
         return view('admin.users.index', [
-            'users' => $users,
-            'roles' => Role::all(),
-            'divisions' => Division::all(),
+            'users'           => $users,
+            'roles'           => Role::all(),
+            'divisions'       => Division::all(),
+            'totalUsers'      => $totalUsers,
+            'activeUsers'     => $activeUsers,
+            'adminAccounts'   => $adminAccounts,
+            'pendingApproval' => $pendingApproval,
         ]);
     }
 
-    // ===============================
-    // STORE USER (INI YANG TADI BELUM)
-    // ===============================
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -45,20 +71,20 @@ class UserController extends Controller
             'email'       => $validated['email'],
             'role_id'     => $validated['role_id'],
             'division_id' => $validated['division_id'],
-            'password'    => Hash::make('password123'), // default demo
+            'password'    => Hash::make('password123'),
         ]);
 
-        // LOG AKTIVITAS (PENTING)
+        // LOG AKTIVITAS
         Activity::create([
             'user_id'   => auth()->id(),
             'tanggal'   => now(),
             'deskripsi' => 'Menambahkan user baru: ' . $user->name,
-            'status'    => 'created',
+            'status'    => 'completed',
         ]);
 
         return redirect()
             ->route('admin.users')
-            ->with('success', 'User berhasil ditambahkan');
+            ->with('success', 'User berhasil ditambahkan!');
     }
 
     public function resetPassword(User $user)
@@ -67,6 +93,14 @@ class UserController extends Controller
             'password' => Hash::make('password123'),
         ]);
 
-        return back()->with('success', 'Password user berhasil di-reset');
+        // LOG AKTIVITAS
+        Activity::create([
+            'user_id'   => auth()->id(),
+            'tanggal'   => now(),
+            'deskripsi' => 'Mereset password user: ' . $user->name,
+            'status'    => 'completed',
+        ]);
+
+        return back()->with('success', 'Password user berhasil di-reset ke default!');
     }
 }

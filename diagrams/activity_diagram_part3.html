@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Activity Diagram — Part 3: Karyawan Features</title>
+<style>
+@page { size: A4; margin: 3cm 3cm 3cm 4cm; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'Times New Roman', Times, serif; font-size: 12pt; line-height: 1.5; color: #000; max-width: 800px; margin: 0 auto; padding: 4cm 3cm 3cm 4cm; background: #fff; }
+h1 { font-size: 14pt; font-weight: bold; text-align: center; margin-bottom: 24pt; text-transform: uppercase; }
+h2 { font-size: 12pt; font-weight: bold; margin: 18pt 0 8pt; }
+h3 { font-size: 12pt; font-weight: bold; margin: 12pt 0 6pt; }
+p { text-align: justify; margin-bottom: 6pt; text-indent: 36pt; }
+table { width: 100%; border-collapse: collapse; margin: 8pt 0 12pt; font-size: 11pt; }
+th, td { border: 1px solid #000; padding: 5pt 8pt; vertical-align: top; text-align: left; }
+th { background: #f0f0f0; font-weight: bold; }
+td.label { width: 160px; font-weight: bold; }
+ol, ul { margin: 4pt 0 8pt 36pt; }
+li { margin-bottom: 3pt; }
+.page-break { page-break-after: always; }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- ACTIVITY DIAGRAM 10: KARYAWAN DASHBOARD -->
+<!-- ============================================================ -->
+
+<h2>4.x.10 Activity Diagram — Melihat Dashboard Karyawan</h2>
+
+<table>
+<tr><td class="label">Nama Use Case</td><td>Melihat Ringkasan Performa Individual</td></tr>
+<tr><td class="label">Aktor</td><td>Karyawan</td></tr>
+<tr><td class="label">Deskripsi</td><td>Karyawan melihat halaman dashboard personal yang menampilkan ringkasan performa individu, termasuk statistik aktivitas, grafik tren, aktivitas terbaru, dan akses cepat ke fitur-fitur utama. Data yang ditampilkan hanya milik karyawan yang bersangkutan (difilter berdasarkan <i>auth()->user()->id</i>).</td></tr>
+<tr><td class="label">Pre-condition</td><td>Karyawan telah berhasil login. Middleware memverifikasi role = "karyawan".</td></tr>
+<tr><td class="label">Post-condition</td><td>Dashboard karyawan ditampilkan dengan data personal dari database.</td></tr>
+</table>
+
+<h3>Alur Utama (Main Flow):</h3>
+<ol>
+<li>Karyawan mengklik menu <b>"Dashboard"</b> pada sidebar navigasi atau otomatis diarahkan setelah login.</li>
+<li>Sistem menerima request GET ke route <i>/karyawan/dashboard</i> dan menjalankan <i>KaryawanDashboardController@index</i>.</li>
+<li>Sistem mengirimkan query ke Database dengan filter <i>WHERE user_id = auth()->user()->id</i>:
+    <ul>
+    <li>Query total aktivitas personal.</li>
+    <li>Query aktivitas bulan ini: <i>WHERE MONTH(tanggal) = MONTH(CURDATE())</i>.</li>
+    <li>Query aktivitas minggu ini.</li>
+    <li>Query aktivitas hari ini.</li>
+    <li>Query tren 6 bulan terakhir untuk chart.</li>
+    <li>Query 5 aktivitas terbaru: <i>ORDER BY created_at DESC LIMIT 5</i>.</li>
+    </ul>
+</li>
+<li>Database mengeksekusi seluruh query dan mengembalikan data personal ke Sistem.</li>
+<li>Sistem memproses data dan merender halaman dashboard (<i>karyawan.dashboard</i>) yang menampilkan:
+    <ul>
+    <li><b>Welcome Banner:</b> Salam personal dengan nama karyawan, badge role, dan divisi.</li>
+    <li><b>4 KPI Cards (Personal Snapshot):</b> Total Aktivitas, Bulan Ini, Minggu Ini, dan Hari Ini.</li>
+    <li><b>Tren Aktivitas Chart:</b> Bar chart aktivitas 6 bulan terakhir menggunakan Chart.js.</li>
+    <li><b>Aktivitas Terbaru:</b> Tabel 5 log aktivitas terkini (tanggal, deskripsi, status).</li>
+    <li><b>Quick Actions:</b> Tombol akses cepat ke Aktivitas Saya, Laporan Perusahaan, dan Overview.</li>
+    </ul>
+</li>
+<li>Karyawan melihat ringkasan performa personal dan dapat bernavigasi ke fitur lain.</li>
+</ol>
+
+<div class="page-break"></div>
+
+<!-- ============================================================ -->
+<!-- ACTIVITY DIAGRAM 11: KARYAWAN AKTIVITAS -->
+<!-- ============================================================ -->
+
+<h2>4.x.11 Activity Diagram — Melihat dan Mencatat Aktivitas Individual</h2>
+
+<table>
+<tr><td class="label">Nama Use Case</td><td>Melihat Aktivitas Individual dan Menambah Aktivitas</td></tr>
+<tr><td class="label">Aktor</td><td>Karyawan</td></tr>
+<tr><td class="label">Deskripsi</td><td>Karyawan melihat riwayat aktivitas kerja harian miliknya sendiri, melihat progres target harian divisi, dan dapat mencatat aktivitas baru dengan melampirkan file atau link referensi. Fitur ini terhubung langsung dengan modul monitoring admin.</td></tr>
+<tr><td class="label">Pre-condition</td><td>Karyawan telah login. Daily targets untuk divisi karyawan telah dikonfigurasi.</td></tr>
+<tr><td class="label">Post-condition</td><td>Aktivitas baru berhasil tersimpan di database dan terlihat di halaman monitoring admin.</td></tr>
+</table>
+
+<h3>Alur Utama (Main Flow) — Mencatat Aktivitas Baru:</h3>
+<ol>
+<li>Karyawan mengklik menu <b>"Aktivitas Saya"</b> pada sidebar navigasi.</li>
+<li>Sistem menerima request GET ke route <i>/karyawan/activities</i> dan menjalankan <i>KaryawanActivityController@index</i>.</li>
+<li>Sistem mengirimkan query ke Database:
+    <ul>
+    <li>Query aktivitas personal: <i>SELECT * FROM activities WHERE user_id = ? ORDER BY tanggal DESC</i>.</li>
+    <li>Query daily targets: <i>SELECT * FROM daily_targets WHERE division_id = ? AND is_active = true</i>.</li>
+    <li>Query KPI: total, hari ini, bulan ini, minggu ini (semua difilter <i>user_id</i>).</li>
+    </ul>
+</li>
+<li>Database mengembalikan data dan Sistem merender halaman yang menampilkan:
+    <ul>
+    <li><b>4 KPI Cards:</b> Total Aktivitas, Hari Ini, Bulan Ini, Minggu Ini.</li>
+    <li><b>Target Harian:</b> Progress bar per target divisi dengan persentase pencapaian.</li>
+    <li><b>Chart Tren 7 Hari:</b> Bar chart aktivitas mingguan.</li>
+    <li><b>Filter Bar:</b> Pencarian, filter status, dan filter tanggal.</li>
+    <li><b>Tabel Aktivitas:</b> Kolom nomor, tanggal, deskripsi, status, dan lampiran dengan pagination.</li>
+    </ul>
+</li>
+<li>Karyawan melihat riwayat aktivitas dan progres target harian.</li>
+<li>Karyawan mengklik tombol <b>"➕ Tambah Aktivitas"</b>.</li>
+<li>Sistem menampilkan modal form <b>"Tambah Aktivitas Baru"</b> yang berisi field:
+    <ul>
+    <li><b>Tanggal:</b> Date picker (default: hari ini, wajib).</li>
+    <li><b>Target Harian:</b> Dropdown daftar target divisi (opsional).</li>
+    <li><b>Deskripsi Aktivitas:</b> Textarea untuk deskripsi detail (wajib).</li>
+    <li><b>Lampiran File:</b> Upload file dokumen (opsional, max 10MB).</li>
+    <li><b>Link Referensi:</b> Input URL referensi eksternal (opsional).</li>
+    </ul>
+</li>
+<li>Karyawan mengisi field yang diperlukan.</li>
+<li>Karyawan mengklik tombol <b>"Simpan"</b>.</li>
+<li>Sistem menerima request POST ke <i>/karyawan/activities</i> dan menjalankan <i>KaryawanActivityController@store</i>.</li>
+<li>Sistem melakukan validasi (tanggal wajib, deskripsi wajib, file max 10MB jika ada).</li>
+<li>Jika terdapat file lampiran, Sistem mengupload dan menyimpan file ke storage.</li>
+<li>Sistem mengirimkan query INSERT ke Database: <i>INSERT INTO activities (user_id, tanggal, deskripsi, status, file_path, file_name, link, target_id) VALUES (...)</i>.</li>
+<li>Database menyimpan record dengan status default <b>"submitted"</b>.</li>
+<li>Sistem menutup modal, menampilkan notifikasi sukses, dan merefresh halaman.</li>
+<li>Karyawan melihat aktivitas baru muncul pada tabel dan progres target harian diperbarui.</li>
+</ol>
+
+<h3>Alur Alternatif — Filter Riwayat:</h3>
+<ol type="a">
+<li><b>Karyawan Memfilter Aktivitas:</b>
+    <ol>
+    <li>Karyawan mengisi parameter filter (status atau tanggal).</li>
+    <li>Karyawan mengklik tombol <b>"Filter"</b>.</li>
+    <li>Sistem mengirimkan query dengan klausa WHERE tambahan ke Database.</li>
+    <li>Sistem merender ulang tabel dengan hasil filter.</li>
+    </ol>
+</li>
+<li><b>Karyawan Mengubah Status Aktivitas:</b>
+    <ol>
+    <li>Karyawan mengklik tombol edit pada baris aktivitas.</li>
+    <li>Sistem menampilkan modal edit dengan field status (dropdown) dan lampiran.</li>
+    <li>Karyawan mengubah status (misalnya dari "submitted" ke "completed").</li>
+    <li>Karyawan mengklik <b>"Update"</b>.</li>
+    <li>Sistem mengirimkan request PUT ke <i>/karyawan/activities/{id}</i>.</li>
+    <li>Database memperbarui record aktivitas.</li>
+    </ol>
+</li>
+</ol>
+
+<div class="page-break"></div>
+
+<!-- ============================================================ -->
+<!-- ACTIVITY DIAGRAM 12: KARYAWAN MELIHAT LAPORAN -->
+<!-- ============================================================ -->
+
+<h2>4.x.12 Activity Diagram — Melihat Daftar Laporan Perusahaan</h2>
+
+<table>
+<tr><td class="label">Nama Use Case</td><td>Melihat Daftar Laporan Perusahaan yang Telah Dipublikasikan</td></tr>
+<tr><td class="label">Aktor</td><td>Karyawan</td></tr>
+<tr><td class="label">Deskripsi</td><td>Karyawan mengakses Pusat Laporan untuk melihat laporan perusahaan yang telah dipublikasikan oleh admin, laporan divisi terkait, dan laporan yang dibuat sendiri. Karyawan juga dapat membuat laporan baru dan memberikan tanggapan (respon) terhadap laporan yang ada.</td></tr>
+<tr><td class="label">Pre-condition</td><td>Karyawan telah login. Terdapat minimal satu laporan yang telah dipublikasikan.</td></tr>
+<tr><td class="label">Post-condition</td><td>Karyawan berhasil melihat daftar laporan dan/atau memberikan respon.</td></tr>
+</table>
+
+<h3>Alur Utama (Main Flow) — Melihat Laporan Perusahaan:</h3>
+<ol>
+<li>Karyawan mengklik menu <b>"Laporan"</b> pada sidebar navigasi.</li>
+<li>Sistem menerima request GET ke route <i>/karyawan/reports</i> dan menjalankan <i>KaryawanReportController@index</i>.</li>
+<li>Sistem mengirimkan query ke Database:
+    <ul>
+    <li>Laporan perusahaan: <i>SELECT * FROM reports WHERE scope = 'company' ORDER BY created_at DESC</i>.</li>
+    <li>Laporan divisi: <i>SELECT * FROM reports WHERE scope = 'division' AND division_id = ?</i>.</li>
+    <li>Laporan sendiri: <i>SELECT * FROM reports WHERE created_by = ?</i>.</li>
+    <li>KPI: jumlah per kategori dan jumlah belum dibaca.</li>
+    </ul>
+</li>
+<li>Database mengembalikan data dan Sistem merender halaman Pusat Laporan (<i>karyawan.reports.index</i>):
+    <ul>
+    <li><b>4 KPI Cards:</b> Laporan Perusahaan, Divisi Saya, Laporan Saya, dan Belum Dibaca.</li>
+    <li><b>Tab Navigasi:</b> Tiga tab — "🏛️ Perusahaan", "🏢 Divisi Saya", dan "📄 Laporan Saya".</li>
+    <li><b>Daftar Laporan:</b> List item dengan judul, deskripsi singkat, tanggal, pembuat, dan badge prioritas.</li>
+    </ul>
+</li>
+<li>Karyawan melihat daftar laporan pada tab "Perusahaan" (default).</li>
+<li>Karyawan mengklik salah satu judul laporan untuk melihat detail.</li>
+<li>Sistem mengirimkan request GET ke <i>/karyawan/reports/{id}</i>.</li>
+<li>Database mengambil detail laporan beserta daftar tanggapan (<i>report_responses</i>).</li>
+<li>Sistem menampilkan modal detail laporan yang berisi: header, isi lengkap, metadata, dan daftar respon dari pengguna lain.</li>
+<li>Karyawan membaca isi laporan lengkap.</li>
+</ol>
+
+<h3>Alur Alternatif — Memberikan Tanggapan:</h3>
+<ol type="a">
+<li><b>Karyawan Mengirim Respon:</b>
+    <ol>
+    <li>Pada modal detail laporan, karyawan mengisi field <b>"Tulis tanggapan..."</b> pada bagian bawah.</li>
+    <li>Karyawan mengklik tombol <b>"Kirim"</b>.</li>
+    <li>Sistem menerima request POST ke <i>/karyawan/reports/{id}/reply</i> dan menjalankan <i>KaryawanReportController@reply</i>.</li>
+    <li>Sistem memvalidasi pesan (tidak boleh kosong).</li>
+    <li>Sistem mengirimkan query INSERT ke Database: <i>INSERT INTO report_responses (report_id, user_id, message, type) VALUES (?, ?, ?, 'reply')</i>.</li>
+    <li>Database menyimpan respon dan Sistem merefresh daftar tanggapan pada modal.</li>
+    <li>Karyawan melihat respon baru muncul pada daftar tanggapan.</li>
+    </ol>
+</li>
+<li><b>Karyawan Membuat Laporan Baru:</b>
+    <ol>
+    <li>Karyawan mengklik tombol <b>"✍️ Buat Laporan Baru"</b>.</li>
+    <li>Sistem menampilkan modal form dengan field: Judul, Tipe, Scope, dan Isi Laporan.</li>
+    <li>Karyawan mengisi field dan mengklik <b>"Kirim Laporan"</b>.</li>
+    <li>Sistem menerima request POST ke <i>/karyawan/reports</i>.</li>
+    <li>Database menyimpan laporan baru dengan <i>created_by = auth()->user()->id</i>.</li>
+    <li>Sistem menampilkan notifikasi sukses dan merefresh daftar laporan.</li>
+    </ol>
+</li>
+<li><b>Karyawan Berpindah Tab:</b>
+    <ol>
+    <li>Karyawan mengklik tab <b>"🏢 Divisi Saya"</b> atau <b>"📄 Laporan Saya"</b>.</li>
+    <li>Sistem memfilter data laporan berdasarkan tab yang aktif.</li>
+    <li>Daftar laporan diperbarui sesuai kategori yang dipilih.</li>
+    </ol>
+</li>
+</ol>
+
+</body>
+</html>

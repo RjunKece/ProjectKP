@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Wireframe — Dashboard Admin</title>
+    <link rel="stylesheet" href="wireframe.css">
+</head>
+<body>
+
+<div class="page">
+    <div class="page-title">Wireframe — Dashboard Admin</div>
+
+    <div class="layout">
+
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <div class="sidebar-logo">
+                <div class="logo-icon">Logo</div>
+                <div class="logo-text">PT. Golden Intan Berlian<small>Admin Panel</small></div>
+            </div>
+            <div class="sidebar-profile">
+                <div class="avatar">A</div>
+                <div class="profile-info">Nama Admin<div class="role">Super Admin</div></div>
+            </div>
+            <div class="sidebar-section-label">Overview</div>
+            <div class="sidebar-menu">
+                <div class="menu-item active"><div class="icon">📊</div> Dashboard</div>
+            </div>
+            <div class="sidebar-section-label">Administration</div>
+            <div class="sidebar-menu">
+                <div class="menu-item"><div class="icon">👤</div> User Management</div>
+                <div class="menu-item"><div class="icon">📝</div> Monitoring Aktivitas</div>
+            </div>
+            <div class="sidebar-section-label">Analytics</div>
+            <div class="sidebar-menu">
+                <div class="menu-item"><div class="icon">📑</div> Reports</div>
+            </div>
+            <div class="sidebar-footer">ERP System v1.0 © 2026</div>
+        </div>
+
+        <!-- MAIN -->
+        <div class="main">
+            <div class="header">
+                <div class="header-left">Dashboard Overview<small>Welcome back, Admin</small></div>
+                <div class="header-right">
+                    <div class="header-btn">🌙</div>
+                    <div class="avatar" style="width:28px; height:28px; font-size:9px;">A</div>
+                </div>
+            </div>
+
+            <div class="content">
+
+                <!-- Welcome Banner -->
+                <div class="wf-banner">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <div>
+                            <h2>Selamat Datang, Admin! 👋</h2>
+                            <p>Monitor performa sistem, kelola aktivitas karyawan, dan pantau laporan melalui dashboard ini.</p>
+                        </div>
+                        <div style="display:flex; gap:8px;">
+                            <div class="wf-box" style="padding:6px 10px; margin:0;">
+                                <div class="wf-label">Tanggal</div>
+                                <div style="font-size:10px; font-weight:700;">23 Apr 2026</div>
+                            </div>
+                            <div class="wf-box" style="padding:6px 10px; margin:0;">
+                                <div class="wf-label">Status</div>
+                                <div style="font-size:10px; font-weight:700;">● Sistem Aktif</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KPI Strip (6 cards) -->
+                <div class="wf-grid-6" style="margin-bottom:14px;">
+                    <div class="wf-box">
+                        <div class="wf-label">Total Users</div>
+                        <div class="wf-value">XX</div>
+                        <div class="wf-desc">Akun terdaftar</div>
+                    </div>
+                    <div class="wf-box">
+                        <div class="wf-label">Karyawan Aktif</div>
+                        <div class="wf-value">XX</div>
+                        <div class="wf-desc">Aktif saat ini</div>
+                    </div>
+                    <div class="wf-box">
+                        <div class="wf-label">Total Aktivitas</div>
+                        <div class="wf-value">XX</div>
+                        <div class="wf-desc">Seluruh log</div>
+                    </div>
+                    <div class="wf-box">
+                        <div class="wf-label">Hari Ini</div>
+                        <div class="wf-value">XX</div>
+                        <div class="wf-desc">23 Apr 2026</div>
+                    </div>
+                    <div class="wf-box">
+                        <div class="wf-label">Produktivitas</div>
+                        <div class="wf-value">XX%</div>
+                        <div class="wf-desc">Estimasi bulan ini</div>
+                    </div>
+                    <div class="wf-box">
+                        <div class="wf-label">Growth</div>
+                        <div class="wf-value">+XX%</div>
+                        <div class="wf-desc">vs bulan lalu</div>
+                    </div>
+                </div>
+
+                <!-- Charts Row -->
+                <div style="display:grid; grid-template-columns:2fr 1fr; gap:10px; margin-bottom:14px;">
+                    <div class="wf-box">
+                        <div class="section-heading">
+                            <h3>📈 Activity Analytics</h3>
+                            <p>Tren aktivitas 12 bulan terakhir</p>
+                        </div>
+                        <div class="wf-chart" style="height:120px;">[Line Chart — Tren Aktivitas 12 Bulan]</div>
+                    </div>
+                    <div class="wf-box">
+                        <div class="section-heading">
+                            <h3>🏢 Distribusi Divisi</h3>
+                            <p>Karyawan per divisi</p>
+                        </div>
+                        <div class="wf-chart" style="height:120px; border-radius:50%; width:120px; margin:0 auto;">[Donut Chart]</div>
+                    </div>
+                </div>
+
+                <!-- Bottom Row -->
+                <div class="wf-grid-2">
+                    <!-- Recent Activities -->
+                    <div class="wf-box">
+                        <div class="section-heading" style="display:flex; justify-content:space-between; align-items:center;">
+                            <div><h3>🕐 Aktivitas Terbaru</h3><p>Log terkini dari seluruh pengguna</p></div>
+                            <span style="font-size:9px;">Lihat Semua →</span>
+                        </div>
+                        <div class="wf-list-item">
+                            <div class="wf-list-icon">A</div>
+                            <div class="wf-list-content"><strong>Deskripsi aktivitas...</strong><span>Nama User • 2 jam lalu</span></div>
+                            <div class="wf-badge">Status</div>
+                        </div>
+                        <div class="wf-list-item">
+                            <div class="wf-list-icon">B</div>
+                            <div class="wf-list-content"><strong>Deskripsi aktivitas...</strong><span>Nama User • 3 jam lalu</span></div>
+                            <div class="wf-badge">Status</div>
+                        </div>
+                        <div class="wf-list-item">
+                            <div class="wf-list-icon">C</div>
+                            <div class="wf-list-content"><strong>Deskripsi aktivitas...</strong><span>Nama User • 5 jam lalu</span></div>
+                            <div class="wf-badge">Status</div>
+                        </div>
+                    </div>
+
+                    <!-- Division Performance -->
+                    <div class="wf-box">
+                        <div class="section-heading">
+                            <h3>🏆 Performa Divisi Bulan Ini</h3>
+                            <p>Peringkat aktivitas per divisi</p>
+                        </div>
+                        <table class="wf-table">
+                            <thead>
+                                <tr><th>#</th><th>Divisi</th><th>Anggota</th><th>Aktivitas</th><th>Rata-rata</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>🥇</td><td>Nama Divisi</td><td>X</td><td>XX</td><td><span class="wf-badge">X/user</span></td></tr>
+                                <tr><td>🥈</td><td>Nama Divisi</td><td>X</td><td>XX</td><td><span class="wf-badge">X/user</span></td></tr>
+                                <tr><td>🥉</td><td>Nama Divisi</td><td>X</td><td>XX</td><td><span class="wf-badge">X/user</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="section-heading" style="margin-top:14px;">
+                    <h3>⚡ Quick Actions</h3>
+                    <p>Akses cepat administrasi utama</p>
+                </div>
+                <div class="wf-grid-4">
+                    <div class="wf-action-card"><div class="wf-action-icon">👤</div><div class="wf-action-text"><h4>Manage Users</h4><p>XX pengguna</p></div></div>
+                    <div class="wf-action-card"><div class="wf-action-icon">📝</div><div class="wf-action-text"><h4>Aktivitas</h4><p>XX log</p></div></div>
+                    <div class="wf-action-card"><div class="wf-action-icon">📑</div><div class="wf-action-text"><h4>Reports</h4><p>XX laporan</p></div></div>
+                    <div class="wf-action-card"><div class="wf-action-icon">⚙️</div><div class="wf-action-text"><h4>Profil Saya</h4><p>Pengaturan akun</p></div></div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

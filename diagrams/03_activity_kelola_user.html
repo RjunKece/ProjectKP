@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Activity Diagram — Kelola Pengguna</title>
+    <link rel="stylesheet" href="activity.css">
+</head>
+<body>
+
+<div class="ad-page">
+    <div class="ad-title">Admin Mengelola Data Pengguna / Karyawan</div>
+    <div class="ad-lanes-header">
+        <div class="ad-lane-h user">Admin (Super Admin)</div>
+        <div class="ad-lane-h system">Sistem</div>
+        <div class="ad-lane-h db">Database</div>
+    </div>
+    <div class="ad-canvas" style="height:980px;">
+        <svg class="ad-svg" viewBox="0 0 880 980" preserveAspectRatio="xMidYMid meet">
+            <defs><marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" class="arrow"/></marker></defs>
+
+            <!-- Start → Membuka Halaman -->
+            <line x1="100" y1="65" x2="100" y2="90" marker-end="url(#ah)"/>
+            <!-- Membuka → Sistem Menampilkan -->
+            <line x1="170" y1="115" x2="350" y2="115" marker-end="url(#ah)"/>
+            <!-- Sistem → DB Load Data -->
+            <line x1="520" y1="115" x2="680" y2="90" marker-end="url(#ah)"/>
+            <!-- Sistem → Pilih Aksi (Decision) -->
+            <line x1="440" y1="140" x2="440" y2="190" marker-end="url(#ah)"/>
+
+            <!-- Decision → [Tambah User] -->
+            <line x1="418" y1="212" x2="100" y2="290" marker-end="url(#ah)"/>
+            <text x="200" y="250" font-size="10" font-style="italic" fill="#888" font-family="Inter,sans-serif">[Tambah User]</text>
+
+            <!-- Decision → [Reset Password] -->
+            <line x1="462" y1="212" x2="100" y2="580" marker-end="url(#ah)"/>
+            <text x="280" y="420" font-size="10" font-style="italic" fill="#888" font-family="Inter,sans-serif">[Reset Password]</text>
+
+            <!-- Tambah: Klik Tambah → Tampilkan Modal -->
+            <line x1="100" y1="322" x2="100" y2="350" marker-end="url(#ah)"/>
+            <!-- Isi Data -->
+            <line x1="100" y1="395" x2="100" y2="420" marker-end="url(#ah)"/>
+            <!-- Klik Simpan -->
+            <line x1="100" y1="465" x2="100" y2="490" marker-end="url(#ah)"/>
+            <!-- Klik Simpan → Sistem Validasi -->
+            <line x1="170" y1="510" x2="370" y2="510" marker-end="url(#ah)"/>
+            <!-- Sistem → DB Simpan -->
+            <line x1="520" y1="510" x2="680" y2="510" marker-end="url(#ah)"/>
+            <!-- DB → Notifikasi -->
+            <line x1="740" y1="535" x2="440" y2="880" marker-end="url(#ah)"/>
+
+            <!-- Reset: Klik Reset -->
+            <line x1="100" y1="615" x2="100" y2="640" marker-end="url(#ah)"/>
+            <!-- Tampilkan Modal Reset -->
+            <line x1="170" y1="665" x2="370" y2="665" marker-end="url(#ah)"/>
+            <!-- Isi Password Baru -->
+            <line x1="100" y1="690" x2="100" y2="715" marker-end="url(#ah)"/>
+            <!-- Klik Reset -->
+            <line x1="100" y1="760" x2="100" y2="785" marker-end="url(#ah)"/>
+            <!-- Klik Reset → Sistem Update -->
+            <line x1="170" y1="805" x2="370" y2="805" marker-end="url(#ah)"/>
+            <!-- Sistem → DB Update -->
+            <line x1="520" y1="805" x2="680" y2="805" marker-end="url(#ah)"/>
+            <!-- DB → Notif -->
+            <line x1="740" y1="830" x2="500" y2="880" marker-end="url(#ah)"/>
+
+            <!-- Notifikasi → Melihat Notif (User) -->
+            <line x1="370" y1="900" x2="170" y2="900" marker-end="url(#ah)"/>
+            <!-- Melihat → End -->
+            <line x1="100" y1="920" x2="100" y2="950" marker-end="url(#ah)"/>
+        </svg>
+
+        <!-- Start -->
+        <div class="uml-start" style="left:86px;top:38px;"></div>
+        <div class="uml-start-label" style="left:78px;top:18px;">Start</div>
+
+        <!-- Membuka Halaman User Management -->
+        <div class="uml-action" style="left:25px;top:92px;width:155px;">Membuka Halaman<br>User Management</div>
+
+        <!-- Sistem Menampilkan Data -->
+        <div class="uml-action" style="left:350px;top:92px;width:175px;">Menampilkan Daftar<br>User + KPI Cards</div>
+
+        <!-- DB Load -->
+        <div class="uml-action" style="left:675px;top:68px;width:150px;">Query Data Users,<br>Roles, Divisions</div>
+
+        <!-- Decision: Pilih Aksi -->
+        <div class="uml-decision" style="left:418px;top:190px;"></div>
+        <div class="uml-decision-label" style="left:408px;top:242px;">Pilih Aksi?</div>
+
+        <!-- === TAMBAH USER BRANCH === -->
+        <div class="uml-action" style="left:25px;top:290px;width:155px;">Klik "Tambah User"</div>
+        <div class="uml-action" style="left:25px;top:352px;width:155px;">Mengisi Form<br><span style="font-size:9px;color:#888;">(Nama, Email, Password,<br>Role, Divisi)</span></div>
+        <div class="uml-action" style="left:25px;top:423px;width:155px;">Klik "Simpan"</div>
+        <div class="uml-action" style="left:370px;top:490px;width:155px;">Validasi & Simpan<br>Data User Baru</div>
+        <div class="uml-action" style="left:675px;top:490px;width:150px;">INSERT INTO<br>users</div>
+
+        <!-- === RESET PASSWORD BRANCH === -->
+        <div class="uml-action" style="left:25px;top:582px;width:155px;">Klik "Reset Password"<br>pada baris user</div>
+        <div class="uml-action" style="left:25px;top:645px;width:155px;">Masukkan Password<br>Baru</div>
+        <div class="uml-action" style="left:370px;top:645px;width:155px;">Tampilkan Modal<br>Konfirmasi Reset</div>
+        <div class="uml-action" style="left:25px;top:718px;width:155px;">Klik "Reset"</div>
+        <div class="uml-action" style="left:370px;top:785px;width:155px;">Update Password<br>(Bcrypt Hash)</div>
+        <div class="uml-action" style="left:675px;top:785px;width:150px;">UPDATE users<br>SET password</div>
+
+        <!-- Notifikasi -->
+        <div class="uml-action" style="left:370px;top:878px;width:155px;">Tampilkan Notifikasi<br>Sukses</div>
+
+        <!-- Melihat Notifikasi -->
+        <div class="uml-action" style="left:25px;top:878px;width:155px;">Melihat Notifikasi<br>& Data Terupdate</div>
+
+        <!-- End -->
+        <div class="uml-end" style="left:86px;top:950px;"></div>
+        <div class="uml-end-label" style="left:82px;top:940px;"></div>
+    </div>
+</div>
+
+</body>
+</html>

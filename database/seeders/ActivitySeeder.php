@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Activity;
+use App\Models\User;
 use Carbon\Carbon;
 
 class ActivitySeeder extends Seeder
@@ -12,35 +13,70 @@ class ActivitySeeder extends Seeder
     {
         Activity::truncate();
 
-        $deskripsi = [
+        $karyawanIds = User::whereHas('role', fn($q) => $q->where('nama_role', 'karyawan'))->pluck('id')->toArray();
+        $adminId = User::whereHas('role', fn($q) => $q->where('nama_role', 'super_admin'))->value('id') ?? 1;
+
+        $karyawanActions = [
             'Login ke sistem',
-            'Input data transaksi',
-            'Update data karyawan',
-            'Generate laporan',
-            'Logout dari sistem',
+            'Input data transaksi harian',
+            'Upload dokumen penjualan',
+            'Update progress tugas',
+            'Submit laporan mingguan',
+            'Mengisi form kehadiran',
+            'Review data pelanggan',
+            'Membuat konten marketing',
+            'Update stok gudang',
+            'Input data CRM pelanggan baru',
+            'Follow-up klien via email',
+            'Membuat desain visual konten',
+            'Upload video ke platform',
+            'Edit laporan keuangan bulanan',
+            'Menyelesaikan tugas divisi',
         ];
 
-        // 12 bulan ke belakang
-        for ($bulan = 0; $bulan < 12; $bulan++) {
-            $tanggal = Carbon::now()->subMonths($bulan);
+        $adminActions = [
+            'Review laporan karyawan',
+            'Approve permintaan divisi',
+            'Generate laporan bulanan',
+            'Update konfigurasi sistem',
+            'Backup database',
+            'Reset password karyawan',
+            'Menambahkan user baru',
+            'Monitoring aktivitas karyawan',
+            'Administrasi sistem',
+        ];
 
-            // Karyawan (lebih banyak)
-            for ($i = 0; $i < rand(5, 15); $i++) {
+        $statuses = ['submitted', 'completed', 'approved'];
+
+        // Generate 12 bulan data
+        for ($bulan = 0; $bulan < 12; $bulan++) {
+            $baseDate = Carbon::now()->subMonths($bulan)->startOfMonth();
+            $daysInMonth = $baseDate->daysInMonth;
+
+            // Karyawan activities (semakin recent semakin banyak)
+            $karyawanCount = rand(8, 15) + max(0, 12 - $bulan);
+            for ($i = 0; $i < $karyawanCount; $i++) {
+                $userId = $karyawanIds[array_rand($karyawanIds)] ?? 2;
+                $day = rand(1, min($daysInMonth, $bulan === 0 ? now()->day : $daysInMonth));
+
                 Activity::create([
-                    'user_id'   => rand(2, 5), // karyawan
-                    'tanggal'   => $tanggal->copy()->addDays(rand(0, 20)),
-                    'deskripsi' => $deskripsi[array_rand($deskripsi)],
-                    'status'    => 'submitted',
+                    'user_id'   => $userId,
+                    'tanggal'   => $baseDate->copy()->addDays($day - 1)->setHour(rand(8, 17))->setMinute(rand(0, 59)),
+                    'deskripsi' => $karyawanActions[array_rand($karyawanActions)],
+                    'status'    => $statuses[array_rand($statuses)],
                 ]);
             }
 
-            // Super Admin (lebih sedikit)
-            for ($i = 0; $i < rand(2, 6); $i++) {
+            // Admin activities (lebih sedikit)
+            $adminCount = rand(3, 7) + max(0, intdiv(12 - $bulan, 2));
+            for ($i = 0; $i < $adminCount; $i++) {
+                $day = rand(1, min($daysInMonth, $bulan === 0 ? now()->day : $daysInMonth));
+
                 Activity::create([
-                    'user_id'   => 1, // super admin
-                    'tanggal'   => $tanggal->copy()->addDays(rand(0, 20)),
-                    'deskripsi' => 'Administrasi sistem',
-                    'status'    => 'approved',
+                    'user_id'   => $adminId,
+                    'tanggal'   => $baseDate->copy()->addDays($day - 1)->setHour(rand(9, 18))->setMinute(rand(0, 59)),
+                    'deskripsi' => $adminActions[array_rand($adminActions)],
+                    'status'    => 'completed',
                 ]);
             }
         }

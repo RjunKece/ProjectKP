@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Activity Diagram — Kelola Laporan</title>
+    <link rel="stylesheet" href="activity.css">
+</head>
+<body>
+
+<div class="ad-page">
+    <div class="ad-title">Admin Mengelola Laporan Perusahaan (Generate, Simpan, Arsip)</div>
+    <div class="ad-lanes-header">
+        <div class="ad-lane-h user">Admin (Super Admin)</div>
+        <div class="ad-lane-h system">Sistem</div>
+        <div class="ad-lane-h db">Database</div>
+    </div>
+    <div class="ad-canvas" style="height:920px;">
+        <svg class="ad-svg" viewBox="0 0 880 920" preserveAspectRatio="xMidYMid meet">
+            <defs><marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" class="arrow"/></marker></defs>
+
+            <line x1="100" y1="65" x2="100" y2="90" marker-end="url(#ah)"/>
+            <line x1="170" y1="115" x2="350" y2="115" marker-end="url(#ah)"/>
+            <line x1="520" y1="115" x2="680" y2="90" marker-end="url(#ah)"/>
+            <line x1="440" y1="140" x2="440" y2="185" marker-end="url(#ah)"/>
+
+            <!-- Decision → Generate -->
+            <line x1="418" y1="207" x2="100" y2="280" marker-end="url(#ah)"/>
+            <text x="190" y="248" font-size="10" font-style="italic" fill="#888" font-family="Inter,sans-serif">[Generate Laporan]</text>
+
+            <!-- Decision → Lihat Arsip -->
+            <line x1="462" y1="207" x2="100" y2="695" marker-end="url(#ah)"/>
+            <text x="120" y="500" font-size="10" font-style="italic" fill="#888" font-family="Inter,sans-serif">[Lihat Arsip]</text>
+
+            <!-- Generate flow -->
+            <line x1="100" y1="310" x2="100" y2="340" marker-end="url(#ah)"/>
+            <line x1="170" y1="370" x2="350" y2="370" marker-end="url(#ah)"/>
+            <line x1="440" y1="395" x2="170" y2="435" marker-end="url(#ah)"/>
+            <line x1="100" y1="465" x2="100" y2="495" marker-end="url(#ah)"/>
+            <line x1="100" y1="540" x2="100" y2="570" marker-end="url(#ah)"/>
+            <line x1="170" y1="595" x2="350" y2="595" marker-end="url(#ah)"/>
+            <line x1="520" y1="595" x2="680" y2="595" marker-end="url(#ah)"/>
+            <line x1="740" y1="620" x2="500" y2="660" marker-end="url(#ah)"/>
+            <line x1="370" y1="680" x2="170" y2="830" marker-end="url(#ah)"/>
+
+            <!-- Arsip flow -->
+            <line x1="100" y1="725" x2="100" y2="755" marker-end="url(#ah)"/>
+            <line x1="170" y1="780" x2="350" y2="780" marker-end="url(#ah)"/>
+            <line x1="520" y1="780" x2="680" y2="780" marker-end="url(#ah)"/>
+            <line x1="740" y1="805" x2="500" y2="835" marker-end="url(#ah)"/>
+            <line x1="370" y1="850" x2="170" y2="850" marker-end="url(#ah)"/>
+
+            <line x1="100" y1="860" x2="100" y2="890" marker-end="url(#ah)"/>
+        </svg>
+
+        <div class="uml-start" style="left:86px;top:38px;"></div>
+        <div class="uml-start-label" style="left:78px;top:18px;">Start</div>
+
+        <div class="uml-action" style="left:25px;top:92px;width:155px;">Membuka Halaman<br>Reports Center</div>
+        <div class="uml-action" style="left:350px;top:92px;width:175px;">Menampilkan KPI,<br>Report Builder, Arsip</div>
+        <div class="uml-action" style="left:675px;top:68px;width:150px;">Query Data<br>Reports + Divisions</div>
+
+        <div class="uml-decision" style="left:418px;top:185px;"></div>
+        <div class="uml-decision-label" style="left:408px;top:237px;">Pilih Aksi?</div>
+
+        <!-- Generate Flow -->
+        <div class="uml-action" style="left:25px;top:280px;width:155px;">Pilih Tipe Laporan<br><span style="font-size:9px;color:#888;">(Financial / Department /<br>Growth / Custom)</span></div>
+        <div class="uml-action" style="left:25px;top:345px;width:155px;">Klik "Generate"</div>
+        <div class="uml-action" style="left:350px;top:348px;width:175px;">Tampilkan Modal<br>Konfigurasi Laporan</div>
+        <div class="uml-action" style="left:25px;top:420px;width:155px;">Mengisi Judul,<br>Periode, Scope,<br>Deskripsi</div>
+        <div class="uml-action" style="left:25px;top:498px;width:155px;">Klik "Simpan"</div>
+        <div class="uml-action" style="left:25px;top:572px;width:155px;">Konfirmasi<br>Penyimpanan</div>
+        <div class="uml-action" style="left:350px;top:572px;width:175px;">Validasi & Proses<br>Simpan Laporan</div>
+        <div class="uml-action" style="left:675px;top:572px;width:150px;">INSERT INTO<br>reports</div>
+        <div class="uml-action" style="left:355px;top:648px;width:170px;">Tampilkan Notifikasi<br>"Laporan Berhasil Dibuat"</div>
+
+        <!-- Arsip Flow -->
+        <div class="uml-action" style="left:25px;top:695px;width:155px;">Klik Tab / Scroll<br>Arsip Laporan</div>
+        <div class="uml-action" style="left:25px;top:758px;width:155px;">Klik "View" pada<br>Salah Satu Laporan</div>
+        <div class="uml-action" style="left:350px;top:758px;width:175px;">Request Detail<br>Laporan by ID</div>
+        <div class="uml-action" style="left:675px;top:758px;width:150px;">SELECT * FROM<br>reports WHERE id=?</div>
+        <div class="uml-action" style="left:355px;top:828px;width:170px;">Tampilkan Modal<br>Detail Laporan</div>
+
+        <div class="uml-action" style="left:25px;top:828px;width:155px;">Melihat Detail<br>Laporan Lengkap</div>
+
+        <div class="uml-end" style="left:86px;top:892px;"></div>
+        <div class="uml-end-label" style="left:82px;top:925px;">End</div>
+    </div>
+</div>
+
+</body>
+</html>

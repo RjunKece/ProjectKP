@@ -51,12 +51,18 @@ Route::middleware('auth')->get('/dashboard', function () {
 Route::middleware('auth')->get('/profile', [ProfileController::class, 'index'])
     ->name('profile.index');
 
+Route::middleware('auth')->put('/profile', [ProfileController::class, 'update'])
+    ->name('profile.update');
+
+Route::middleware('auth')->post('/profile/password', [ProfileController::class, 'changePassword'])
+    ->name('profile.password');
+
 /*
 |--------------------------------------------------------------------------
 | ADMIN ROUTES
 |--------------------------------------------------------------------------
 */
-Route::middleware('auth')
+Route::middleware(['auth', 'role:super_admin'])
     ->prefix('admin')
     ->name('admin.')
     ->group(function () {
@@ -69,11 +75,9 @@ Route::middleware('auth')
 Route::get('/users', [UserController::class, 'index'])
     ->name('users');
 
-// 🔥 TAMBAHAN INI (WAJIB)
 Route::post('/users', [UserController::class, 'store'])
     ->name('users.store');
-Route::post('/users', [UserController::class, 'store'])
-    ->name('admin.users.store');
+
 Route::put('/users/{user}/reset-password',
     [UserController::class, 'resetPassword']
 )->name('users.reset');
@@ -86,12 +90,6 @@ Route::put('/users/{user}/reset-password',
         Route::get('/reports', [ReportController::class, 'index'])
             ->name('reports');
 
-        Route::post('/reports/generate', [ReportController::class, 'generate'])
-            ->name('reports.generate');
-
-        Route::post('/reports/preview', [ReportController::class, 'preview'])
-            ->name('reports.preview');
-
         Route::post('/reports/store', [ReportController::class, 'store'])
             ->name('reports.store');
 
@@ -100,6 +98,9 @@ Route::put('/users/{user}/reset-password',
 
         Route::get('/reports/{report}', [ReportController::class, 'show'])
             ->name('reports.show');
+
+        Route::delete('/reports/{report}', [ReportController::class, 'destroy'])
+            ->name('reports.destroy');
     });
 
 /*
@@ -107,14 +108,41 @@ Route::put('/users/{user}/reset-password',
 | KARYAWAN ROUTES
 |--------------------------------------------------------------------------
 */
-Route::middleware('auth')
+use App\Http\Controllers\Karyawan\KaryawanDashboardController;
+use App\Http\Controllers\Karyawan\KaryawanActivityController;
+use App\Http\Controllers\Karyawan\KaryawanReportController;
+
+Route::middleware(['auth', 'role:karyawan'])
     ->prefix('karyawan')
     ->name('karyawan.')
     ->group(function () {
 
-        Route::get('/dashboard', function () {
-            return view('karyawan.dashboard');
-        })->name('dashboard');
+        // ===== DASHBOARD =====
+        Route::get('/dashboard', [KaryawanDashboardController::class, 'index'])
+            ->name('dashboard');
+
+        // ===== ACTIVITIES =====
+        Route::get('/activities', [KaryawanActivityController::class, 'index'])
+            ->name('activities');
+
+        Route::post('/activities', [KaryawanActivityController::class, 'store'])
+            ->name('activities.store');
+
+        Route::put('/activities/{activity}', [KaryawanActivityController::class, 'updateStatus'])
+            ->name('activities.update');
+
+        // ===== REPORTS =====
+        Route::get('/reports', [KaryawanReportController::class, 'index'])
+            ->name('reports');
+
+        Route::post('/reports', [KaryawanReportController::class, 'store'])
+            ->name('reports.store');
+
+        Route::get('/reports/{report}', [KaryawanReportController::class, 'show'])
+            ->name('reports.show');
+
+        Route::post('/reports/{report}/reply', [KaryawanReportController::class, 'reply'])
+            ->name('reports.reply');
     });
 
 /*
@@ -127,5 +155,5 @@ Route::post('/logout', function () {
     request()->session()->invalidate();
     request()->session()->regenerateToken();
 
-    return redirect('/login');
+    return redirect('/login')->with('message', 'Anda telah berhasil logout. Silahkan login kembali untuk melanjutkan.');
 })->name('logout');

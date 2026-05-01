@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Wireframe — Reports Center</title>
+    <link rel="stylesheet" href="wireframe.css">
+</head>
+<body>
+<div class="page">
+    <div class="page-title">Wireframe — Reports Center (Admin)</div>
+    <div class="layout">
+        <div class="sidebar">
+            <div class="sidebar-logo"><div class="logo-icon">Logo</div><div class="logo-text">PT. Golden Intan Berlian<small>Admin Panel</small></div></div>
+            <div class="sidebar-profile"><div class="avatar">A</div><div class="profile-info">Nama Admin<div class="role">Super Admin</div></div></div>
+            <div class="sidebar-section-label">Overview</div>
+            <div class="sidebar-menu"><div class="menu-item"><div class="icon">📊</div> Dashboard</div></div>
+            <div class="sidebar-section-label">Administration</div>
+            <div class="sidebar-menu">
+                <div class="menu-item"><div class="icon">👤</div> User Management</div>
+                <div class="menu-item"><div class="icon">📝</div> Monitoring Aktivitas</div>
+            </div>
+            <div class="sidebar-section-label">Analytics</div>
+            <div class="sidebar-menu"><div class="menu-item active"><div class="icon">📑</div> Reports</div></div>
+            <div class="sidebar-footer">ERP System v1.0 © 2026</div>
+        </div>
+        <div class="main">
+            <div class="header">
+                <div class="header-left">Reports Center<small>Welcome back, Admin</small></div>
+                <div class="header-right"><div class="header-btn">🌙</div><div class="avatar" style="width:28px;height:28px;font-size:9px;">A</div></div>
+            </div>
+            <div class="content">
+                <div style="margin-bottom:14px;"><h2 style="font-size:15px;font-weight:800;">Reports Center</h2><p style="font-size:10px;color:#888;">Pusat analisis dan laporan strategis</p></div>
+                <!-- KPI -->
+                <div class="wf-grid-5" style="margin-bottom:14px;">
+                    <div class="wf-box"><div class="wf-label">Total Reports</div><div class="wf-value">XX</div><div class="wf-desc">Seluruh laporan</div></div>
+                    <div class="wf-box"><div class="wf-label">Bulan Ini</div><div class="wf-value">XX</div><div class="wf-desc">Dibuat bulan ini</div></div>
+                    <div class="wf-box"><div class="wf-label">Perusahaan</div><div class="wf-value">XX</div><div class="wf-desc">Laporan perusahaan</div></div>
+                    <div class="wf-box"><div class="wf-label">Divisi</div><div class="wf-value">XX</div><div class="wf-desc">Laporan per divisi</div></div>
+                    <div class="wf-box"><div class="wf-label">Pending</div><div class="wf-value">XX</div><div class="wf-desc">Menunggu review</div></div>
+                </div>
+                <!-- Filter -->
+                <div class="wf-filter">
+                    <input class="wf-input" placeholder="🔍 Cari laporan...">
+                    <select class="wf-select"><option>Semua Scope</option></select>
+                    <select class="wf-select"><option>Semua Divisi</option></select>
+                    <div class="wf-btn wf-btn-primary">Filter</div>
+                </div>
+                <!-- Report Builder -->
+                <div class="wf-box" style="margin-bottom:14px;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+                        <div><h3 style="font-size:12px;font-weight:700;">Report Builder</h3><p style="font-size:9px;color:#888;">Pilih jenis laporan sesuai kebutuhan</p></div>
+                        <span class="wf-badge">Super Admin Access</span>
+                    </div>
+                    <div class="wf-grid-4">
+                        <div class="wf-box" style="text-align:center;">
+                            <div style="font-size:9px;font-weight:700;margin-bottom:4px;">ICON</div>
+                            <strong style="font-size:10px;">Financial Intelligence</strong>
+                            <p style="font-size:8px;color:#888;margin:4px 0 8px;">Revenue, profit, cost</p>
+                            <div class="wf-btn wf-btn-primary" style="width:100%;text-align:center;">Generate</div>
+                        </div>
+                        <div class="wf-box" style="text-align:center;">
+                            <div style="font-size:9px;font-weight:700;margin-bottom:4px;">ICON</div>
+                            <strong style="font-size:10px;">Department Performance</strong>
+                            <p style="font-size:8px;color:#888;margin:4px 0 8px;">Efisiensi tiap divisi</p>
+                            <div class="wf-btn wf-btn-primary" style="width:100%;text-align:center;">Generate</div>
+                        </div>
+                        <div class="wf-box" style="text-align:center;">
+                            <div style="font-size:9px;font-weight:700;margin-bottom:4px;">ICON</div>
+                            <strong style="font-size:10px;">Growth & Trends</strong>
+                            <p style="font-size:8px;color:#888;margin:4px 0 8px;">Analisis pertumbuhan</p>
+                            <div class="wf-btn wf-btn-primary" style="width:100%;text-align:center;">Generate</div>
+                        </div>
+                        <div class="wf-box" style="text-align:center;">
+                            <div style="font-size:9px;font-weight:700;margin-bottom:4px;">ICON</div>
+                            <strong style="font-size:10px;">Custom Intelligence</strong>
+                            <p style="font-size:8px;color:#888;margin:4px 0 8px;">Laporan khusus</p>
+                            <div class="wf-btn wf-btn-primary" style="width:100%;text-align:center;">Generate</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Reports Table -->
+                <div class="wf-box" style="padding:0;overflow:hidden;">
+                    <div style="padding:10px 14px;border-bottom:1px solid #ddd;font-size:11px;font-weight:700;">Semua Laporan</div>
+                    <table class="wf-table">
+                        <thead><tr><th>#</th><th>Report</th><th>Scope</th><th>Type</th><th>Creator</th><th>Tanggal</th><th>Respon</th><th>Status</th><th>Action</th></tr></thead>
+                        <tbody>
+                            <tr><td>1</td><td><strong>Judul Laporan</strong><br><span style="font-size:8px;color:#999;">Deskripsi singkat...</span></td><td><span class="wf-badge">Perusahaan</span></td><td><span class="wf-badge">Financial</span></td><td>Admin</td><td>23 Apr 2026</td><td><span class="wf-badge">💬 X</span></td><td><span class="wf-badge">Ready</span></td><td><div class="wf-btn" style="font-size:7px;">View</div> <div class="wf-btn" style="font-size:7px;">Hapus</div></td></tr>
+                            <tr><td>2</td><td><strong>Judul Laporan</strong><br><span style="font-size:8px;color:#999;">Deskripsi singkat...</span></td><td><span class="wf-badge">Divisi</span></td><td><span class="wf-badge">Department</span></td><td>Admin</td><td>22 Apr 2026</td><td>—</td><td><span class="wf-badge">Generated</span></td><td><div class="wf-btn" style="font-size:7px;">View</div> <div class="wf-btn" style="font-size:7px;">Hapus</div></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

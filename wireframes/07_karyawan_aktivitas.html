@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Wireframe — Aktivitas Saya</title>
+    <link rel="stylesheet" href="wireframe.css">
+</head>
+<body>
+<div class="page">
+    <div class="page-title">Wireframe — Aktivitas Saya (Karyawan)</div>
+    <div class="layout">
+        <div class="sidebar">
+            <div class="sidebar-logo"><div class="logo-icon">Logo</div><div class="logo-text">PT. Golden Intan Berlian<small>Employee Portal</small></div></div>
+            <div class="sidebar-profile"><div class="avatar">K</div><div class="profile-info">Nama Karyawan<div class="role">Karyawan</div></div></div>
+            <div class="sidebar-section-label">Menu</div>
+            <div class="sidebar-menu">
+                <div class="menu-item"><div class="icon">📊</div> Dashboard</div>
+                <div class="menu-item active"><div class="icon">📝</div> Aktivitas Saya</div>
+                <div class="menu-item"><div class="icon">📑</div> Laporan</div>
+            </div>
+            <div class="sidebar-footer">ERP System v1.0 © 2026</div>
+        </div>
+        <div class="main">
+            <div class="header">
+                <div class="header-left">Aktivitas Saya<small>Welcome back, Karyawan</small></div>
+                <div class="header-right"><div class="header-btn">🌙</div><div class="avatar" style="width:28px;height:28px;font-size:9px;">K</div></div>
+            </div>
+            <div class="content">
+                <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:14px;">
+                    <div><h2 style="font-size:15px;font-weight:800;">Aktivitas Saya</h2><p style="font-size:10px;color:#888;">Catat dan pantau aktivitas kerja harian Anda</p></div>
+                    <div class="wf-btn wf-btn-primary">+ Tambah Aktivitas</div>
+                </div>
+                <!-- KPI -->
+                <div class="wf-grid-4" style="margin-bottom:14px;">
+                    <div class="wf-box"><div class="wf-label">Total Aktivitas</div><div class="wf-value">XX</div><div class="wf-desc">Seluruh log</div></div>
+                    <div class="wf-box"><div class="wf-label">Hari Ini</div><div class="wf-value">XX</div><div class="wf-desc">23 Apr 2026</div></div>
+                    <div class="wf-box"><div class="wf-label">Bulan Ini</div><div class="wf-value">XX</div><div class="wf-desc">April 2026</div></div>
+                    <div class="wf-box"><div class="wf-label">Minggu Ini</div><div class="wf-value">XX</div><div class="wf-desc">Progres mingguan</div></div>
+                </div>
+                <!-- Daily Targets -->
+                <div class="wf-box" style="margin-bottom:14px;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+                        <div><h3 style="font-size:12px;font-weight:700;">🎯 Target Harian — Nama Divisi</h3><p style="font-size:9px;color:#888;">Standar kerja yang harus dicapai hari ini</p></div>
+                        <span class="wf-badge">23 Apr 2026</span>
+                    </div>
+                    <div class="wf-grid-3">
+                        <div class="wf-box">
+                            <strong style="font-size:10px;">Nama Target</strong>
+                            <div style="display:flex;justify-content:space-between;font-size:9px;margin:6px 0 2px;"><span>X / X unit</span><span class="wf-badge">XX%</span></div>
+                            <div class="wf-progress"><div class="wf-progress-fill" style="width:60%;"></div></div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px;"><span style="font-size:8px;color:#999;">📌 Standar</span><div class="wf-btn" style="font-size:7px;padding:0 8px;height:22px;">+ Selesai</div></div>
+                        </div>
+                        <div class="wf-box">
+                            <strong style="font-size:10px;">Nama Target</strong>
+                            <div style="display:flex;justify-content:space-between;font-size:9px;margin:6px 0 2px;"><span>X / X unit</span><span class="wf-badge">100%</span></div>
+                            <div class="wf-progress"><div class="wf-progress-fill" style="width:100%;"></div></div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px;"><span style="font-size:8px;color:#999;">📌 Standar</span><span class="wf-badge">🎉 Tercapai!</span></div>
+                        </div>
+                        <div class="wf-box">
+                            <strong style="font-size:10px;">Nama Target</strong>
+                            <div style="display:flex;justify-content:space-between;font-size:9px;margin:6px 0 2px;"><span>X / X unit</span><span class="wf-badge">30%</span></div>
+                            <div class="wf-progress"><div class="wf-progress-fill" style="width:30%;"></div></div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px;"><span style="font-size:8px;color:#999;">⚙️ Tambahan</span><div class="wf-btn" style="font-size:7px;padding:0 8px;height:22px;">+ Selesai</div></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Filter -->
+                <div class="wf-filter">
+                    <input class="wf-input" placeholder="Cari deskripsi...">
+                    <select class="wf-select"><option>Status</option></select>
+                    <input class="wf-input" style="flex:0;width:110px;" type="text" placeholder="Tanggal">
+                    <div class="wf-btn wf-btn-primary">🔍 Filter</div>
+                    <div class="wf-btn">Reset</div>
+                </div>
+                <!-- Activity Table -->
+                <div class="wf-box" style="padding:0;overflow:hidden;">
+                    <table class="wf-table">
+                        <thead><tr><th>No</th><th>Tanggal</th><th>Deskripsi</th><th>Lampiran</th><th>Status</th><th>Aksi</th></tr></thead>
+                        <tbody>
+                            <tr><td>1</td><td>23 Apr 2026<br><span style="font-size:8px;color:#999;">09:30 WIB</span></td><td>Deskripsi aktivitas...<br><span class="wf-badge" style="margin-top:2px;">🎯 Target</span></td><td><span class="wf-badge">📎 File</span></td><td><span class="wf-badge">Completed</span></td><td><div class="wf-btn" style="font-size:8px;">✏️ Edit</div></td></tr>
+                            <tr><td>2</td><td>22 Apr 2026<br><span style="font-size:8px;color:#999;">14:00 WIB</span></td><td>Deskripsi aktivitas...</td><td><span class="wf-badge">🔗 Link</span></td><td><span class="wf-badge">Submitted</span></td><td><div class="wf-btn" style="font-size:8px;">✏️ Edit</div></td></tr>
+                            <tr><td>3</td><td>21 Apr 2026<br><span style="font-size:8px;color:#999;">10:15 WIB</span></td><td>Deskripsi aktivitas...</td><td>—</td><td><span class="wf-badge">In Progress</span></td><td><div class="wf-btn" style="font-size:8px;">✏️ Edit</div></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="wf-pagination"><span>Menampilkan 1–15 dari XX</span><div class="wf-pagination-btns"><div class="wf-page-btn">←</div><div class="wf-page-btn active">1</div><div class="wf-page-btn">2</div><div class="wf-page-btn">→</div></div></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Lembar Pengesahan & Kata Pengantar — Laporan KP</title>
+<style>
+@page {
+    size: A4;
+    margin: 3cm 3cm 3cm 4cm;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 12pt;
+    line-height: 1.5;
+    color: #000;
+    background: #f5f5f5;
+}
+.page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 20px auto;
+    padding: 3cm 3cm 3cm 4cm;
+    background: #fff;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+    position: relative;
+}
+.page-break { page-break-after: always; }
+
+/* Centering */
+.center { text-align: center; }
+.bold { font-weight: bold; }
+
+/* Title styling */
+h1 { font-size: 14pt; font-weight: bold; text-align: center; margin-bottom: 24pt; }
+h2 { font-size: 14pt; font-weight: bold; text-align: center; margin-bottom: 18pt; }
+
+/* Table untuk tanda tangan */
+.ttd-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24pt 0;
+}
+.ttd-table td {
+    padding: 6pt;
+    vertical-align: top;
+    text-align: center;
+    width: 50%;
+}
+.ttd-space { height: 80px; }
+
+/* Numbered list */
+ol.kata-pengantar {
+    margin: 12pt 0 12pt 18pt;
+    padding-left: 0;
+}
+ol.kata-pengantar li {
+    margin-bottom: 8pt;
+    text-align: justify;
+}
+
+p { text-align: justify; margin-bottom: 10pt; text-indent: 40pt; }
+p.no-indent { text-indent: 0; }
+
+/* Print */
+@media print {
+    body { background: #fff; }
+    .page { box-shadow: none; margin: 0; padding: 3cm 3cm 3cm 4cm; }
+    .no-print { display: none; }
+}
+
+/* Print button */
+.print-btn {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    padding: 10px 24px;
+    background: #d4af37;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: bold;
+    font-size: 13px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    z-index: 100;
+}
+.print-btn:hover { background: #b8941f; }
+</style>
+</head>
+<body>
+
+<button class="print-btn no-print" onclick="window.print()">🖨️ Print / Save PDF</button>
+
+<!-- ============================================================ -->
+<!-- HALAMAN 1: LEMBAR PENGESAHAN                                 -->
+<!-- ============================================================ -->
+<div class="page">
+
+    <h1 style="margin-bottom:36pt;">LEMBAR PENGESAHAN</h1>
+
+    <p class="no-indent center bold" style="font-size:13pt;line-height:1.6;margin-bottom:24pt;">
+        LAPORAN KERJA PRAKTIK<br>
+        PERANCANGAN PROTOTYPE SISTEM ERP<br>
+        (<i>ENTERPRISE RESOURCE PLANNING</i>) BERBASIS WEBSITE<br>
+        PADA PT. GOLDEN INTAN BERLIAN
+    </p>
+
+    <table style="width:100%;margin:18pt 0 24pt;">
+        <tr>
+            <td style="width:130px;padding:4pt 0;vertical-align:top;">Nama</td>
+            <td style="padding:4pt 0;vertical-align:top;">: ............................................</td>
+        </tr>
+        <tr>
+            <td style="padding:4pt 0;vertical-align:top;">NPM</td>
+            <td style="padding:4pt 0;vertical-align:top;">: ............................................</td>
+        </tr>
+        <tr>
+            <td style="padding:4pt 0;vertical-align:top;">Program Studi</td>
+            <td style="padding:4pt 0;vertical-align:top;">: ............................................</td>
+        </tr>
+        <tr>
+            <td style="padding:4pt 0;vertical-align:top;">Jurusan</td>
+            <td style="padding:4pt 0;vertical-align:top;">: ............................................</td>
+        </tr>
+        <tr>
+            <td style="padding:4pt 0;vertical-align:top;">Fakultas</td>
+            <td style="padding:4pt 0;vertical-align:top;">: ............................................</td>
+        </tr>
+    </table>
+
+    <p class="no-indent center" style="margin-bottom:18pt;">
+        Telah diperiksa dan disetujui sebagai Laporan Kerja Praktik
+    </p>
+
+    <p class="no-indent center" style="margin-bottom:28pt;">
+        Bandar Lampung, ............... 2026
+    </p>
+
+    <p class="no-indent center bold" style="margin-bottom:12pt;">Menyetujui,</p>
+
+    <table class="ttd-table">
+        <tr>
+            <td><b>Dosen Pembimbing</b></td>
+            <td><b>Pembimbing Lapangan</b></td>
+        </tr>
+        <tr>
+            <td><div class="ttd-space"></div></td>
+            <td><div class="ttd-space"></div></td>
+        </tr>
+        <tr>
+            <td>
+                <b>(............................................)</b><br>
+                <span style="font-size:11pt;">NIP. .................................</span>
+            </td>
+            <td>
+                <b>(............................................)</b><br>
+                <span style="font-size:11pt;">NIP. .................................</span>
+            </td>
+        </tr>
+    </table>
+
+    <p class="no-indent center bold" style="margin-top:28pt;margin-bottom:12pt;">Mengetahui,</p>
+    <p class="no-indent center bold">Ketua Jurusan .................................</p>
+
+    <div style="text-align:center;margin-top:70px;">
+        <b>(............................................)</b><br>
+        <span style="font-size:11pt;">NIP. .................................</span>
+    </div>
+
+</div>
+
+<!-- ============================================================ -->
+<!-- HALAMAN 2: KATA PENGANTAR                                    -->
+<!-- ============================================================ -->
+<div class="page">
+
+    <h2>KATA PENGANTAR</h2>
+
+    <p>Puji dan syukur penulis panjatkan ke hadirat <b>Tuhan Yang Maha Esa, Yesus Kristus</b>, atas segala kasih karunia, rahmat, dan berkat-Nya yang melimpah sehingga penulis dapat menyelesaikan laporan Kerja Praktik yang berjudul <b>"Perancangan Prototype Sistem ERP (<i>Enterprise Resource Planning</i>) Berbasis Website pada PT. Golden Intan Berlian"</b> dengan baik dan tepat waktu.</p>
+
+    <p>Laporan Kerja Praktik ini disusun sebagai salah satu syarat untuk memenuhi mata kuliah Kerja Praktik pada Program Studi ........................ Jurusan ........................ Fakultas ........................ Pelaksanaan Kerja Praktik ini dilaksanakan di <b>PT. Golden Intan Berlian</b> yang berlokasi di Bandar Lampung.</p>
+
+    <p>Dalam proses penyusunan laporan ini, penulis menyadari bahwa keberhasilan ini tidak terlepas dari bantuan, bimbingan, dan dukungan berbagai pihak. Oleh karena itu, dengan segala kerendahan hati, penulis ingin mengucapkan terima kasih yang sebesar-besarnya kepada:</p>
+
+    <ol class="kata-pengantar">
+        <li><b>Tuhan Yesus Kristus</b>, yang senantiasa memberikan kekuatan, kesehatan, hikmat, dan tuntunan-Nya kepada penulis sehingga dapat menyelesaikan kegiatan Kerja Praktik dan penyusunan laporan ini dengan baik.</li>
+
+        <li>Kedua orang tua dan seluruh anggota keluarga tercinta yang senantiasa memberikan doa, kasih sayang, dukungan moral, serta dukungan material yang tiada henti kepada penulis selama menjalani perkuliahan dan Kerja Praktik.</li>
+
+        <li>Bapak/Ibu <b>............................................</b> selaku Ketua Jurusan ........................ yang telah memberikan izin dan kesempatan kepada penulis untuk melaksanakan Kerja Praktik.</li>
+
+        <li>Bapak/Ibu <b>............................................</b> selaku Dosen Pembimbing Kerja Praktik yang telah memberikan bimbingan, arahan, saran, serta motivasi yang sangat berharga selama proses penyusunan laporan ini.</li>
+
+        <li>Bapak/Ibu <b>............................................</b> selaku Koordinator Kerja Praktik yang telah membantu dan mengarahkan penulis selama proses administrasi dan pelaksanaan kegiatan Kerja Praktik berlangsung.</li>
+
+        <li><b>Seluruh pimpinan, staf, dan karyawan PT. Golden Intan Berlian</b> yang telah memberikan kesempatan, dukungan, arahan, serta ilmu dan pengalaman kerja yang sangat berharga selama pelaksanaan Kerja Praktik. Terima kasih atas sambutan hangat dan kerja sama yang luar biasa selama penulis melaksanakan kegiatan di perusahaan.</li>
+
+        <li>Sahabat dan teman-teman seperjuangan yang selalu memberikan semangat dan dukungan, khususnya kepada <b>Wahyu</b>, <b>Sheva</b>, dan <b>Kemas</b> yang telah menemani, membantu, dan senantiasa memberikan motivasi serta <i>support</i> dalam setiap proses pengerjaan project dan penyusunan laporan ini. Terima kasih atas kebersamaan dan solidaritas yang tidak ternilai.</li>
+
+        <li>Seluruh pihak yang tidak dapat penulis sebutkan satu per satu yang telah membantu baik secara langsung maupun tidak langsung dalam penyelesaian laporan Kerja Praktik ini.</li>
+    </ol>
+
+    <p>Penulis menyadari bahwa dalam penyusunan laporan Kerja Praktik ini masih terdapat banyak kekurangan, baik dari segi isi, penulisan, maupun penyajian. Oleh karena itu, penulis sangat mengharapkan kritik dan saran yang bersifat membangun dari semua pihak guna menyempurnakan laporan ini di masa mendatang.</p>
+
+    <p>Akhir kata, penulis berharap semoga laporan Kerja Praktik ini dapat memberikan manfaat bagi pembaca, khususnya bagi mahasiswa yang akan melaksanakan Kerja Praktik di kemudian hari, serta dapat menjadi referensi dalam pengembangan sistem informasi berbasis <i>Enterprise Resource Planning</i>. Segala puji dan syukur hanya bagi Tuhan Yesus Kristus.</p>
+
+    <div style="margin-top:36pt;text-align:right;">
+        <p class="no-indent" style="text-align:right;">Bandar Lampung, ............... 2026</p>
+        <p class="no-indent" style="text-align:right;margin-top:4pt;">Penulis,</p>
+        <div style="height:70px;"></div>
+        <p class="no-indent bold" style="text-align:right;">............................................</p>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Activity Diagram — Karyawan Melihat Laporan</title>
+    <link rel="stylesheet" href="activity.css">
+</head>
+<body>
+
+<div class="ad-page">
+    <div class="ad-title">Karyawan Melihat Daftar Laporan Perusahaan yang Telah Dipublikasikan</div>
+    <div class="ad-lanes-header">
+        <div class="ad-lane-h user">Karyawan</div>
+        <div class="ad-lane-h system">Sistem</div>
+        <div class="ad-lane-h db">Database</div>
+    </div>
+    <div class="ad-canvas" style="height:780px;">
+        <svg class="ad-svg" viewBox="0 0 880 780" preserveAspectRatio="xMidYMid meet">
+            <defs><marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" class="arrow"/></marker></defs>
+
+            <!-- Start → Membuka -->
+            <line x1="100" y1="65" x2="100" y2="90" marker-end="url(#ah)"/>
+            <!-- Membuka → Sistem -->
+            <line x1="170" y1="115" x2="350" y2="115" marker-end="url(#ah)"/>
+            <!-- Sistem → DB -->
+            <line x1="520" y1="115" x2="680" y2="80" marker-end="url(#ah)"/>
+            <!-- DB → Sistem Tampilkan -->
+            <line x1="740" y1="105" x2="500" y2="170" marker-end="url(#ah)"/>
+            <!-- Sistem → Melihat -->
+            <line x1="370" y1="200" x2="170" y2="240" marker-end="url(#ah)"/>
+
+            <!-- Melihat → Decision -->
+            <line x1="100" y1="278" x2="100" y2="310" marker-end="url(#ah)"/>
+
+            <!-- Decision → [Baca Laporan] -->
+            <line x1="78" y1="332" x2="100" y2="385" marker-end="url(#ah)"/>
+            <text x="22" y="368" font-size="10" font-style="italic" fill="#888" font-family="Inter,sans-serif">[Baca Detail]</text>
+
+            <!-- Decision → [Pindah Tab] -->
+            <line x1="144" y1="332" x2="440" y2="385" marker-end="url(#ah)"/>
+            <text x="230" y="352" font-size="10" font-style="italic" fill="#888" font-family="Inter,sans-serif">[Pindah Tab]</text>
+
+            <!-- Baca Laporan flow -->
+            <line x1="170" y1="410" x2="350" y2="410" marker-end="url(#ah)"/>
+            <!-- Sistem → DB Get Detail -->
+            <line x1="520" y1="410" x2="680" y2="410" marker-end="url(#ah)"/>
+            <!-- DB → Sistem Tampilkan Detail -->
+            <line x1="740" y1="435" x2="500" y2="480" marker-end="url(#ah)"/>
+            <!-- Tampilkan → Melihat Detail -->
+            <line x1="370" y1="505" x2="170" y2="545" marker-end="url(#ah)"/>
+            <!-- Melihat Detail → Decision Respon -->
+            <line x1="100" y1="575" x2="100" y2="605" marker-end="url(#ah)"/>
+
+            <!-- Decision → [Kirim Respon] -->
+            <line x1="78" y1="627" x2="100" y2="668" marker-end="url(#ah)"/>
+            <text x="20" y="652" font-size="10" font-style="italic" fill="#888" font-family="Inter,sans-serif">[Kirim Respon]</text>
+
+            <!-- Decision → [Tutup] -->
+            <line x1="144" y1="627" x2="440" y2="668" marker-end="url(#ah)"/>
+            <text x="240" y="647" font-size="10" font-style="italic" fill="#888" font-family="Inter,sans-serif">[Tutup]</text>
+
+            <!-- Kirim Respon flow -->
+            <line x1="170" y1="695" x2="350" y2="695" marker-end="url(#ah)"/>
+            <line x1="520" y1="695" x2="680" y2="695" marker-end="url(#ah)"/>
+            <line x1="740" y1="720" x2="170" y2="730" marker-end="url(#ah)"/>
+
+            <!-- Pindah Tab flow -->
+            <line x1="440" y1="420" x2="440" y2="445" marker-end="url(#ah)"/>
+            <!-- Tab → DB -->
+            <line x1="520" y1="470" x2="680" y2="470" marker-end="url(#ah)"/>
+            <!-- DB → Tampilkan -->
+            <line x1="740" y1="495" x2="500" y2="540" marker-end="url(#ah)"/>
+            <!-- Tampilkan → User -->
+            <line x1="370" y1="560" x2="170" y2="730" marker-end="url(#ah)"/>
+
+            <!-- End -->
+            <line x1="100" y1="748" x2="100" y2="748" marker-end="url(#ah)"/>
+        </svg>
+
+        <!-- Start -->
+        <div class="uml-start" style="left:86px;top:38px;"></div>
+        <div class="uml-start-label" style="left:78px;top:18px;">Start</div>
+
+        <!-- Membuka Halaman -->
+        <div class="uml-action" style="left:25px;top:92px;width:155px;">Membuka Halaman<br>Pusat Laporan</div>
+
+        <!-- Sistem Load -->
+        <div class="uml-action" style="left:350px;top:92px;width:175px;">Request Data Laporan<br>Perusahaan & Divisi</div>
+
+        <!-- DB Query -->
+        <div class="uml-action" style="left:675px;top:60px;width:150px;">Query reports<br>WHERE scope=<br>'company'/'division'</div>
+
+        <!-- Sistem Tampilkan -->
+        <div class="uml-action" style="left:355px;top:168px;width:170px;">Menampilkan KPI,<br>Tab Navigasi,<br>& Daftar Laporan</div>
+
+        <!-- Melihat Daftar -->
+        <div class="uml-action" style="left:25px;top:235px;width:155px;">Melihat Daftar<br>Laporan Perusahaan</div>
+
+        <!-- Decision -->
+        <div class="uml-decision" style="left:78px;top:310px;"></div>
+        <div class="uml-decision-label" style="left:62px;top:362px;">Pilih Aksi?</div>
+
+        <!-- === BACA DETAIL FLOW === -->
+        <div class="uml-action" style="left:25px;top:388px;width:155px;">Klik Salah Satu<br>Judul Laporan</div>
+        <div class="uml-action" style="left:350px;top:388px;width:175px;">Request Detail<br>Laporan by ID</div>
+        <div class="uml-action" style="left:675px;top:388px;width:150px;">SELECT * FROM<br>reports WHERE id=?<br>+ report_responses</div>
+
+        <div class="uml-action" style="left:355px;top:470px;width:170px;">Tampilkan Modal<br>Detail Laporan +<br>Daftar Tanggapan</div>
+
+        <div class="uml-action" style="left:25px;top:540px;width:155px;">Membaca Isi<br>Laporan Lengkap</div>
+
+        <!-- Decision Respon -->
+        <div class="uml-decision" style="left:78px;top:605px;"></div>
+        <div class="uml-decision-label" style="left:55px;top:657px;">Respon?</div>
+
+        <!-- Kirim Respon -->
+        <div class="uml-action" style="left:25px;top:672px;width:155px;">Menulis & Kirim<br>Tanggapan</div>
+        <div class="uml-action" style="left:350px;top:672px;width:175px;">Simpan Respon<br>ke Database</div>
+        <div class="uml-action" style="left:675px;top:672px;width:150px;">INSERT INTO<br>report_responses</div>
+
+        <!-- Tutup -->
+        <div class="uml-action" style="left:370px;top:648px;width:140px;display:none;">Tutup Modal</div>
+
+        <!-- === PINDAH TAB FLOW === -->
+        <div class="uml-action" style="left:365px;top:388px;width:160px;display:none;">x</div>
+        <div class="uml-action" style="left:360px;top:448px;width:165px;">Pindah Tab<br><span style="font-size:9px;color:#888;">(Perusahaan / Divisi /<br>Laporan Saya)</span></div>
+        <div class="uml-action" style="left:675px;top:448px;width:150px;">Query reports<br>WHERE scope=?</div>
+        <div class="uml-action" style="left:355px;top:530px;width:170px;">Menampilkan Data<br>Sesuai Tab Aktif</div>
+
+        <!-- Selesai -->
+        <div class="uml-action" style="left:25px;top:720px;width:155px;">Selesai / Kembali<br>ke Dashboard</div>
+
+        <!-- End -->
+        <div class="uml-end" style="left:86px;top:752px;"></div>
+    </div>
+</div>
+
+</body>
+</html>

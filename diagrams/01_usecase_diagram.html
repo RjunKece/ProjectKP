@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Use Case Diagram — ERP System</title>
+    <link rel="stylesheet" href="diagram.css">
+    <style>
+        .uc-canvas { min-height: 720px; position: relative; }
+
+        /* Lines from actors to use cases */
+        .conn {
+            position: absolute;
+            background: #94a3b8;
+            z-index: 0;
+        }
+        .conn.h { height: 2px; }
+        .conn.v { width: 2px; }
+    </style>
+</head>
+<body>
+
+<div class="diagram-page">
+    <div class="diagram-header">
+        <h1>Use Case Diagram</h1>
+        <p>Sistem ERP PT. Golden Intan Berlian</p>
+        <div class="subtitle">UML 2.0 — Unified Modeling Language</div>
+    </div>
+
+    <div class="diagram-body">
+        <div class="uc-canvas">
+
+            <!-- System Boundary -->
+            <div class="uc-system-box">
+                <div class="uc-system-label">Sistem ERP PT. Golden Intan Berlian</div>
+            </div>
+
+            <!-- ===== ACTOR: ADMIN (Left) ===== -->
+            <div class="uc-actor" style="left:30px; top:280px;">
+                <div class="stick">
+                    <div class="head"></div>
+                    <div class="body"></div>
+                    <div class="arms"></div>
+                    <div class="legs">
+                        <div class="leg-l"></div>
+                        <div class="leg-r"></div>
+                    </div>
+                </div>
+                <div class="actor-label">Admin</div>
+                <div class="actor-role">(Super Admin)</div>
+            </div>
+
+            <!-- ===== ACTOR: KARYAWAN (Right) ===== -->
+            <div class="uc-actor" style="right:30px; top:280px;">
+                <div class="stick">
+                    <div class="head"></div>
+                    <div class="body"></div>
+                    <div class="arms"></div>
+                    <div class="legs">
+                        <div class="leg-l"></div>
+                        <div class="leg-r"></div>
+                    </div>
+                </div>
+                <div class="actor-label">Karyawan</div>
+                <div class="actor-role">(Employee)</div>
+            </div>
+
+            <!-- ===== SHARED USE CASES (Center) ===== -->
+            <div class="uc-case shared" style="left:350px;top:40px;width:180px;height:50px;">
+                Login
+            </div>
+
+            <div class="uc-case shared" style="left:350px;top:110px;width:180px;height:50px;">
+                Melihat Profil
+            </div>
+
+            <div class="uc-case shared" style="left:350px;top:180px;width:180px;height:50px;">
+                Logout
+            </div>
+
+            <!-- ===== ADMIN-ONLY USE CASES (Left-Center) ===== -->
+            <div class="uc-case admin-only" style="left:200px;top:260px;width:190px;height:50px;">
+                Melihat Dashboard Admin
+            </div>
+
+            <div class="uc-case admin-only" style="left:200px;top:325px;width:190px;height:50px;">
+                Melihat Daftar Karyawan
+            </div>
+
+            <div class="uc-case admin-only" style="left:200px;top:390px;width:190px;height:50px;">
+                Menambah Pengguna
+            </div>
+
+            <div class="uc-case admin-only" style="left:200px;top:455px;width:190px;height:50px;">
+                Reset Password Karyawan
+            </div>
+
+            <div class="uc-case admin-only" style="left:200px;top:520px;width:190px;height:50px;">
+                Melihat Aktivitas Global
+            </div>
+
+            <div class="uc-case admin-only" style="left:200px;top:590px;width:190px;height:50px;">
+                Mengelola Laporan
+            </div>
+
+            <!-- Extend Use Cases for Admin Reports -->
+            <div class="uc-case extend" style="left:430px;top:560px;width:160px;height:42px;font-size:9px;">
+                Generate Laporan Baru
+            </div>
+
+            <div class="uc-case extend" style="left:430px;top:610px;width:160px;height:42px;font-size:9px;">
+                Menyimpan Laporan
+            </div>
+
+            <div class="uc-case extend" style="left:430px;top:660px;width:160px;height:42px;font-size:9px;">
+                Melihat Arsip Laporan
+            </div>
+
+            <!-- ===== KARYAWAN-ONLY USE CASES (Right-Center) ===== -->
+            <div class="uc-case karyawan-only" style="left:490px;top:260px;width:195px;height:50px;">
+                Melihat Dashboard Karyawan
+            </div>
+
+            <div class="uc-case karyawan-only" style="left:490px;top:325px;width:195px;height:50px;">
+                Melihat Aktivitas Personal
+            </div>
+
+            <div class="uc-case karyawan-only" style="left:490px;top:390px;width:195px;height:50px;">
+                Menambah Aktivitas
+            </div>
+
+            <div class="uc-case karyawan-only" style="left:490px;top:455px;width:195px;height:50px;">
+                Melihat Laporan Perusahaan
+            </div>
+
+            <!-- Extend Labels -->
+            <div class="uc-line-label" style="left:400px;top:575px;">«extend»</div>
+            <div class="uc-line-label" style="left:400px;top:625px;">«extend»</div>
+            <div class="uc-line-label" style="left:400px;top:675px;">«extend»</div>
+
+            <!-- CONNECTION LINES: Admin to shared -->
+            <div class="conn h" style="left:130px;top:310px;width:220px;"></div>
+            <div class="conn v" style="left:170px;top:65px;height:245px;"></div>
+            <div class="conn h" style="left:170px;top:65px;width:180px;"></div>
+            <div class="conn h" style="left:170px;top:135px;width:180px;"></div>
+            <div class="conn h" style="left:170px;top:205px;width:180px;"></div>
+
+            <!-- CONNECTION LINES: Admin to admin-only -->
+            <div class="conn h" style="left:130px;top:285px;width:70px;"></div>
+            <div class="conn h" style="left:130px;top:350px;width:70px;"></div>
+            <div class="conn h" style="left:130px;top:415px;width:70px;"></div>
+            <div class="conn h" style="left:130px;top:480px;width:70px;"></div>
+            <div class="conn h" style="left:130px;top:545px;width:70px;"></div>
+            <div class="conn h" style="left:130px;top:615px;width:70px;"></div>
+            <div class="conn v" style="left:130px;top:285px;height:330px;"></div>
+
+            <!-- CONNECTION LINES: Karyawan to shared -->
+            <div class="conn h" style="left:530px;top:310px;width:230px;"></div>
+            <div class="conn v" style="left:710px;top:65px;height:245px;"></div>
+            <div class="conn h" style="left:530px;top:65px;width:180px;"></div>
+            <div class="conn h" style="left:530px;top:135px;width:180px;"></div>
+            <div class="conn h" style="left:530px;top:205px;width:180px;"></div>
+
+            <!-- CONNECTION LINES: Karyawan to karyawan-only -->
+            <div class="conn h" style="left:685px;top:285px;width:75px;"></div>
+            <div class="conn h" style="left:750px;top:350px;width:10px;"></div>
+            <div class="conn h" style="left:750px;top:415px;width:10px;"></div>
+            <div class="conn h" style="left:750px;top:480px;width:10px;"></div>
+            <div class="conn v" style="left:750px;top:285px;height:195px;"></div>
+
+            <!-- Extend dashed lines -->
+            <div class="conn h" style="left:390px;top:580px;width:40px;background:repeating-linear-gradient(90deg,#9333ea 0,#9333ea 4px,transparent 4px,transparent 8px);height:1.5px;"></div>
+            <div class="conn h" style="left:390px;top:630px;width:40px;background:repeating-linear-gradient(90deg,#9333ea 0,#9333ea 4px,transparent 4px,transparent 8px);height:1.5px;"></div>
+            <div class="conn h" style="left:390px;top:680px;width:40px;background:repeating-linear-gradient(90deg,#9333ea 0,#9333ea 4px,transparent 4px,transparent 8px);height:1.5px;"></div>
+
+        </div>
+
+        <!-- Legend -->
+        <div class="uc-legend" style="margin-top:16px;">
+            <div class="uc-legend-item">
+                <div class="uc-legend-dot" style="border-color:#059669;background:#ecfdf5;"></div>
+                Shared (Admin & Karyawan)
+            </div>
+            <div class="uc-legend-item">
+                <div class="uc-legend-dot" style="border-color:#2563eb;background:#eff6ff;"></div>
+                Admin Only
+            </div>
+            <div class="uc-legend-item">
+                <div class="uc-legend-dot" style="border-color:#d97706;background:#fffbeb;"></div>
+                Karyawan Only
+            </div>
+            <div class="uc-legend-item">
+                <div class="uc-legend-dot" style="border-color:#9333ea;background:#faf5ff;border-style:dashed;"></div>
+                «extend»
+            </div>
+            <div class="uc-legend-item">
+                <span style="font-size:9px;">━━</span> Association line
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Wireframe — Pusat Laporan Karyawan</title>
+    <link rel="stylesheet" href="wireframe.css">
+</head>
+<body>
+<div class="page">
+    <div class="page-title">Wireframe — Pusat Laporan (Karyawan)</div>
+    <div class="layout">
+        <div class="sidebar">
+            <div class="sidebar-logo"><div class="logo-icon">Logo</div><div class="logo-text">PT. Golden Intan Berlian<small>Employee Portal</small></div></div>
+            <div class="sidebar-profile"><div class="avatar">K</div><div class="profile-info">Nama Karyawan<div class="role">Karyawan</div></div></div>
+            <div class="sidebar-section-label">Menu</div>
+            <div class="sidebar-menu">
+                <div class="menu-item"><div class="icon">📊</div> Dashboard</div>
+                <div class="menu-item"><div class="icon">📝</div> Aktivitas Saya</div>
+                <div class="menu-item active"><div class="icon">📑</div> Laporan</div>
+            </div>
+            <div class="sidebar-footer">ERP System v1.0 © 2026</div>
+        </div>
+        <div class="main">
+            <div class="header">
+                <div class="header-left">Pusat Laporan<small>Welcome back, Karyawan</small></div>
+                <div class="header-right"><div class="header-btn">🌙</div><div class="avatar" style="width:28px;height:28px;font-size:9px;">K</div></div>
+            </div>
+            <div class="content">
+                <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:14px;">
+                    <div><h2 style="font-size:15px;font-weight:800;">Pusat Laporan</h2><p style="font-size:10px;color:#888;">Kelola dan pantau laporan perusahaan & divisi</p></div>
+                    <div class="wf-btn wf-btn-primary">✍️ Buat Laporan Baru</div>
+                </div>
+                <!-- KPI -->
+                <div class="wf-grid-4" style="margin-bottom:14px;">
+                    <div class="wf-box"><div class="wf-label">Perusahaan</div><div class="wf-value">XX</div><div class="wf-desc">Pengumuman & info</div></div>
+                    <div class="wf-box"><div class="wf-label">Divisi Saya</div><div class="wf-value">XX</div><div class="wf-desc">Tugas & laporan divisi</div></div>
+                    <div class="wf-box"><div class="wf-label">Laporan Saya</div><div class="wf-value">XX</div><div class="wf-desc">Dibuat oleh Anda</div></div>
+                    <div class="wf-box"><div class="wf-label">Belum Dibaca</div><div class="wf-value">XX</div><div class="wf-desc">Perlu perhatian</div></div>
+                </div>
+                <!-- Tabs -->
+                <div class="wf-tabs">
+                    <div class="wf-tab active">🏛️ Perusahaan</div>
+                    <div class="wf-tab">🏢 Divisi Saya</div>
+                    <div class="wf-tab">📄 Laporan Saya</div>
+                </div>
+                <!-- Tab Content: Perusahaan (shown) -->
+                <div class="wf-box" style="padding:0;overflow:hidden;">
+                    <div style="padding:10px 14px;border-bottom:1px solid #ddd;">
+                        <strong style="font-size:11px;">📢 Laporan Perusahaan</strong>
+                        <p style="font-size:8px;color:#888;">Pengumuman dan informasi penting dari manajemen</p>
+                    </div>
+                    <div class="wf-list-item">
+                        <div class="wf-list-icon">📩</div>
+                        <div class="wf-list-content">
+                            <div style="display:flex;align-items:center;gap:4px;"><strong>Judul Laporan</strong><span class="wf-badge">Urgent</span></div>
+                            <span>Deskripsi singkat laporan...</span>
+                        </div>
+                        <div style="text-align:right;font-size:8px;color:#999;">23 Apr 2026<br>Admin</div>
+                    </div>
+                    <div class="wf-list-item">
+                        <div class="wf-list-icon">✅</div>
+                        <div class="wf-list-content">
+                            <div style="display:flex;align-items:center;gap:4px;"><strong>Judul Laporan</strong><span class="wf-badge">Normal</span></div>
+                            <span>Deskripsi singkat laporan...</span>
+                        </div>
+                        <div style="text-align:right;font-size:8px;color:#999;">22 Apr 2026<br>Admin</div>
+                    </div>
+                    <div class="wf-list-item">
+                        <div class="wf-list-icon">📩</div>
+                        <div class="wf-list-content">
+                            <div style="display:flex;align-items:center;gap:4px;"><strong>Judul Laporan</strong><span class="wf-badge">High</span></div>
+                            <span>Deskripsi singkat laporan...</span>
+                        </div>
+                        <div style="text-align:right;font-size:8px;color:#999;">20 Apr 2026<br>Admin</div>
+                    </div>
+                </div>
+
+                <!-- Tab Content: Laporan Saya (hidden state - shown as reference) -->
+                <div class="wf-box" style="padding:0;overflow:hidden;margin-top:14px;">
+                    <div style="padding:10px 14px;border-bottom:1px solid #ddd;">
+                        <strong style="font-size:11px;">📄 Laporan yang Saya Buat</strong>
+                        <p style="font-size:8px;color:#888;">Laporan kebutuhan, kendala, saran, dan progress</p>
+                    </div>
+                    <table class="wf-table">
+                        <thead><tr><th>Judul</th><th>Tipe</th><th>Scope</th><th>Status</th><th>Respon</th><th>Tanggal</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>Judul Laporan</strong></td><td><span class="wf-badge">Kebutuhan</span></td><td>Divisi</td><td><span class="wf-badge">Ready</span></td><td><span class="wf-badge">💬 X</span></td><td>23 Apr 2026</td></tr>
+                            <tr><td><strong>Judul Laporan</strong></td><td><span class="wf-badge">Kendala</span></td><td>Perusahaan</td><td><span class="wf-badge">Generated</span></td><td>—</td><td>20 Apr 2026</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

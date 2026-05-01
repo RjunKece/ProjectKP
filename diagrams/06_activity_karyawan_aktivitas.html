@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Activity Diagram — Karyawan Mencatat Aktivitas</title>
+    <link rel="stylesheet" href="activity.css">
+</head>
+<body>
+
+<div class="ad-page">
+    <div class="ad-title">Karyawan Mencatat dan Melihat Aktivitas Harian</div>
+    <div class="ad-lanes-header">
+        <div class="ad-lane-h user">Karyawan</div>
+        <div class="ad-lane-h system">Sistem</div>
+        <div class="ad-lane-h db">Database</div>
+    </div>
+    <div class="ad-canvas" style="height:920px;">
+        <svg class="ad-svg" viewBox="0 0 880 920" preserveAspectRatio="xMidYMid meet">
+            <defs><marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" class="arrow"/></marker></defs>
+
+            <!-- Start → Membuka -->
+            <line x1="100" y1="65" x2="100" y2="90" marker-end="url(#ah)"/>
+            <!-- Membuka → Sistem Load -->
+            <line x1="170" y1="115" x2="350" y2="115" marker-end="url(#ah)"/>
+            <!-- Sistem → DB Query -->
+            <line x1="520" y1="115" x2="680" y2="80" marker-end="url(#ah)"/>
+            <!-- DB → Sistem Tampilkan -->
+            <line x1="740" y1="105" x2="500" y2="170" marker-end="url(#ah)"/>
+            <!-- Sistem → Melihat Dashboard -->
+            <line x1="370" y1="195" x2="170" y2="240" marker-end="url(#ah)"/>
+            <!-- Melihat → Decision -->
+            <line x1="100" y1="270" x2="100" y2="310" marker-end="url(#ah)"/>
+
+            <!-- Decision → [Tambah] -->
+            <line x1="78" y1="332" x2="100" y2="380" marker-end="url(#ah)"/>
+            <text x="30" y="362" font-size="10" font-style="italic" fill="#888" font-family="Inter,sans-serif">[Tambah]</text>
+
+            <!-- Decision → [Filter/Lihat] -->
+            <line x1="144" y1="332" x2="440" y2="380" marker-end="url(#ah)"/>
+            <text x="230" y="355" font-size="10" font-style="italic" fill="#888" font-family="Inter,sans-serif">[Filter / Lihat Riwayat]</text>
+
+            <!-- Tambah flow -->
+            <line x1="100" y1="415" x2="100" y2="445" marker-end="url(#ah)"/>
+            <!-- Tampilkan Modal -->
+            <line x1="170" y1="470" x2="350" y2="470" marker-end="url(#ah)"/>
+            <!-- Isi Data -->
+            <line x1="440" y1="495" x2="170" y2="535" marker-end="url(#ah)"/>
+            <line x1="100" y1="575" x2="100" y2="605" marker-end="url(#ah)"/>
+            <!-- Klik Simpan → Sistem -->
+            <line x1="170" y1="630" x2="350" y2="630" marker-end="url(#ah)"/>
+            <!-- Sistem → DB -->
+            <line x1="520" y1="630" x2="680" y2="630" marker-end="url(#ah)"/>
+            <!-- DB → Sistem Update Target -->
+            <line x1="740" y1="655" x2="500" y2="700" marker-end="url(#ah)"/>
+            <!-- Update Target → Notifikasi -->
+            <line x1="440" y1="725" x2="440" y2="760" marker-end="url(#ah)"/>
+
+            <!-- Filter flow -->
+            <line x1="440" y1="415" x2="440" y2="445" marker-end="url(#ah)"/>
+            <!-- Filter → DB -->
+            <line x1="520" y1="470" x2="680" y2="470" marker-end="url(#ah)"/>
+            <!-- DB → Sistem Tampilkan -->
+            <line x1="740" y1="495" x2="500" y2="540" marker-end="url(#ah)"/>
+            <!-- Tampilkan → User -->
+            <line x1="370" y1="560" x2="170" y2="760" marker-end="url(#ah)"/>
+
+            <!-- Notifikasi → Melihat (User) -->
+            <line x1="370" y1="780" x2="170" y2="780" marker-end="url(#ah)"/>
+
+            <!-- Melihat → End -->
+            <line x1="100" y1="800" x2="100" y2="870" marker-end="url(#ah)"/>
+        </svg>
+
+        <!-- Start -->
+        <div class="uml-start" style="left:86px;top:38px;"></div>
+        <div class="uml-start-label" style="left:78px;top:18px;">Start</div>
+
+        <!-- Membuka Halaman -->
+        <div class="uml-action" style="left:25px;top:92px;width:155px;">Membuka Halaman<br>"Aktivitas Saya"</div>
+
+        <!-- Sistem Load -->
+        <div class="uml-action" style="left:350px;top:92px;width:175px;">Request Data Aktivitas<br>& Target Harian User</div>
+
+        <!-- DB Query -->
+        <div class="uml-action" style="left:675px;top:60px;width:150px;">Query activities,<br>daily_targets<br>WHERE user_id=?</div>
+
+        <!-- Sistem Tampilkan -->
+        <div class="uml-action" style="left:355px;top:165px;width:170px;">Menampilkan KPI,<br>Target Harian, Chart,<br>& Tabel Aktivitas</div>
+
+        <!-- Melihat Dashboard -->
+        <div class="uml-action" style="left:25px;top:225px;width:155px;">Melihat Ringkasan<br>Performa & Target</div>
+
+        <!-- Decision -->
+        <div class="uml-decision" style="left:78px;top:310px;"></div>
+        <div class="uml-decision-label" style="left:62px;top:362px;">Pilih Aksi?</div>
+
+        <!-- === TAMBAH AKTIVITAS === -->
+        <div class="uml-action" style="left:25px;top:385px;width:155px;">Klik "Tambah<br>Aktivitas"</div>
+
+        <!-- Tampilkan Modal -->
+        <div class="uml-action" style="left:25px;top:447px;width:155px;">Melihat Form Modal</div>
+        <div class="uml-action" style="left:350px;top:447px;width:175px;">Tampilkan Modal<br>Form Aktivitas Baru</div>
+
+        <!-- Isi Data -->
+        <div class="uml-action" style="left:25px;top:520px;width:155px;">Mengisi Data Aktivitas<br><span style="font-size:9px;color:#888;">(Tanggal, Deskripsi,<br>Target, Lampiran)</span></div>
+
+        <!-- Klik Simpan -->
+        <div class="uml-action" style="left:25px;top:607px;width:155px;">Klik "Simpan"</div>
+
+        <!-- Sistem Validasi -->
+        <div class="uml-action" style="left:350px;top:607px;width:175px;">Validasi & Simpan<br>Data Aktivitas</div>
+
+        <!-- DB Insert -->
+        <div class="uml-action" style="left:675px;top:607px;width:150px;">INSERT INTO<br>activities</div>
+
+        <!-- Sistem Update Target -->
+        <div class="uml-action" style="left:355px;top:690px;width:170px;">Hitung Ulang Progres<br>Target Harian</div>
+
+        <!-- === FILTER/LIHAT === -->
+        <div class="uml-action" style="left:360px;top:385px;width:165px;">Mengisi Filter<br><span style="font-size:9px;color:#888;">(Status / Tanggal)</span></div>
+
+        <div class="uml-action" style="left:360px;top:447px;width:165px;">Proses Filter<br>Aktivitas Personal</div>
+
+        <!-- DB Filter -->
+        <div class="uml-action" style="left:675px;top:447px;width:150px;">SELECT * FROM<br>activities WHERE<br>user_id=? AND...</div>
+
+        <!-- Tampilkan Hasil -->
+        <div class="uml-action" style="left:355px;top:530px;width:170px;">Menampilkan Hasil<br>Filter + Pagination</div>
+
+        <!-- Notifikasi -->
+        <div class="uml-action" style="left:355px;top:758px;width:170px;">Tampilkan Notifikasi<br>Sukses & Refresh</div>
+
+        <!-- Melihat Notif -->
+        <div class="uml-action" style="left:25px;top:758px;width:155px;">Melihat Data<br>Terupdate</div>
+
+        <!-- End -->
+        <div class="uml-end" style="left:86px;top:872px;"></div>
+        <div class="uml-end-label" style="left:82px;top:905px;">End</div>
+    </div>
+</div>
+
+</body>
+</html>

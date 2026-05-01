@@ -11,19 +11,19 @@
     ></div>
 
     {{-- ================= MODAL ================= --}}
-    <div
-        class="relative bg-white rounded-3xl shadow-2xl
-               w-full max-w-4xl
-               max-h-[90vh]        {{-- 🔥 BATAS TINGGI --}}
-               flex flex-col       {{-- 🔥 WAJIB --}}
-               z-[10000]"
+    <div x-data="{ selectedScope: 'company' }"
+        class="relative bg-white dark:bg-slate-900 rounded-2xl shadow-2xl
+               w-full max-w-3xl
+               max-h-[90vh] flex flex-col
+               z-[10000]
+               border border-slate-200 dark:border-slate-700"
         @click.stop
     >
 
-        {{-- ================= HEADER (FIXED) ================= --}}
-        <div class="p-8 border-b border-[#f5e6b3] flex items-center gap-5">
+        {{-- ================= HEADER ================= --}}
+        <div class="p-6 border-b border-slate-200 dark:border-slate-700 flex items-center gap-4 shrink-0">
 
-            <div class="text-4xl">
+            <div class="text-3xl">
                 <span x-show="reportType === 'financial'">📊</span>
                 <span x-show="reportType === 'department'">🏢</span>
                 <span x-show="reportType === 'growth'">📈</span>
@@ -31,156 +31,146 @@
             </div>
 
             <div class="flex-1">
-                <h2 class="text-2xl font-semibold text-slate-900 leading-tight">
+                <h2 class="text-xl font-semibold text-slate-900 dark:text-white">
                     <span x-show="reportType === 'financial'">Financial Intelligence Report</span>
                     <span x-show="reportType === 'department'">Department Performance Report</span>
                     <span x-show="reportType === 'growth'">Growth & Trends Report</span>
                     <span x-show="reportType === 'custom'">Custom Intelligence Report</span>
                 </h2>
-
-                <p class="text-sm text-slate-500 mt-1">
-                    Form laporan resmi untuk dokumentasi dan analisis internal ERP
+                <p class="text-sm text-slate-500 dark:text-slate-400 mt-0.5">
+                    Buat laporan resmi untuk dokumentasi dan analisis internal
                 </p>
             </div>
+
+            <button @click="openReportModal = false"
+                    class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+                ✕
+            </button>
         </div>
 
-        {{-- ================= BODY (SCROLL AREA) ================= --}}
-        <div class="flex-1 overflow-y-auto px-8 py-6">
+        {{-- ================= BODY (SCROLL) ================= --}}
+        <div class="flex-1 overflow-y-auto px-6 py-6">
 
             <form
                 method="POST"
-                action="{{ route('admin.reports.generate') }}"
-                enctype="multipart/form-data"
-                class="space-y-8"
+                action="{{ route('admin.reports.store') }}"
+                class="space-y-6"
                 id="reportForm"
             >
                 @csrf
-
                 <input type="hidden" name="type" :value="reportType">
 
-                {{-- ================= JUDUL LAPORAN ================= --}}
-                <div class="text-center space-y-3">
-                    <h1 class="text-3xl font-bold text-slate-900 tracking-tight">
-                        FORM LAPORAN AKTIVITAS
-                    </h1>
-
-                    <div class="flex justify-center items-center gap-3">
-                        <span class="h-[2px] w-14 bg-[#f5e6b3]"></span>
-                        <span class="h-[3px] w-24 bg-[#d4af37] rounded-full"></span>
-                        <span class="h-[2px] w-14 bg-[#f5e6b3]"></span>
-                    </div>
-
-                    <p class="text-sm text-slate-500 max-w-xl mx-auto">
-                        Digunakan untuk mencatat aktivitas kerja, capaian harian,
-                        serta analisis kinerja sebagai bahan evaluasi internal perusahaan.
-                    </p>
-                </div>
-
-                {{-- ================= NAMA LAPORAN ================= --}}
-                <div class="space-y-2">
-                    <label class="label">
-                        Nama / Judul Laporan <span class="text-red-500">*</span>
+                {{-- JUDUL --}}
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
+                        Judul Laporan <span class="text-red-500">*</span>
                     </label>
-                    <input
-                        type="text"
-                        name="title"
-                        required
-                        class="input"
-                        placeholder="Contoh: Laporan Aktivitas Sales Bulanan"
-                    >
+                    <input type="text" name="title" required
+                           class="input w-full"
+                           placeholder="Contoh: Laporan Aktivitas Sales Bulanan">
                 </div>
 
-                {{-- ================= INFORMASI PELAPOR ================= --}}
-                <div class="box">
-                    <h3 class="section-title">👤 Informasi Pelapor</h3>
-
-                    <div class="grid grid-cols-2 gap-4">
-                        <input class="input" name="first_name" placeholder="Nama Depan">
-                        <input class="input" name="last_name" placeholder="Nama Belakang">
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-4">
-                        <input class="input" name="position" placeholder="Jabatan">
-                        <select class="input" name="department">
-                            <option value="">Pilih Departemen</option>
-                            <option>Sales</option>
-                            <option>Marketing</option>
-                            <option>Gudang</option>
-                            <option>Keuangan</option>
-                        </select>
-                    </div>
-                </div>
-
-                {{-- ================= PERIODE ================= --}}
-                <div class="box">
-                    <h3 class="section-title">📅 Periode Laporan</h3>
-
-                    <div class="grid grid-cols-3 gap-4">
-                        <input type="date" name="report_date" class="input">
-                        <input type="time" name="start_time" class="input">
-                        <input type="time" name="end_time" class="input">
-                    </div>
-                </div>
-
-                {{-- ================= AKTIVITAS ================= --}}
-                <div class="box highlight">
-                    <h3 class="section-title">📌 Ringkasan Aktivitas Utama</h3>
-
-                    <textarea
-                        name="summary"
-                        rows="6"
-                        class="input"
-                        placeholder="Jelaskan aktivitas utama, hasil kerja, dan poin penting secara terstruktur..."
-                    ></textarea>
-
-                    <div class="grid grid-cols-2 gap-4">
-                        <input class="input" name="kpi" placeholder="Target / KPI Harian">
-                        <select class="input" name="status">
-                            <option>Selesai</option>
-                            <option>Dalam Proses</option>
-                            <option>Tertunda</option>
-                        </select>
-                    </div>
-                </div>
-
-                {{-- ================= ANALISIS ================= --}}
-                <div class="box">
-                    <h3 class="section-title">🧠 Analisis & Catatan Tambahan</h3>
-
-                    <textarea
-                        name="analysis"
-                        rows="5"
-                        class="input"
-                        placeholder="Tuliskan kendala, evaluasi, insight, atau rekomendasi..."
-                    ></textarea>
-                </div>
-
-                {{-- ================= LAMPIRAN ================= --}}
-                <div class="box dashed">
-                    <label class="label block mb-2">
-                        📎 Lampiran Pendukung (Opsional)
+                {{-- SCOPE: Perusahaan atau Divisi --}}
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                        📌 Tujuan Laporan <span class="text-red-500">*</span>
                     </label>
-                    <input type="file" name="attachment" class="text-sm">
+                    <div class="grid grid-cols-2 gap-3">
+                        <label class="relative cursor-pointer">
+                            <input type="radio" name="scope" value="company" x-model="selectedScope" class="peer sr-only" checked>
+                            <div class="p-4 rounded-xl border-2 border-slate-200 dark:border-slate-700
+                                        peer-checked:border-[#d4af37] peer-checked:bg-[#fffdf7] dark:peer-checked:bg-slate-800
+                                        transition-all">
+                                <div class="text-2xl mb-1">🏛️</div>
+                                <p class="font-semibold text-sm text-slate-900 dark:text-white">Laporan Perusahaan</p>
+                                <p class="text-xs text-slate-500 mt-0.5">Pengumuman & info penting untuk seluruh karyawan</p>
+                            </div>
+                        </label>
+                        <label class="relative cursor-pointer">
+                            <input type="radio" name="scope" value="division" x-model="selectedScope" class="peer sr-only">
+                            <div class="p-4 rounded-xl border-2 border-slate-200 dark:border-slate-700
+                                        peer-checked:border-blue-500 peer-checked:bg-blue-50/50 dark:peer-checked:bg-slate-800
+                                        transition-all">
+                                <div class="text-2xl mb-1">🏢</div>
+                                <p class="font-semibold text-sm text-slate-900 dark:text-white">Laporan Divisi</p>
+                                <p class="text-xs text-slate-500 mt-0.5">Tugas & informasi khusus untuk divisi tertentu</p>
+                            </div>
+                        </label>
+                    </div>
                 </div>
+
+                {{-- PILIH DIVISI (hanya jika scope = division) --}}
+                <div x-show="selectedScope === 'division'" x-transition>
+                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
+                        🏢 Pilih Divisi Tujuan <span class="text-red-500">*</span>
+                    </label>
+                    <select name="division_id" class="input w-full" :required="selectedScope === 'division'">
+                        <option value="">-- Pilih Divisi --</option>
+                        @foreach(\App\Models\Division::orderBy('nama_divisi')->get() as $div)
+                            <option value="{{ $div->id }}">{{ $div->nama_divisi }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                {{-- PRIORITAS --}}
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
+                        ⚡ Prioritas
+                    </label>
+                    <select name="priority" class="input w-full">
+                        <option value="normal">Normal</option>
+                        <option value="low">Low</option>
+                        <option value="high">High - Penting</option>
+                        <option value="urgent">Urgent - Segera</option>
+                    </select>
+                </div>
+
+                {{-- TANGGAL --}}
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
+                        Tanggal Laporan <span class="text-red-500">*</span>
+                    </label>
+                    <input type="date" name="report_date" required
+                           value="{{ date('Y-m-d') }}"
+                           class="input w-full">
+                </div>
+
+                {{-- RINGKASAN --}}
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
+                        📌 Ringkasan Aktivitas
+                    </label>
+                    <textarea name="summary" rows="5"
+                              class="input w-full"
+                              placeholder="Jelaskan aktivitas utama, hasil kerja, dan poin penting..."></textarea>
+                </div>
+
+                {{-- ANALISIS --}}
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
+                        🧠 Analisis & Catatan
+                    </label>
+                    <textarea name="analysis" rows="4"
+                              class="input w-full"
+                              placeholder="Kendala, evaluasi, insight, atau rekomendasi..."></textarea>
+                </div>
+
             </form>
         </div>
 
-        {{-- ================= FOOTER (FIXED) ================= --}}
-        <div class="p-6 border-t bg-white flex justify-end gap-4">
-            <button
-                type="button"
-                @click="openReportModal = false"
-                class="btn-secondary"
-            >
+        {{-- ================= FOOTER ================= --}}
+        <div class="p-5 border-t border-slate-200 dark:border-slate-700 flex justify-end gap-3 shrink-0">
+            <button type="button" @click="openReportModal = false"
+                    class="px-4 py-2 text-sm rounded-lg border border-slate-200 dark:border-slate-600
+                           hover:bg-slate-100 dark:hover:bg-slate-800 transition">
                 Cancel
             </button>
 
-            <button
-                type="submit"
-                form="reportForm"
-                class="btn-primary"
-            >
-                Generate Report
+            <button type="submit" form="reportForm"
+                    class="px-5 py-2 text-sm rounded-lg font-semibold
+                           bg-gradient-to-r from-[#f5e6b3] to-[#d4af37] text-slate-900
+                           hover:opacity-90 shadow-md shadow-[#d4af37]/20 transition">
+                💾 Simpan Laporan
             </button>
         </div>
 

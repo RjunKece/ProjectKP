@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Activity Diagram — Kelola Laporan</title>
+    <link rel="stylesheet" href="diagram.css">
+</head>
+<body>
+
+<div class="diagram-page">
+    <div class="diagram-header">
+        <h1>Activity Diagram — Mengelola Laporan (Admin)</h1>
+        <p>Alur admin dalam membuat, menyimpan, dan melihat arsip laporan</p>
+        <div class="subtitle">Aktor: Admin (Super Admin)</div>
+    </div>
+    <div class="diagram-body">
+        <div class="ad-swimlane">
+            <div class="ad-lane-header">ADMIN</div>
+            <div class="ad-lane-content">
+                <div class="ad-flow">
+                    <div class="ad-node ad-start"></div>
+                    <div class="ad-arrow"></div>
+                    <div class="ad-node ad-action">Membuka Halaman Reports Center</div>
+                    <div class="ad-arrow"></div>
+                    <div class="ad-node ad-action system">Sistem Menampilkan KPI + Daftar Laporan</div>
+                    <div class="ad-arrow"></div>
+                    <div class="ad-node ad-decision"></div>
+                    <div style="display:flex;gap:24px;margin-top:12px;">
+                        <div style="text-align:center;">
+                            <div class="ad-branch-label">[Generate Laporan]</div>
+                            <div class="ad-arrow" style="height:16px;"></div>
+                            <div class="ad-node ad-action" style="min-width:145px;">Pilih Tipe Laporan<br><span style="font-size:8px;color:#64748b;">(Financial / Department / Growth / Custom)</span></div>
+                            <div class="ad-arrow" style="height:16px;"></div>
+                            <div class="ad-node ad-action" style="min-width:145px;">Klik "Generate"</div>
+                            <div class="ad-arrow" style="height:16px;"></div>
+                            <div class="ad-node ad-action system" style="min-width:145px;">Tampilkan Modal Konfigurasi</div>
+                            <div class="ad-arrow" style="height:16px;"></div>
+                            <div class="ad-node ad-action" style="min-width:145px;">Isi Judul, Periode,<br>Scope, & Deskripsi</div>
+                            <div class="ad-arrow" style="height:16px;"></div>
+                            <div class="ad-node ad-action">Klik "Simpan"</div>
+                            <div class="ad-arrow" style="height:16px;"></div>
+                            <div class="ad-node ad-action system" style="border-color:#059669;background:#ecfdf5;">Sistem Menyimpan Laporan</div>
+                        </div>
+                        <div style="text-align:center;">
+                            <div class="ad-branch-label">[Lihat Detail]</div>
+                            <div class="ad-arrow" style="height:16px;"></div>
+                            <div class="ad-node ad-action" style="min-width:130px;">Klik "View" pada Laporan</div>
+                            <div class="ad-arrow" style="height:16px;"></div>
+                            <div class="ad-node ad-action system" style="min-width:130px;">Tampilkan Modal Detail<br><span style="font-size:8px;color:#64748b;">(Header, Isi, Tanggapan)</span></div>
+                            <div class="ad-arrow" style="height:16px;"></div>
+                            <div class="ad-node ad-decision"></div>
+                            <div style="display:flex;gap:16px;margin-top:10px;">
+                                <div style="text-align:center;">
+                                    <div class="ad-branch-label">[Print]</div>
+                                    <div class="ad-arrow" style="height:12px;"></div>
+                                    <div class="ad-node ad-action" style="min-width:80px;">Cetak<br>Laporan</div>
+                                </div>
+                                <div style="text-align:center;">
+                                    <div class="ad-branch-label">[Tutup]</div>
+                                    <div class="ad-arrow" style="height:12px;"></div>
+                                    <div class="ad-node ad-action" style="min-width:80px;">Kembali</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="text-align:center;">
+                            <div class="ad-branch-label">[Hapus]</div>
+                            <div class="ad-arrow" style="height:16px;"></div>
+                            <div class="ad-node ad-action" style="min-width:120px;">Klik "Hapus"</div>
+                            <div class="ad-arrow" style="height:16px;"></div>
+                            <div class="ad-node ad-action system" style="min-width:120px;">Modal Konfirmasi</div>
+                            <div class="ad-arrow" style="height:16px;"></div>
+                            <div class="ad-node ad-action" style="min-width:120px;border-color:#dc2626;background:#fef2f2;">
+                                Konfirmasi Hapus
+                            </div>
+                            <div class="ad-arrow" style="height:16px;"></div>
+                            <div class="ad-node ad-action system" style="border-color:#059669;background:#ecfdf5;">Hapus dari Database</div>
+                        </div>
+                    </div>
+                    <div class="ad-arrow" style="height:20px;margin-top:12px;"></div>
+                    <div class="ad-node ad-action system">Sistem Menampilkan Notifikasi Sukses & Refresh Data</div>
+                    <div class="ad-arrow"></div>
+                    <div class="ad-node ad-end"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

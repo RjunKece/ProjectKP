@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Entity Relationship Diagram — ERP System</title>
+    <link rel="stylesheet" href="diagram.css">
+</head>
+<body>
+
+<div class="diagram-page">
+    <div class="diagram-header">
+        <h1>Entity Relationship Diagram (ERD)</h1>
+        <p>Struktur Database Relasional — Sistem ERP PT. Golden Intan Berlian</p>
+        <div class="subtitle">MySQL / MariaDB — Laravel Eloquent ORM</div>
+    </div>
+    <div class="diagram-body">
+        <div class="erd-container">
+
+            <!-- ========== TABLE: roles ========== -->
+            <div class="erd-table-card">
+                <div class="erd-table-header">
+                    <div class="icon">🔐</div>
+                    <h3>roles</h3>
+                    <small>Tabel Peran Pengguna</small>
+                </div>
+                <table class="erd-grid">
+                    <thead><tr><th>Kolom</th><th>Tipe Data</th><th>Constraint</th><th>Keterangan</th></tr></thead>
+                    <tbody>
+                        <tr><td class="col-name pk">id</td><td>BIGINT UNSIGNED</td><td><span class="erd-badge pk-badge">PK</span> AUTO_INCREMENT</td><td>Primary key</td></tr>
+                        <tr><td class="col-name">nama_role</td><td>VARCHAR(255)</td><td>UNIQUE, NOT NULL</td><td>Nama role (super_admin, karyawan)</td></tr>
+                        <tr><td class="col-name nullable">created_at</td><td>TIMESTAMP</td><td><span class="erd-badge nullable-badge">NULLABLE</span></td><td>Waktu dibuat</td></tr>
+                        <tr><td class="col-name nullable">updated_at</td><td>TIMESTAMP</td><td><span class="erd-badge nullable-badge">NULLABLE</span></td><td>Waktu diperbarui</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- ========== TABLE: divisions ========== -->
+            <div class="erd-table-card">
+                <div class="erd-table-header">
+                    <div class="icon">🏢</div>
+                    <h3>divisions</h3>
+                    <small>Tabel Divisi Perusahaan</small>
+                </div>
+                <table class="erd-grid">
+                    <thead><tr><th>Kolom</th><th>Tipe Data</th><th>Constraint</th><th>Keterangan</th></tr></thead>
+                    <tbody>
+                        <tr><td class="col-name pk">id</td><td>BIGINT UNSIGNED</td><td><span class="erd-badge pk-badge">PK</span> AUTO_INCREMENT</td><td>Primary key</td></tr>
+                        <tr><td class="col-name">nama_divisi</td><td>VARCHAR(255)</td><td>UNIQUE, NOT NULL</td><td>Nama divisi (IT, HRD, Finance, dll)</td></tr>
+                        <tr><td class="col-name nullable">created_at</td><td>TIMESTAMP</td><td><span class="erd-badge nullable-badge">NULLABLE</span></td><td>Waktu dibuat</td></tr>
+                        <tr><td class="col-name nullable">updated_at</td><td>TIMESTAMP</td><td><span class="erd-badge nullable-badge">NULLABLE</span></td><td>Waktu diperbarui</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- ========== TABLE: users ========== -->
+            <div class="erd-table-card">
+                <div class="erd-table-header">
+                    <div class="icon">👤</div>
+                    <h3>users</h3>
+                    <small>Tabel Pengguna Sistem</small>
+                </div>
+                <table class="erd-grid">
+                    <thead><tr><th>Kolom</th><th>Tipe Data</th><th>Constraint</th><th>Keterangan</th></tr></thead>
+                    <tbody>
+                        <tr><td class="col-name pk">id</td><td>BIGINT UNSIGNED</td><td><span class="erd-badge pk-badge">PK</span> AUTO_INCREMENT</td><td>Primary key</td></tr>
+                        <tr><td class="col-name">name</td><td>VARCHAR(255)</td><td>NOT NULL</td><td>Nama lengkap pengguna</td></tr>
+                        <tr><td class="col-name">email</td><td>VARCHAR(255)</td><td>UNIQUE, NOT NULL</td><td>Alamat email</td></tr>
+                        <tr><td class="col-name nullable">email_verified_at</td><td>TIMESTAMP</td><td><span class="erd-badge nullable-badge">NULLABLE</span></td><td>Waktu verifikasi email</td></tr>
+                        <tr><td class="col-name">password</td><td>VARCHAR(255)</td><td>NOT NULL</td><td>Password terenkripsi (Bcrypt)</td></tr>
+                        <tr><td class="col-name fk">role_id</td><td>BIGINT UNSIGNED</td><td><span class="erd-badge fk-badge">FK</span> → roles.id</td><td>Referensi ke tabel roles</td></tr>
+                        <tr><td class="col-name fk">division_id</td><td>BIGINT UNSIGNED</td><td><span class="erd-badge fk-badge">FK</span> → divisions.id <span class="erd-badge nullable-badge">NULLABLE</span></td><td>Referensi ke tabel divisions</td></tr>
+                        <tr><td class="col-name nullable">remember_token</td><td>VARCHAR(100)</td><td><span class="erd-badge nullable-badge">NULLABLE</span></td><td>Token "remember me"</td></tr>
+                        <tr><td class="col-name nullable">created_at</td><td>TIMESTAMP</td><td><span class="erd-badge nullable-badge">NULLABLE</span></td><td>Waktu registrasi</td></tr>
+                        <tr><td class="col-name nullable">updated_at</td><td>TIMESTAMP</td><td><span class="erd-badge nullable-badge">NULLABLE</span></td><td>Waktu update terakhir</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- ========== TABLE: activities ========== -->
+            <div class="erd-table-card">
+                <div class="erd-table-header">
+                    <div class="icon">📝</div>
+                    <h3>activities</h3>
+                    <small>Tabel Rekam Jejak Aktivitas</small>
+                </div>
+                <table class="erd-grid">
+                    <thead><tr><th>Kolom</th><th>Tipe Data</th><th>Constraint</th><th>Keterangan</th></tr></thead>
+                    <tbody>
+                        <tr><td class="col-name pk">id</td><td>BIGINT UNSIGNED</td><td><span class="erd-badge pk-badge">PK</span> AUTO_INCREMENT</td><td>Primary key</td></tr>
+                        <tr><td class="col-name fk">user_id</td><td>BIGINT UNSIGNED</td><td><span class="erd-badge fk-badge">FK</span> → users.id (CASCADE)</td><td>Pemilik aktivitas</td></tr>
+                        <tr><td class="col-name">tanggal</td><td>DATETIME</td><td>NOT NULL</td><td>Tanggal & waktu aktivitas</td></tr>
+                        <tr><td class="col-name">deskripsi</td><td>TEXT</td><td>NOT NULL</td><td>Deskripsi aktivitas</td></tr>
+                        <tr><td class="col-name">status</td><td>VARCHAR(255)</td><td>DEFAULT 'submitted'</td><td>Status (submitted, completed, approved)</td></tr>
+                        <tr><td class="col-name nullable">file_path</td><td>VARCHAR(255)</td><td><span class="erd-badge nullable-badge">NULLABLE</span></td><td>Path file lampiran</td></tr>
+                        <tr><td class="col-name nullable">file_name</td><td>VARCHAR(255)</td><td><span class="erd-badge nullable-badge">NULLABLE</span></td><td>Nama file asli</td></tr>
+                        <tr><td class="col-name nullable">link</td><td>VARCHAR(255)</td><td><span class="erd-badge nullable-badge">NULLABLE</span></td><td>Link referensi eksternal</td></tr>
+                        <tr><td class="col-name fk">target_id</td><td>BIGINT UNSIGNED</td><td><span class="erd-badge fk-badge">FK</span> → daily_targets.id <span class="erd-badge nullable-badge">NULLABLE</span></td><td>Referensi target harian</td></tr>
+                        <tr><td class="col-name nullable">created_at</td><td>TIMESTAMP</td><td><span class="erd-badge nullable-badge">NULLABLE</span></td><td>Waktu dibuat</td></tr>
+                        <tr><td class="col-name nullable">updated_at</td><td>TIMESTAMP</td><td><span class="erd-badge nullable-badge">NULLABLE</span></td><td>Waktu diperbarui</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- ========== TABLE: daily_targets ========== -->
+            <div class="erd-table-card">
+                <div class="erd-table-header">
+                    <div class="icon">🎯</div>
+                    <h3>daily_targets</h3>
+                    <small>Tabel Target Harian per Divisi</small>
+                </div>
+                <table class="erd-grid">
+                    <thead><tr><th>Kolom</th><th>Tipe Data</th><th>Constraint</th><th>Keterangan</th></tr></thead>
+                    <tbody>
+                        <tr><td class="col-name pk">id</td><td>BIGINT UNSIGNED</td><td><span class="erd-badge pk-badge">PK</span> AUTO_INCREMENT</td><td>Primary key</td></tr>
+                        <tr><td class="col-name fk">division_id</td><td>BIGINT UNSIGNED</td><td><span class="erd-badge fk-badge">FK</span> → divisions.id (CASCADE)</td><td>Divisi pemilik target</td></tr>
+                        <tr><td class="col-name">title</td><td>VARCHAR(255)</td><td>NOT NULL</td><td>Judul target</td></tr>
+                        <tr><td class="col-name nullable">description</td><td>TEXT</td><td><span class="erd-badge nullable-badge">NULLABLE</span></td><td>Deskripsi target</td></tr>
+                        <tr><td class="col-name nullable">target_count</td><td>INTEGER</td><td><span class="erd-badge nullable-badge">NULLABLE</span></td><td>Jumlah target (misal: 15)</td></tr>
+                        <tr><td class="col-name nullable">unit</td><td>VARCHAR(255)</td><td><span class="erd-badge nullable-badge">NULLABLE</span></td><td>Satuan (video, deal, transaksi)</td></tr>
+                        <tr><td class="col-name">is_default</td><td>BOOLEAN</td><td>DEFAULT true</td><td>Apakah target default</td></tr>
+                        <tr><td class="col-name">is_active</td><td>BOOLEAN</td><td>DEFAULT true</td><td>Status aktif target</td></tr>
+                        <tr><td class="col-name fk">created_by</td><td>BIGINT UNSIGNED</td><td><span class="erd-badge fk-badge">FK</span> → users.id <span class="erd-badge nullable-badge">NULLABLE</span></td><td>Pembuat target</td></tr>
+                        <tr><td class="col-name nullable">created_at</td><td>TIMESTAMP</td><td><span class="erd-badge nullable-badge">NULLABLE</span></td><td>Waktu dibuat</td></tr>
+                        <tr><td class="col-name nullable">updated_at</td><td>TIMESTAMP</td><td><span class="erd-badge nullable-badge">NULLABLE</span></td><td>Waktu diperbarui</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- ========== TABLE: reports ========== -->
+            <div class="erd-table-card">
+                <div class="erd-table-header">
+                    <div class="icon">📑</div>
+                    <h3>reports</h3>
+                    <small>Tabel Laporan Perusahaan & Divisi</small>
+                </div>
+                <table class="erd-grid">
+                    <thead><tr><th>Kolom</th><th>Tipe Data</th><th>Constraint</th><th>Keterangan</th></tr></thead>
+                    <tbody>
+                        <tr><td class="col-name pk">id</td><td>BIGINT UNSIGNED</td><td><span class="erd-badge pk-badge">PK</span> AUTO_INCREMENT</td><td>Primary key</td></tr>
+                        <tr><td class="col-name">title</td><td>VARCHAR(255)</td><td>NOT NULL</td><td>Judul laporan</td></tr>
+                        <tr><td class="col-name">type</td><td>VARCHAR(255)</td><td>NOT NULL</td><td>Tipe (financial, department, growth, custom, dll)</td></tr>
+                        <tr><td class="col-name">scope</td><td>VARCHAR(255)</td><td>DEFAULT 'company'</td><td>Lingkup (company / division)</td></tr>
+                        <tr><td class="col-name fk">division_id</td><td>BIGINT UNSIGNED</td><td><span class="erd-badge fk-badge">FK</span> → divisions.id <span class="erd-badge nullable-badge">NULLABLE</span></td><td>Divisi terkait (jika scope=division)</td></tr>
+                        <tr><td class="col-name nullable">description</td><td>TEXT</td><td><span class="erd-badge nullable-badge">NULLABLE</span></td><td>Isi / deskripsi laporan</td></tr>
+                        <tr><td class="col-name nullable">start_date</td><td>DATE</td><td><span class="erd-badge nullable-badge">NULLABLE</span></td><td>Tanggal awal periode</td></tr>
+                        <tr><td class="col-name nullable">end_date</td><td>DATE</td><td><span class="erd-badge nullable-badge">NULLABLE</span></td><td>Tanggal akhir periode</td></tr>
+                        <tr><td class="col-name">status</td><td>ENUM</td><td>'generated', 'ready', 'failed'</td><td>Status laporan</td></tr>
+                        <tr><td class="col-name">priority</td><td>ENUM</td><td>'low', 'normal', 'high', 'urgent'</td><td>Prioritas pengumuman</td></tr>
+                        <tr><td class="col-name fk">created_by</td><td>BIGINT UNSIGNED</td><td><span class="erd-badge fk-badge">FK</span> → users.id <span class="erd-badge nullable-badge">NULLABLE</span></td><td>Pembuat laporan</td></tr>
+                        <tr><td class="col-name nullable">created_at</td><td>TIMESTAMP</td><td><span class="erd-badge nullable-badge">NULLABLE</span></td><td>Waktu dibuat</td></tr>
+                        <tr><td class="col-name nullable">updated_at</td><td>TIMESTAMP</td><td><span class="erd-badge nullable-badge">NULLABLE</span></td><td>Waktu diperbarui</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- ========== TABLE: report_responses ========== -->
+            <div class="erd-table-card">
+                <div class="erd-table-header">
+                    <div class="icon">💬</div>
+                    <h3>report_responses</h3>
+                    <small>Tabel Tanggapan / Respon Laporan</small>
+                </div>
+                <table class="erd-grid">
+                    <thead><tr><th>Kolom</th><th>Tipe Data</th><th>Constraint</th><th>Keterangan</th></tr></thead>
+                    <tbody>
+                        <tr><td class="col-name pk">id</td><td>BIGINT UNSIGNED</td><td><span class="erd-badge pk-badge">PK</span> AUTO_INCREMENT</td><td>Primary key</td></tr>
+                        <tr><td class="col-name fk">report_id</td><td>BIGINT UNSIGNED</td><td><span class="erd-badge fk-badge">FK</span> → reports.id (CASCADE)</td><td>Laporan yang ditanggapi</td></tr>
+                        <tr><td class="col-name fk">user_id</td><td>BIGINT UNSIGNED</td><td><span class="erd-badge fk-badge">FK</span> → users.id (CASCADE)</td><td>Pengguna yang merespon</td></tr>
+                        <tr><td class="col-name">message</td><td>TEXT</td><td>NOT NULL</td><td>Isi pesan tanggapan</td></tr>
+                        <tr><td class="col-name">type</td><td>ENUM</td><td>'reply', 'acknowledgment'</td><td>Tipe respon (balasan / tanda baca)</td></tr>
+                        <tr><td class="col-name nullable">created_at</td><td>TIMESTAMP</td><td><span class="erd-badge nullable-badge">NULLABLE</span></td><td>Waktu dibuat</td></tr>
+                        <tr><td class="col-name nullable">updated_at</td><td>TIMESTAMP</td><td><span class="erd-badge nullable-badge">NULLABLE</span></td><td>Waktu diperbarui</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- ========== RELASI ANTAR TABEL ========== -->
+            <div class="erd-relations">
+                <h3>📌 Relasi Antar Tabel (Kardinalitas)</h3>
+                <div class="erd-rel-list">
+                    <div class="erd-rel">
+                        <span class="tbl">roles</span>
+                        <span class="arrow">1 ──── ∞</span>
+                        <span class="tbl">users</span>
+                        <span class="card">One-to-Many</span>
+                    </div>
+                    <div class="erd-rel">
+                        <span class="tbl">divisions</span>
+                        <span class="arrow">1 ──── ∞</span>
+                        <span class="tbl">users</span>
+                        <span class="card">One-to-Many</span>
+                    </div>
+                    <div class="erd-rel">
+                        <span class="tbl">users</span>
+                        <span class="arrow">1 ──── ∞</span>
+                        <span class="tbl">activities</span>
+                        <span class="card">One-to-Many</span>
+                    </div>
+                    <div class="erd-rel">
+                        <span class="tbl">divisions</span>
+                        <span class="arrow">1 ──── ∞</span>
+                        <span class="tbl">daily_targets</span>
+                        <span class="card">One-to-Many</span>
+                    </div>
+                    <div class="erd-rel">
+                        <span class="tbl">daily_targets</span>
+                        <span class="arrow">1 ──── ∞</span>
+                        <span class="tbl">activities</span>
+                        <span class="card">One-to-Many</span>
+                    </div>
+                    <div class="erd-rel">
+                        <span class="tbl">users</span>
+                        <span class="arrow">1 ──── ∞</span>
+                        <span class="tbl">reports</span>
+                        <span class="card">One-to-Many (created_by)</span>
+                    </div>
+                    <div class="erd-rel">
+                        <span class="tbl">divisions</span>
+                        <span class="arrow">1 ──── ∞</span>
+                        <span class="tbl">reports</span>
+                        <span class="card">One-to-Many</span>
+                    </div>
+                    <div class="erd-rel">
+                        <span class="tbl">reports</span>
+                        <span class="arrow">1 ──── ∞</span>
+                        <span class="tbl">report_responses</span>
+                        <span class="card">One-to-Many</span>
+                    </div>
+                    <div class="erd-rel">
+                        <span class="tbl">users</span>
+                        <span class="arrow">1 ──── ∞</span>
+                        <span class="tbl">report_responses</span>
+                        <span class="card">One-to-Many</span>
+                    </div>
+                    <div class="erd-rel">
+                        <span class="tbl">users</span>
+                        <span class="arrow">1 ──── ∞</span>
+                        <span class="tbl">daily_targets</span>
+                        <span class="card">One-to-Many (created_by)</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

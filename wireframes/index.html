@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Wireframe Index — ERP Prototype</title>
+    <link rel="stylesheet" href="wireframe.css">
+    <style>
+        body { background: #f5f5f5; }
+        .index-container { max-width: 700px; margin: 40px auto; }
+        .index-header { text-align: center; margin-bottom: 30px; }
+        .index-header h1 { font-size: 20px; font-weight: 800; margin-bottom: 4px; }
+        .index-header p { font-size: 12px; color: #888; }
+        .index-card { background: #fff; border: 2px solid #000; border-radius: 8px; padding: 16px 20px; margin-bottom: 10px; display: flex; align-items: center; gap: 14px; text-decoration: none; color: #000; transition: background 0.15s; }
+        .index-card:hover { background: #f0f0f0; }
+        .index-num { width: 32px; height: 32px; border: 2px solid #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; flex-shrink: 0; }
+        .index-info h3 { font-size: 13px; font-weight: 700; }
+        .index-info p { font-size: 10px; color: #888; margin-top: 2px; }
+        .index-section { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: #999; margin: 20px 0 8px; padding-left: 4px; }
+    </style>
+</head>
+<body>
+
+<div class="index-container">
+
+    <div class="index-header">
+        <h1>📐 Wireframe — ERP Prototype</h1>
+        <p>PT. Golden Intan Berlian — Perancangan Antarmuka Sistem</p>
+        <p style="margin-top:4px; font-size:10px; color:#aaa;">Klik pada halaman untuk melihat wireframe</p>
+    </div>
+
+    <div class="index-section">Autentikasi</div>
+    <a href="01_login.html" class="index-card">
+        <div class="index-num">1</div>
+        <div class="index-info"><h3>Halaman Login</h3><p>Form login dengan panel informasi perusahaan (split layout)</p></div>
+    </a>
+
+    <div class="index-section">Admin Panel</div>
+    <a href="02_admin_dashboard.html" class="index-card">
+        <div class="index-num">2</div>
+        <div class="index-info"><h3>Dashboard Admin</h3><p>KPI strip, grafik aktivitas, distribusi divisi, performa divisi, quick actions</p></div>
+    </a>
+    <a href="03_admin_user_management.html" class="index-card">
+        <div class="index-num">3</div>
+        <div class="index-info"><h3>User Management</h3><p>Kelola pengguna — filter, tabel data user, tombol tambah & reset password</p></div>
+    </a>
+    <a href="04_admin_monitoring_aktivitas.html" class="index-card">
+        <div class="index-num">4</div>
+        <div class="index-info"><h3>Monitoring Aktivitas</h3><p>Pemantauan live — tren mingguan, status breakdown, filter & tabel aktivitas</p></div>
+    </a>
+    <a href="05_admin_reports.html" class="index-card">
+        <div class="index-num">5</div>
+        <div class="index-info"><h3>Reports Center</h3><p>Report builder (4 jenis), filter, tabel laporan dengan aksi view/hapus</p></div>
+    </a>
+
+    <div class="index-section">Employee Portal (Karyawan)</div>
+    <a href="06_karyawan_dashboard.html" class="index-card">
+        <div class="index-num">6</div>
+        <div class="index-info"><h3>Dashboard Karyawan</h3><p>Personal snapshot, grafik bar aktivitas, tabel riwayat, quick actions</p></div>
+    </a>
+    <a href="07_karyawan_aktivitas.html" class="index-card">
+        <div class="index-num">7</div>
+        <div class="index-info"><h3>Aktivitas Saya</h3><p>Target harian, filter, tabel aktivitas dengan lampiran & tombol edit</p></div>
+    </a>
+    <a href="08_karyawan_laporan.html" class="index-card">
+        <div class="index-num">8</div>
+        <div class="index-info"><h3>Pusat Laporan</h3><p>Tab perusahaan/divisi/laporan saya — daftar laporan & buat laporan baru</p></div>
+    </a>
+
+    <div class="index-section">Umum</div>
+    <a href="09_profile.html" class="index-card">
+        <div class="index-num">9</div>
+        <div class="index-info"><h3>My Profile</h3><p>Info akun, ringkasan aktivitas, quick actions (refresh & logout)</p></div>
+    </a>
+
+    <div style="text-align:center; margin-top:30px; font-size:9px; color:#bbb;">
+        Wireframe untuk Bab 3 — Perancangan Antarmuka (RAD Methodology)<br>
+        Laporan Kerja Praktik — PT. Golden Intan Berlian
+    </div>
+
+</div>
+
+</body>
+</html>

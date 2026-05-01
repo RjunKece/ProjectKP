@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Activity Diagram — Part 1: Shared Features</title>
+<style>
+@page { size: A4; margin: 3cm 3cm 3cm 4cm; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'Times New Roman', Times, serif; font-size: 12pt; line-height: 1.5; color: #000; max-width: 800px; margin: 0 auto; padding: 4cm 3cm 3cm 4cm; background: #fff; }
+h1 { font-size: 14pt; font-weight: bold; text-align: center; margin-bottom: 24pt; text-transform: uppercase; }
+h2 { font-size: 12pt; font-weight: bold; margin: 18pt 0 8pt; }
+h3 { font-size: 12pt; font-weight: bold; margin: 12pt 0 6pt; }
+p { text-align: justify; margin-bottom: 6pt; text-indent: 36pt; }
+p.no-indent { text-indent: 0; }
+table { width: 100%; border-collapse: collapse; margin: 8pt 0 12pt; font-size: 11pt; }
+th, td { border: 1px solid #000; padding: 5pt 8pt; vertical-align: top; text-align: left; }
+th { background: #f0f0f0; font-weight: bold; }
+td.label { width: 160px; font-weight: bold; }
+ol, ul { margin: 4pt 0 8pt 36pt; }
+li { margin-bottom: 3pt; }
+.page-break { page-break-after: always; }
+.diagram-title { font-weight: bold; text-align: center; margin: 14pt 0 6pt; font-size: 12pt; }
+.figure-caption { text-align: center; font-size: 11pt; margin: 6pt 0 14pt; font-style: italic; }
+.sub-flow { margin-left: 18pt; }
+.note { font-size: 11pt; color: #333; font-style: italic; margin: 8pt 0; padding: 8pt 12pt; border-left: 3px solid #999; background: #fafafa; }
+</style>
+</head>
+<body>
+
+<h1>Dokumentasi Activity Diagram<br>Sistem ERP PT. Golden Intan Berlian</h1>
+
+<p>Berikut ini adalah dokumentasi lengkap activity diagram dari seluruh fitur dan menu yang tersedia dalam Sistem ERP PT. Golden Intan Berlian. Setiap activity diagram menggambarkan alur kerja (workflow) interaksi antara aktor (Pengguna), Sistem, dan Database sesuai dengan standar notasi UML (Unified Modeling Language) 2.0. Dokumentasi ini disusun sebagai bagian dari Bab 3 (Perancangan Sistem) dan Bab 4 (Hasil dan Pembahasan) laporan Kerja Praktik.</p>
+
+<p>Sistem ini memiliki dua aktor utama, yaitu <b>Admin (Super Admin)</b> yang bertanggung jawab atas pengelolaan sistem secara keseluruhan, dan <b>Karyawan</b> yang menggunakan sistem untuk keperluan operasional harian. Setiap activity diagram menggunakan tiga swimlane: Pengguna (Aktor), Sistem (Aplikasi Laravel), dan Database (MySQL/MariaDB).</p>
+
+<div class="page-break"></div>
+
+<!-- ============================================================ -->
+<!-- ACTIVITY DIAGRAM 1: LOGIN -->
+<!-- ============================================================ -->
+
+<h2>4.x.1 Activity Diagram — Proses Login</h2>
+
+<table>
+<tr><td class="label">Nama Use Case</td><td>Melakukan Login</td></tr>
+<tr><td class="label">Aktor</td><td>Admin (Super Admin) dan Karyawan</td></tr>
+<tr><td class="label">Deskripsi</td><td>Proses autentikasi pengguna untuk masuk ke dalam sistem ERP menggunakan email dan password. Sistem akan melakukan validasi kredensial terhadap database dan mengarahkan pengguna ke dashboard sesuai role masing-masing.</td></tr>
+<tr><td class="label">Pre-condition</td><td>Pengguna telah memiliki akun yang terdaftar dalam sistem (dibuat oleh Admin). Pengguna belum dalam keadaan login (session tidak aktif).</td></tr>
+<tr><td class="label">Post-condition</td><td>Pengguna berhasil masuk ke dalam sistem dan diarahkan ke halaman dashboard sesuai role (Admin Dashboard atau Karyawan Dashboard). Session pengguna tercatat aktif.</td></tr>
+</table>
+
+<h3>Alur Utama (Main Flow):</h3>
+<ol>
+<li>Pengguna membuka halaman login sistem ERP melalui browser dengan mengakses URL <i>/login</i>.</li>
+<li>Sistem menampilkan halaman login yang terdiri dari form input email, password, dan tombol "Sign In".</li>
+<li>Pengguna mengisi field <b>Email Address</b> dengan alamat email yang terdaftar.</li>
+<li>Pengguna mengisi field <b>Password</b> dengan kata sandi akun.</li>
+<li>Pengguna menekan tombol <b>"Sign In"</b> untuk mengirim request autentikasi.</li>
+<li>Sistem menerima input data (email dan password) dari form login.</li>
+<li>Sistem mengirimkan request validasi ke Database untuk memverifikasi kredensial.</li>
+<li>Database menerima query dan melakukan pencocokan data pada tabel <i>users</i> berdasarkan email dan password (Bcrypt hash comparison).</li>
+<li>Database mengembalikan hasil validasi ke Sistem.</li>
+<li>Sistem memeriksa hasil validasi — <b>Data Valid</b>.</li>
+<li>Sistem melakukan pengecekan role pengguna melalui relasi <i>users.role_id</i> → tabel <i>roles</i>.</li>
+<li>Sistem menentukan tujuan redirect berdasarkan nilai <i>nama_role</i>:
+    <ul>
+    <li>Jika <i>nama_role</i> = <b>"super_admin"</b> → Sistem menyiapkan dan melakukan redirect ke halaman <b>Admin Dashboard</b> (<i>/admin/dashboard</i>).</li>
+    <li>Jika <i>nama_role</i> = <b>"karyawan"</b> → Sistem menyiapkan dan melakukan redirect ke halaman <b>Karyawan Dashboard</b> (<i>/karyawan/dashboard</i>).</li>
+    </ul>
+</li>
+<li>Sistem membuat session baru untuk pengguna dan menampilkan halaman dashboard yang sesuai.</li>
+<li>Pengguna melihat halaman dashboard dan dapat mulai menggunakan fitur-fitur sistem sesuai hak aksesnya.</li>
+</ol>
+
+<h3>Alur Alternatif (Alternative Flow):</h3>
+<ol type="a">
+<li><b>Validasi Gagal (Data Tidak Valid):</b>
+    <ol>
+    <li>Pada langkah 10, apabila Database tidak menemukan kecocokan data (email tidak terdaftar atau password salah), Database mengembalikan hasil "tidak valid".</li>
+    <li>Sistem menampilkan pesan error: <i>"Email atau password yang Anda masukkan salah. Silakan coba lagi."</i></li>
+    <li>Pengguna melihat pesan error pada halaman login.</li>
+    <li>Alur kembali ke langkah 3 — pengguna dapat mengisi ulang kredensial.</li>
+    </ol>
+</li>
+<li><b>Field Kosong (Validasi Form):</b>
+    <ol>
+    <li>Pada langkah 5, apabila pengguna menekan tombol "Sign In" tanpa mengisi salah satu atau kedua field, Sistem melakukan validasi client-side.</li>
+    <li>Sistem menampilkan pesan validasi: <i>"Field email dan password wajib diisi."</i></li>
+    <li>Alur kembali ke langkah 3.</li>
+    </ol>
+</li>
+</ol>
+
+<div class="page-break"></div>
+
+<!-- ============================================================ -->
+<!-- ACTIVITY DIAGRAM 2: MELIHAT PROFIL -->
+<!-- ============================================================ -->
+
+<h2>4.x.2 Activity Diagram — Melihat Profil</h2>
+
+<table>
+<tr><td class="label">Nama Use Case</td><td>Melihat Profil</td></tr>
+<tr><td class="label">Aktor</td><td>Admin (Super Admin) dan Karyawan</td></tr>
+<tr><td class="label">Deskripsi</td><td>Pengguna melihat informasi profil akun pribadi yang mencakup nama, email, role, divisi, tanggal registrasi, dan ringkasan aktivitas. Fitur ini tersedia untuk kedua role dan dapat diakses melalui menu sidebar "Profil".</td></tr>
+<tr><td class="label">Pre-condition</td><td>Pengguna telah berhasil login ke dalam sistem (session aktif).</td></tr>
+<tr><td class="label">Post-condition</td><td>Halaman profil berhasil ditampilkan dengan data yang sesuai dari database.</td></tr>
+</table>
+
+<h3>Alur Utama (Main Flow):</h3>
+<ol>
+<li>Pengguna mengklik menu <b>"Profil"</b> pada sidebar navigasi.</li>
+<li>Sistem menerima request dan menjalankan method <i>ProfileController@index</i>.</li>
+<li>Sistem mengirimkan query ke Database untuk mengambil data user yang sedang login berdasarkan <i>auth()->user()->id</i>.</li>
+<li>Database mengeksekusi query pada tabel <i>users</i> dengan join ke tabel <i>roles</i> dan <i>divisions</i>, serta menghitung total aktivitas dari tabel <i>activities</i>.</li>
+<li>Database mengembalikan data pengguna beserta relasi dan agregasi ke Sistem.</li>
+<li>Sistem memproses data dan merender halaman profil (<i>profile.index</i>) yang menampilkan:
+    <ul>
+    <li><b>Avatar dan Identitas:</b> Nama lengkap, email, badge role, dan status akun.</li>
+    <li><b>Account Information:</b> Role, divisi, dan tanggal registrasi.</li>
+    <li><b>Activity Summary:</b> Total aktivitas keseluruhan dan total aktivitas bulan berjalan.</li>
+    <li><b>Quick Actions:</b> Tombol refresh profil dan tombol logout.</li>
+    </ul>
+</li>
+<li>Pengguna melihat seluruh informasi profil pada halaman.</li>
+</ol>
+
+<h3>Alur Alternatif (Alternative Flow):</h3>
+<ol type="a">
+<li><b>Session Expired:</b>
+    <ol>
+    <li>Pada langkah 2, apabila session pengguna telah berakhir (expired), middleware <i>auth</i> mendeteksi bahwa pengguna tidak terautentikasi.</li>
+    <li>Sistem melakukan redirect otomatis ke halaman login.</li>
+    <li>Pengguna harus melakukan login ulang sebelum dapat mengakses halaman profil.</li>
+    </ol>
+</li>
+</ol>
+
+<div class="page-break"></div>
+
+<!-- ============================================================ -->
+<!-- ACTIVITY DIAGRAM 3: LOGOUT -->
+<!-- ============================================================ -->
+
+<h2>4.x.3 Activity Diagram — Proses Logout</h2>
+
+<table>
+<tr><td class="label">Nama Use Case</td><td>Logout</td></tr>
+<tr><td class="label">Aktor</td><td>Admin (Super Admin) dan Karyawan</td></tr>
+<tr><td class="label">Deskripsi</td><td>Pengguna keluar dari sistem ERP. Sistem akan menghapus session aktif, melakukan invalidasi token CSRF, dan mengarahkan pengguna kembali ke halaman login.</td></tr>
+<tr><td class="label">Pre-condition</td><td>Pengguna dalam keadaan login (session aktif).</td></tr>
+<tr><td class="label">Post-condition</td><td>Session pengguna dihapus. Pengguna diarahkan ke halaman login dengan pesan konfirmasi logout berhasil.</td></tr>
+</table>
+
+<h3>Alur Utama (Main Flow):</h3>
+<ol>
+<li>Pengguna mengklik tombol <b>"Logout"</b> yang tersedia pada sidebar navigasi atau halaman profil.</li>
+<li>Sistem menerima request POST ke route <i>/logout</i>.</li>
+<li>Sistem melakukan verifikasi token CSRF untuk memastikan keabsahan request.</li>
+<li>Sistem menjalankan fungsi <i>Auth::logout()</i> untuk menghapus autentikasi pengguna.</li>
+<li>Sistem menjalankan <i>session()->invalidate()</i> untuk menghapus seluruh data session dari server.</li>
+<li>Sistem menjalankan <i>session()->regenerateToken()</i> untuk membuat token CSRF baru guna mencegah serangan CSRF.</li>
+<li>Database menghapus record session pada tabel <i>sessions</i> yang terkait dengan <i>user_id</i> pengguna.</li>
+<li>Sistem melakukan redirect ke halaman login (<i>/login</i>) dengan pesan flash: <i>"Anda telah berhasil logout. Silahkan login kembali untuk melanjutkan."</i></li>
+<li>Pengguna melihat halaman login dengan pesan konfirmasi logout berhasil.</li>
+</ol>
+
+<h3>Alur Alternatif (Alternative Flow):</h3>
+<ol type="a">
+<li><b>Token CSRF Tidak Valid:</b>
+    <ol>
+    <li>Pada langkah 3, apabila token CSRF tidak valid (misalnya karena tab browser sudah lama terbuka), Sistem menolak request dengan HTTP 419 (Page Expired).</li>
+    <li>Pengguna perlu merefresh halaman dan mengklik logout kembali.</li>
+    </ol>
+</li>
+</ol>
+
+</body>
+</html>

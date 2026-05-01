@@ -1,0 +1,197 @@
+/* ============================================
+   ACTIVITY DIAGRAM — 3-LANE SWIMLANE STYLE
+   Matches academic UML standard exactly
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    background: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    padding: 30px 0;
+}
+
+.ad-page {
+    width: 880px;
+    background: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+}
+
+/* Title */
+.ad-title {
+    text-align: center;
+    padding: 16px 20px 12px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #222;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Swimlane header */
+.ad-lanes-header {
+    display: grid;
+    grid-template-columns: 240px 1fr 220px;
+    height: 32px;
+}
+
+.ad-lane-h {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.ad-lane-h.user   { background: linear-gradient(135deg, #e67e22, #f39c12); }
+.ad-lane-h.system { background: linear-gradient(135deg, #2980b9, #27ae60); }
+.ad-lane-h.db     { background: linear-gradient(135deg, #e74c3c, #f39c12); }
+
+/* Canvas */
+.ad-canvas {
+    position: relative;
+    min-height: 800px;
+    border-top: 1px solid #ddd;
+}
+
+/* Vertical lane dividers */
+.ad-canvas::before,
+.ad-canvas::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    z-index: 1;
+}
+.ad-canvas::before { left: 240px; background: repeating-linear-gradient(180deg, #27ae60 0, #27ae60 6px, transparent 6px, transparent 12px); }
+.ad-canvas::after  { right: 220px; background: repeating-linear-gradient(180deg, #e74c3c 0, #e74c3c 6px, transparent 6px, transparent 12px); }
+
+/* ===== UML SHAPES ===== */
+
+/* Start circle */
+.uml-start {
+    position: absolute;
+    width: 28px; height: 28px;
+    background: #1a1a1a;
+    border-radius: 50%;
+    z-index: 5;
+}
+.uml-start-label {
+    position: absolute;
+    font-size: 11px;
+    font-weight: 600;
+    color: #555;
+    z-index: 5;
+}
+
+/* End circle */
+.uml-end {
+    position: absolute;
+    width: 28px; height: 28px;
+    background: #1a1a1a;
+    border: 4px solid #1a1a1a;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 3px #fff;
+    z-index: 5;
+}
+.uml-end-label {
+    position: absolute;
+    font-size: 11px;
+    font-weight: 600;
+    color: #555;
+    z-index: 5;
+}
+
+/* Action (rounded rectangle) */
+.uml-action {
+    position: absolute;
+    border: 1.5px solid #444;
+    border-radius: 10px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 500;
+    color: #222;
+    padding: 6px 10px;
+    line-height: 1.35;
+    z-index: 5;
+    min-height: 40px;
+}
+
+/* Decision diamond */
+.uml-decision {
+    position: absolute;
+    width: 44px; height: 44px;
+    border: 1.5px solid #444;
+    background: #fff;
+    transform: rotate(45deg);
+    z-index: 5;
+}
+
+.uml-decision-label {
+    position: absolute;
+    font-size: 10px;
+    font-weight: 500;
+    color: #444;
+    font-style: italic;
+    z-index: 6;
+    white-space: nowrap;
+}
+
+/* Fork/Join bar */
+.uml-bar {
+    position: absolute;
+    height: 4px;
+    background: #1a1a1a;
+    border-radius: 2px;
+    z-index: 5;
+}
+
+/* Condition label */
+.uml-cond {
+    position: absolute;
+    font-size: 9px;
+    font-weight: 600;
+    color: #666;
+    font-style: italic;
+    z-index: 6;
+    white-space: nowrap;
+}
+
+/* ===== SVG OVERLAY for lines ===== */
+.ad-svg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.ad-svg line, .ad-svg polyline, .ad-svg path {
+    stroke: #555;
+    stroke-width: 1.5;
+    fill: none;
+}
+
+.ad-svg .arrow {
+    fill: #555;
+    stroke: none;
+}
+
+/* ===== PRINT ===== */
+@media print {
+    body { background: #fff; padding: 0; }
+    .ad-page { border: 1px solid #000; box-shadow: none; width: 100%; }
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Activity Diagram — Karyawan Aktivitas</title>
+    <link rel="stylesheet" href="diagram.css">
+</head>
+<body>
+
+<div class="diagram-page">
+    <div class="diagram-header">
+        <h1>Activity Diagram — Mencatat Aktivitas (Karyawan)</h1>
+        <p>Alur karyawan dalam mencatat dan melihat aktivitas harian</p>
+        <div class="subtitle">Aktor: Karyawan</div>
+    </div>
+    <div class="diagram-body">
+        <div class="ad-swimlane">
+            <div class="ad-lane-header">KARYAWAN</div>
+            <div class="ad-lane-content">
+                <div class="ad-flow">
+                    <div class="ad-node ad-start"></div>
+                    <div class="ad-arrow"></div>
+                    <div class="ad-node ad-action">Membuka Halaman "Aktivitas Saya"</div>
+                    <div class="ad-arrow"></div>
+                    <div class="ad-node ad-action system">Sistem Menampilkan KPI + Target Harian + Daftar Aktivitas</div>
+                    <div class="ad-arrow"></div>
+                    <div class="ad-node ad-decision"></div>
+                    <div style="display:flex;gap:40px;margin-top:12px;">
+                        <div style="text-align:center;">
+                            <div class="ad-branch-label">[Tambah Aktivitas]</div>
+                            <div class="ad-arrow" style="height:16px;"></div>
+                            <div class="ad-node ad-action" style="min-width:160px;">Klik "Tambah Aktivitas"</div>
+                            <div class="ad-arrow" style="height:16px;"></div>
+                            <div class="ad-node ad-action system" style="min-width:160px;">Tampilkan Modal Form</div>
+                            <div class="ad-arrow" style="height:16px;"></div>
+                            <div class="ad-node ad-action" style="min-width:160px;">Isi Data Aktivitas<br><span style="font-size:8px;color:#64748b;">(Tanggal, Deskripsi, Target, Lampiran)</span></div>
+                            <div class="ad-arrow" style="height:16px;"></div>
+                            <div class="ad-node ad-action">Klik "Simpan"</div>
+                            <div class="ad-arrow" style="height:16px;"></div>
+                            <div class="ad-node ad-action system" style="border-color:#059669;background:#ecfdf5;">
+                                Sistem Menyimpan Aktivitas<br>& Update Progres Target
+                            </div>
+                        </div>
+                        <div style="text-align:center;">
+                            <div class="ad-branch-label">[Lihat Riwayat]</div>
+                            <div class="ad-arrow" style="height:16px;"></div>
+                            <div class="ad-node ad-action" style="min-width:150px;">Scroll / Filter Daftar Aktivitas</div>
+                            <div class="ad-arrow" style="height:16px;"></div>
+                            <div class="ad-node ad-action system" style="min-width:150px;">Sistem Menampilkan Data<br>Sesuai Filter</div>
+                        </div>
+                    </div>
+                    <div class="ad-arrow" style="height:20px;margin-top:12px;"></div>
+                    <div class="ad-node ad-action system">Tampilkan Notifikasi Sukses & Refresh Halaman</div>
+                    <div class="ad-arrow"></div>
+                    <div class="ad-node ad-end"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

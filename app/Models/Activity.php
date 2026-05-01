@@ -10,7 +10,11 @@ class Activity extends Model
         'user_id',
         'tanggal',
         'deskripsi',
-        'status'
+        'status',
+        'file_path',
+        'file_name',
+        'link',
+        'target_id',
     ];
 
     protected $casts = [
@@ -20,5 +24,10 @@ class Activity extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function target()
+    {
+        return $this->belongsTo(DailyTarget::class, 'target_id');
     }
 }
