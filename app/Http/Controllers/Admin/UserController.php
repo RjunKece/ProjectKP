@@ -87,6 +87,40 @@ class UserController extends Controller
             ->with('success', 'User berhasil ditambahkan!');
     }
 
+    public function update(Request $request, User $user)
+    {
+        $validated = $request->validate([
+            'name'        => 'required|string|max:255',
+            'email'       => 'required|email|unique:users,email,' . $user->id,
+            'role_id'     => 'required|exists:roles,id',
+            'division_id' => 'required|exists:divisions,id',
+        ]);
+
+        $oldRole = optional($user->role)->nama_role;
+
+        $user->update($validated);
+
+        // Determine if role changed for the log message
+        $newRole = Role::find($validated['role_id'])->nama_role ?? 'unknown';
+        $description = 'Mengupdate data user: ' . $user->name;
+
+        if ($oldRole !== $newRole) {
+            $description .= ' (Role diubah: ' . str_replace('_', ' ', $oldRole) . ' → ' . str_replace('_', ' ', $newRole) . ')';
+        }
+
+        // LOG AKTIVITAS
+        Activity::create([
+            'user_id'   => auth()->id(),
+            'tanggal'   => now(),
+            'deskripsi' => $description,
+            'status'    => 'completed',
+        ]);
+
+        return redirect()
+            ->route('admin.users')
+            ->with('success', 'Data user berhasil diperbarui!');
+    }
+
     public function resetPassword(User $user)
     {
         $user->update([

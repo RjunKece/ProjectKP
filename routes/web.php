@@ -82,6 +82,10 @@ Route::put('/users/{user}/reset-password',
     [UserController::class, 'resetPassword']
 )->name('users.reset');
 
+Route::put('/users/{user}',
+    [UserController::class, 'update']
+)->name('users.update');
+
         // ===== ACTIVITIES =====
         Route::get('/activities', [ActivityController::class, 'index'])
             ->name('activities');

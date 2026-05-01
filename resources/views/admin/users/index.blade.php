@@ -184,14 +184,24 @@
                 </td>
                 {{-- ACTION --}}
                 <td class="px-6 py-4 text-right">
-                    <button onclick="openResetModal({{ $user->id }})"
-                            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium
-                                   bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-300
-                                   border border-amber-100 dark:border-amber-800
-                                   hover:bg-amber-100 dark:hover:bg-amber-900/40 transition">
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/></svg>
-                        Reset Password
-                    </button>
+                    <div class="inline-flex items-center gap-2">
+                        <button onclick="openEditModal({{ $user->id }}, '{{ addslashes($user->name) }}', '{{ $user->email }}', {{ $user->role_id }}, {{ $user->division_id }})"
+                                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium
+                                       bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300
+                                       border border-blue-100 dark:border-blue-800
+                                       hover:bg-blue-100 dark:hover:bg-blue-900/40 transition">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                            Edit
+                        </button>
+                        <button onclick="openResetModal({{ $user->id }})"
+                                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium
+                                       bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-300
+                                       border border-amber-100 dark:border-amber-800
+                                       hover:bg-amber-100 dark:hover:bg-amber-900/40 transition">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/></svg>
+                            Reset
+                        </button>
+                    </div>
                 </td>
             </tr>
             @empty
@@ -210,6 +220,7 @@
 
 {{-- ================= MODALS ================= --}}
 @include('admin.users.modals.add')
+@include('admin.users.modals.edit')
 @include('admin.users.modals.reset')
 
 {{-- ================= JS ================= --}}
@@ -224,6 +235,34 @@ function openResetModal(userId){
     const form = document.getElementById('resetForm');
     form.action = '{{ url("admin/users") }}/' + userId + '/reset-password';
     openModal('resetModal')
+}
+
+/* ---- Edit User Modal ---- */
+let editOriginalRoleId = null;
+
+function openEditModal(userId, name, email, roleId, divisionId) {
+    const form = document.getElementById('editUserForm');
+    form.action = '{{ url("admin/users") }}/' + userId;
+
+    document.getElementById('editUserName').value = name;
+    document.getElementById('editUserEmail').value = email;
+    document.getElementById('editUserRole').value = roleId;
+    document.getElementById('editUserDivision').value = divisionId;
+
+    editOriginalRoleId = roleId;
+    document.getElementById('roleChangeWarning')?.classList.add('hidden');
+
+    openModal('editUserModal');
+}
+
+function handleEditRoleChange(select) {
+    const warning = document.getElementById('roleChangeWarning');
+    if (!warning) return;
+    if (parseInt(select.value) !== editOriginalRoleId) {
+        warning.classList.remove('hidden');
+    } else {
+        warning.classList.add('hidden');
+    }
 }
 </script>
 
