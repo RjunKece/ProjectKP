@@ -1,0 +1,455 @@
+
+================================================================================
+ANALYZING: BAB 1
+================================================================================
+[0000] [Heading 1] PENDAHULUAN
+[0003] [Heading 2] Latar Belakang
+[0005] [Normal] Perkembangan teknologi informasi dan komunikasi di era digital telah mendorong transformasi fundamental dalam cara perusahaan mengelola operasional bisnisnya. (Katu ,2020) dalam artikelnya yang dipublikasikan pada jurnal New Review of Information Networking menerangkan bahwa Enterprise Resource Plan
+       CITATIONS: ['(Katu ,2020)']
+       ITALIC_RUN: 'Enterprise Resource Planning'
+       ITALIC_RUN: 'Material Requrements Planning'
+[0007] [Normal] Sistem ERP merupakan perangkat lunak terintegrasi yang menghubungkan berbagai fungsi bisnis dalam satu platform terpadu. (Lutfi et al, 2022) dalam penelitiannya yang dipublikasikan pada jurnal Sustainability (MDPI) menyatakan bahwa adopsi sistem ERP pada Usaha Kecil dan Menengah (UKM) memberikan dam
+       CITATIONS: ['(Lutfi et al, 2022)']
+       ITALIC_RUN: 'et al'
+       ITALIC_RUN: ','
+[0008] [Normal] Abd Elmonem et al. (2017) dalam tinjauan sistematis yang dipublikasikan pada Future Computing and Informatics Journal memaparkan bahwa perkembangan teknologi cloud computing telah mengubah paradigma implementasi ERP dari sistem on-premise yang mahal menjadi solusi berbasis web yang lebih terjangkau 
+       CITATIONS: ['(2017)']
+       ITALIC_RUN: 'et al.'
+       ITALIC_RUN: 'cloud computing'
+       ITALIC_RUN: 'on-premise'
+[0010] [Normal] Daraghmi dan Daraghmi (2022) dalam artikel yang dipublikasikan pada IEEE Access mendemonstrasikan efektivitas penerapan metode Rapid Application Development (RAD) dalam menghasilkan sistem yang fungsional dan usable dalam waktu pengembangan yang singkat. Penelitian tersebut membuktikan bahwa pendeka
+       CITATIONS: ['(2022)']
+       ITALIC_RUN: 'Rapid Application Development '
+       ITALIC_RUN: 'usable'
+[0012] [Normal] Panorama Consulting Group (2024) dalam laporan tahunannya melaporkan bahwa lebih dari separuh organisasi yang mengimplementasikan sistem ERP berhasil menyelesaikan proyek sesuai timeline yang direncanakan, dengan median durasi proyek selama 15,5 bulan. Data ini menunjukkan bahwa implementasi ERP, me
+       CITATIONS: ['(2024)']
+       ITALIC_RUN: 'timeline'
+[0015] [Normal] PT. Golden Intan Berlian merupakan perusahaan yang bergerak di bidang perdagangan dan distribusi yang memiliki delapan divisi operasional, yaitu Marketing, Sales, Keuangan, Konten Kreator, Gudang, CRM (Customer Relationship Management), YouTube, dan Admin Marketplace. Dengan jumlah divisi yang cukup
+[0017] [Normal] Saat ini, PT. Golden Intan Berlian masih mengelola sebagian besar proses bisnisnya secara manual atau menggunakan aplikasi yang berdiri sendiri (standalone) tanpa integrasi satu sama lain. Pengelolaan data karyawan dilakukan melalui spreadsheet, pencatatan aktivitas harian tidak terdokumentasi secar
+       ITALIC_RUN: 'standalone'
+       ITALIC_RUN: 'spreadsheet,'
+       ITALIC_RUN: 'real-time'
+[0019] [Normal] Permasalahan yang dihadapi PT. Golden Intan Berlian tersebut konsisten dengan temuan Haddara dan Fagerstrøm (2015) yang dipublikasikan pada Journal of Enterprise Resource Planning Studies, yang mengidentifikasi bahwa faktor-faktor utama yang mendorong adopsi ERP pada perusahaan mencakup kebutuhan ak
+       CITATIONS: ['(2015)']
+[0021] [Normal] Berdasarkan kondisi tersebut, diperlukan sebuah sistem ERP berbasis web yang dapat mengintegrasikan pengelolaan data karyawan, monitoring aktivitas, dan pembuatan laporan pada PT. Golden Intan Berlian. Pengembangan sistem ini menggunakan metode Rapid Application Development (RAD) yang diperkenalkan 
+       CITATIONS: ['(2019)']
+       ITALIC_RUN: 'Rapid Application Development'
+[0023] [Normal] Pemilihan metode RAD didasarkan pada beberapa pertimbangan utama. Pertama, proyek ini memiliki batasan waktu pengembangan yang relatif singkat sehingga memerlukan metode yang mampu menghasilkan prototipe fungsional secara cepat. Kedua, ketersediaan framework modern seperti Laravel 12 beserta ekosist
+       CITATIONS: ['(2019)']
+       ITALIC_RUN: 'reusable'
+[0025] [Normal] Sistem ERP yang dibangun merupakan sebuah prototipe (prototype) yang dirancang untuk menunjukkan bagaimana teknologi web modern dapat digunakan untuk mengembangkan sistem informasi terintegrasi pada perusahaan skala menengah. Sistem ini dibangun menggunakan framework Laravel 12 dengan arsitektur Mod
+       ITALIC_RUN: 'proof of concept'
+[0026] [Heading 2] Tujuan Kegiatan Kerja Praktik
+[0027] [Normal (Web)] Adapun tujuan dari Kerja Praktik pada PT Golden Intan Berlian sebagai berikut:
+[0028] [List Paragraph] Merancang dan membangun sistem ERP Prototype berbasis web untuk PT. Golden Intan Berlian yang mengintegrasikan pengelolaan data karyawan, monitoring aktivitas, dan pembuatan laporan manajerial menggunakan metode Rapid Application Development (RAD).
+       ITALIC_RUN: 'Rapid Application Development'
+[0029] [List Paragraph] Mengimplementasikan arsitektur Model-View-Controller (MVC) pada framework Laravel 12 untuk menghasilkan sistem ERP yang terstruktur, aman, dan mudah dikembangkan lebih lanjut.
+[0030] [List Paragraph] Melakukan pengujian fungsionalitas sistem menggunakan metode black-box testing untuk memastikan setiap fitur berjalan sesuai dengan kebutuhan yang telah ditetapkan.
+[0033] [Heading 2] Manfaat Kerja Praktik
+[0034] [Normal] Adapun manfaat kerja praktik ...........
+[0036] [Heading 3] Manfaat bagi Mahasiswa
+[0037] [Normal (Web)] Menambah pengalaman dan pemahaman mengenai perancangan serta implementasi sistem ERP berbasis web.
+[0038] [Normal (Web)] Mengaplikasikan ilmu yang diperoleh selama perkuliahan ke dalam lingkungan kerja nyata.
+[0039] [Normal (Web)] Melatih kemampuan analisis kebutuhan sistem berdasarkan permasalahan yang dihadapi perusahaan.
+[0044] [Heading 3] Manfaat bagi Perusahaan
+[0045] [Normal (Web)] Memperoleh prototype sistem ERP sederhana yang dapat digunakan sebagai pendukung proses bisnis perusahaan.
+[0046] [Normal (Web)] Membantu perusahaan dalam pengelolaan dan monitoring data aktivitas kerja secara lebih terstruktur.
+[0047] [Normal (Web)] Menjadi dasar pertimbangan dalam pengembangan sistem informasi terintegrasi di masa mendatang.
+[0051] [Heading 2] Ruang Lingkup Kerja Praktik
+[0052] [Normal] .............................................
+[0053] [Heading 3] Ruang Lingkup Waktu
+[0054] [Normal (Web)] Program Kerja Praktik (KP) dilaksanakan di PT GOLDEN INTAN BERLIAN pada periode 16 Desember 2025 sampai dengan 6 Februari 2026, dengan waktu pelaksanaan menyesuaikan hari dan jam kerja perusahaan. Kegiatan Kerja Praktik dilaksanakan pada hari  Senin sampai dengan Jumat, sesuai jam operasional instan
+[0055] [Caption] Tabel 1.1 Jadwal Kegiatan Kerja Praktik
+[0057] [Heading 3] Ruang Lingkup Tempat
+[0058] [Normal (Web)] Kerja Praktik dilaksanakan di PT GOLDEN INTAN BERLIAN, yang beralamat di Jalan Griya Harapan No. 12, Way Halim Permai, Bandar Lampung, Kota Bandar Lampung. Perusahaan ini bergerak di bidang digital marketing berbasis affiliate.
+       ITALIC_RUN: 'digital marketing'
+       ITALIC_RUN: 'affiliate'
+[0060] [Heading 3] Ruang Lingkup Substansi atau Materi
+[0061] [Normal] Ruang lingkup substansi dalam pelaksanaan Kerja Praktik ini dibatasi pada beberapa aspek berikut:
+[0062] [Normal] Perancangan dan implementasi sistem Enterprise Resource Planning (ERP) sederhana berbasis web yang bersifat prototype.
+       ITALIC_RUN: 'Enterprise Resource Planning'
+       ITALIC_RUN: 'prototype'
+[0063] [Normal] Sistem yang dikembangkan difokuskan pada pengelolaan data pengguna serta pencatatan aktivitas kerja karyawan.
+[0064] [Normal] Sistem dikembangkan menggunakan teknologi berbasis web dan digunakan sebagai media pengujian dalam lingkungan lokal.
+[0065] [Normal] Pembahasan dalam laporan ini tidak mencakup implementasi sistem ERP secara penuh dan kompleks sebagaimana pada sistem ERP komersial.
+[0067] [Heading 3] Ruang Lingkup Sistem yang Dibangun
+[0068] [Normal (Web)] Sistem yang dibangun dalam Kerja Praktik ini memiliki ruang lingkup sebagai berikut:
+[0069] [Normal (Web)] Sistem menyediakan fitur autentikasi pengguna untuk mengakses sistem sesuai dengan hak akses yang ditentukan.
+[0070] [Normal (Web)] Sistem memungkinkan pengguna untuk melakukan pencatatan aktivitas kerja melalui antarmuka berbasis web.
+[0071] [Normal (Web)] Sistem menyediakan fasilitas pengelolaan dan monitoring data aktivitas kerja oleh administrator.
+[0072] [Normal (Web)] Sistem menampilkan data aktivitas kerja sebagai bahan pendukung proses pelaporan perusahaan.
+[0073] [Normal (Web)] Sistem dikembangkan sebagai prototype dan dapat dikembangkan lebih lanjut sesuai kebutuhan perusahaan.
+
+================================================================================
+ANALYZING: BAB 2
+================================================================================
+[0000] [Heading 1] LANDASAN TEORI
+[0002] [Heading 2 BAB 2] Gambaran Umum Perusahaan
+[0004] [Bab 2 heading 2] Profil Perusahaan
+[0006] [Caption] Gambar 2.1 Kantor PT Golden Intan Berlian
+[0007] [Normal] PT Golden IB merupakan perusahaan yang bergerak di bidang digital marketing yang berfokus pada pengelolaan pemasaran produk melalui media digital. Perusahaan ini memanfaatkan berbagai platform pemasaran online untuk menjalankan aktivitas promosi produk serta meningkatkan penjualan melalui strategi p
+[0008] [Normal] Dalam operasionalnya, perusahaan memanfaatkan berbagai teknologi digital untuk mengelola kegiatan pemasaran dan penjualan. Aktivitas pemasaran dilakukan melalui berbagai media seperti media sosial, marketplace, serta platform periklanan digital. Pemanfaatan teknologi digital memungkinkan perusahaan 
+[0009] [Normal] Seiring dengan meningkatnya aktivitas pemasaran digital yang dilakukan oleh perusahaan, kebutuhan terhadap sistem informasi yang mampu membantu pengelolaan data dan aktivitas kerja menjadi semakin penting. Sistem informasi dapat membantu perusahaan dalam mengelola berbagai data operasional secara le
+[0012] [Bab 2 heading 2] Struktur Organisasi Perusahaan
+[0014] [Caption] Gambar 2.2 Struktur Organisasi PT Golden Intan Berlian
+[0015] [Normal (Web)] Struktur organisasi merupakan susunan yang menggambarkan pembagian tugas, tanggung jawab, serta hubungan kerja antarbagian dalam suatu organisasi. Struktur organisasi membantu perusahaan dalam mengatur alur koordinasi kerja sehingga kegiatan operasional dapat berjalan secara efektif dan terarah.
+[0016] [Normal (Web)] Berdasarkan struktur organisasi yang ada pada PT Golden IB, perusahaan memiliki beberapa divisi utama yang memiliki peran masing-masing dalam menjalankan kegiatan operasional perusahaan.
+[0017] [Normal (Web)] Berikut merupakan beberapa bagian utama dalam struktur organisasi PT Golden IB:
+[0019] [Normal (Web)] Chief Executive Officer (CEO)
+       ITALIC_RUN: 'Chief'
+       ITALIC_RUN: 'Executive'
+       ITALIC_RUN: 'Officer'
+[0020] [Normal (Web)] CEO merupakan pimpinan tertinggi dalam perusahaan yang bertanggung jawab dalam menentukan kebijakan serta strategi bisnis perusahaan secara keseluruhan.
+[0022] [Normal (Web)] Human Resource Development (HRD)
+       ITALIC_RUN: 'H'
+       ITALIC_RUN: 'uman'
+       ITALIC_RUN: 'Resource'
+       ITALIC_RUN: 'Development'
+[0023] [Normal (Web)] Divisi HRD bertugas mengelola sumber daya manusia dalam perusahaan, termasuk proses rekrutmen karyawan, pengelolaan administrasi karyawan, serta pengembangan sumber daya manusia.
+[0025] [Normal (Web)] Divisi Finance
+       ITALIC_RUN: 'Finance'
+[0026] [Normal (Web)] Divisi Finance bertanggung jawab dalam pengelolaan keuangan perusahaan, termasuk pencatatan transaksi keuangan, pengelolaan laporan keuangan, serta pengawasan terhadap arus kas perusahaan.
+[0028] [Normal (Web)] Divisi Sosial Media (SOSCOM)
+[0029] [Normal (Web)] Divisi Sosial Media bertugas mengelola konten pemasaran yang dipublikasikan melalui berbagai platform media sosial perusahaan. Divisi ini juga berperan dalam meningkatkan engagement serta jangkauan pemasaran produk.
+[0031] [Normal (Web)] Divisi Marketplace
+[0032] [Normal (Web)] Divisi Marketplace bertanggung jawab dalam pengelolaan toko online perusahaan pada berbagai platform marketplace. Kegiatan yang dilakukan meliputi pengelolaan produk, pengelolaan pesanan pelanggan, serta pemantauan performa penjualan pada marketplace.
+[0033] [Normal (Web)] Divisi Gudang
+[0034] [Normal (Web)] Divisi Gudang bertugas mengelola penyimpanan serta distribusi produk yang dimiliki oleh perusahaan. Divisi ini memastikan bahwa proses pengiriman barang kepada pelanggan dapat berjalan dengan baik.
+[0035] [Normal (Web)] Admin dan CRM
+[0036] [Normal (Web)] Admin dan CRM bertugas dalam mengelola data pelanggan serta melakukan pelayanan kepada pelanggan yang berkaitan dengan aktivitas penjualan produk.
+[0037] [Normal (Web)] Content Creator
+[0038] [Normal (Web)] Content Creator bertanggung jawab dalam pembuatan materi konten promosi seperti gambar, video, serta materi pemasaran lainnya yang digunakan dalam kegiatan pemasaran digital perusahaan.
+[0042] [Bab 2 heading 2] Kegiatan Operasional Perusahaan
+[0044] [Normal] Kegiatan operasional utama yang dilakukan oleh PT Golden IB berfokus pada aktivitas pemasaran digital melalui berbagai platform periklanan online. Salah satu aktivitas utama perusahaan dilakukan oleh tim advertiser, yaitu tim yang bertugas dalam menjalankan kegiatan periklanan digital.
+[0045] [Normal] Tim advertiser memiliki beberapa tugas utama dalam kegiatan operasional perusahaan, antara lain:
+[0046] [Normal] Membuat dan mengelola iklan digital pada berbagai platform pemasaran.
+[0047] [Normal] Melakukan pemantauan terhadap performa iklan yang sedang berjalan.
+[0048] [Normal] Melakukan monitoring terhadap hasil penjualan yang diperoleh dari iklan yang dijalankan.
+[0049] [Normal] Melakukan evaluasi terhadap performa iklan untuk meningkatkan efektivitas strategi pemasaran
+[0051] [Normal] Aktivitas tersebut menghasilkan berbagai data operasional yang berkaitan dengan performa iklan serta hasil penjualan produk. Oleh karena itu, diperlukan suatu sistem yang dapat membantu perusahaan dalam mengelola data aktivitas kerja tersebut secara lebih terstruktur dan terintegrasi.
+[0056] [Heading 2 BAB 2] Landasan Teori
+[0058] [Bab 2 heading 2] Sistem Informasi
+[0059] [Normal] Sistem informasi merupakan kombinasi dari teknologi informasi dan aktivitas manusia yang menggunakan teknologi tersebut untuk mendukung operasi dan manajemen organisasi. Dennis, Wixom, dan Roth (2012) mendefinisikan sistem informasi sebagai sekumpulan komponen yang saling terintegrasi untuk mengumpu
+       CITATIONS: ['(2012)']
+[0060] [Normal] Sistem informasi terdiri dari beberapa komponen utama yang saling berinteraksi, yaitu: perangkat keras (hardware), perangkat lunak (software), basis data (database), jaringan komunikasi (network), prosedur (procedures), dan sumber daya manusia (people). Keenam komponen ini bekerja sama untuk menguba
+       CITATIONS: ['(A.S. Rosa dan Shalahuddin., 2018)']
+[0061] [Normal] Berdasarkan kedua pandangan tersebut, dapat disimpulkan bahwa sistem informasi merupakan suatu kesatuan komponen teknologi dan sumber daya manusia yang dirancang untuk mengelola data menjadi informasi yang bernilai bagi organisasi, sehingga mampu mendukung efisiensi operasional dan pengambilan keput
+[0064] [Bab 2 heading 2] Enterprise Resource Planning (ERP)
+[0065] [Normal (Web)] Enterprise Resource Planning (ERP) merupakan sistem perangkat lunak terintegrasi yang dirancang untuk mengelola dan mengotomatisasi berbagai proses bisnis inti dalam suatu organisasi. Pérez Estébanez (2024) dalam artikelnya yang dipublikasikan pada jurnal Administrative Sciences (MDPI) menjelaskan b
+       CITATIONS: ['(2024)']
+[0066] [Normal (Web)] Alam et al. (2024) dalam penelitiannya yang dipublikasikan pada Journal of Computer and Communications menegaskan bahwa sistem ERP modern, khususnya yang berbasis cloud, memungkinkan integrasi seluruh aspek aktivitas organisasi termasuk akuntansi, keuangan, pemasaran, sumber daya manusia, dan manaje
+       CITATIONS: ['(2024)']
+       ITALIC_RUN: 'et al.'
+[0067] [Normal (Web)] Berdasarkan kedua penelitian tersebut, dapat disimpulkan bahwa sistem ERP merupakan solusi teknologi terintegrasi yang menghubungkan berbagai fungsi bisnis dalam satu platform, sehingga mampu meningkatkan efisiensi, mengurangi redundansi data, dan mempercepat proses pengambilan keputusan manajerial.
+[0070] [Bab 2 heading 2] ERP Sederhana sebagai Prototype
+[0072] [Normal (Web)] Enterprise Resource Planning (ERP) merupakan sistem perangkat lunak terintegrasi yang dirancang untuk mengelola dan mengotomatisasi berbagai proses bisnis inti dalam suatu organisasi. Pérez Estébanez (2024) dalam artikelnya yang dipublikasikan pada jurnal Administrative Sciences (MDPI) menjelaskan b
+       CITATIONS: ['(2024)']
+[0073] [Normal (Web)] Alam at al. (2024) dalam penelitiannya yang dipublikasikan pada Journal of Computer and Communications menegaskan bahwa sistem ERP modern, khususnya yang berbasis cloud, memungkinkan integrasi seluruh aspek aktivitas organisasi termasuk akuntansi, keuangan, pemasaran, sumber daya manusia, dan manaje
+       CITATIONS: ['(2024)']
+[0074] [Normal (Web)] Berdasarkan kedua penelitian tersebut, dapat disimpulkan bahwa sistem ERP merupakan solusi teknologi terintegrasi yang menghubungkan berbagai fungsi bisnis dalam satu platform, sehingga mampu meningkatkan efisiensi, mengurangi redundansi data, dan mempercepat proses pengambilan keputusan manajerial.
+[0078] [Bab 2 heading 2] Sistem ERP Berbasis Web
+[0080] [Normal (Web)] Perkembangan teknologi web memungkinkan sistem ERP dikembangkan dalam bentuk aplikasi berbasis web yang dapat diakses melalui browser. Salih et al. (2021) dalam artikel yang dipublikasikan pada jurnal Sensors (MDPI) menjelaskan bahwa sistem ERP berbasis cloud dan web memiliki berbagai keunggulan sep
+       CITATIONS: ['(2021)']
+       ITALIC_RUN: 'et al.'
+[0081] [Normal (Web)] Alam et al. (2024) menambahkan bahwa penggunaan teknologi web dalam pengembangan sistem ERP memungkinkan pengguna untuk mengakses sistem dari berbagai perangkat yang terhubung dengan jaringan internet. Hal ini membuat sistem ERP menjadi lebih fleksibel serta mempermudah proses integrasi dengan siste
+       CITATIONS: ['(2024)']
+[0082] [Normal (Web)] Dengan adanya sistem ERP berbasis web, perusahaan dapat mengelola berbagai aktivitas operasional secara lebih efektif karena sistem dapat diakses secara mudah oleh seluruh pengguna yang memiliki hak akses. Kedua penelitian di atas menegaskan bahwa ERP berbasis web merupakan solusi yang relevan dan t
+[0085] [Bab 2 heading 2] Proses Bisnis Perusahaan
+[0087] [Normal (Web)] Perkembangan teknologi web memungkinkan sistem ERP dikembangkan dalam bentuk aplikasi berbasis web yang dapat diakses melalui browser. Salih et al. (2021) dalam artikel yang dipublikasikan pada jurnal Sensors (MDPI) menjelaskan bahwa sistem ERP berbasis cloud dan web memiliki berbagai keunggulan sep
+       CITATIONS: ['(2021)']
+       ITALIC_RUN: 'et al.'
+[0088] [Normal (Web)] Alam et al. (2024) menambahkan bahwa penggunaan teknologi web dalam pengembangan sistem ERP memungkinkan pengguna untuk mengakses sistem dari berbagai perangkat yang terhubung dengan jaringan internet. Hal ini membuat sistem ERP menjadi lebih fleksibel serta mempermudah proses integrasi dengan siste
+       CITATIONS: ['(2024)']
+[0089] [Normal (Web)] Dengan adanya sistem ERP berbasis web, perusahaan dapat mengelola berbagai aktivitas operasional secara lebih efektif karena sistem dapat diakses secara mudah oleh seluruh pengguna yang memiliki hak akses. Kedua penelitian di atas menegaskan bahwa ERP berbasis web merupakan solusi yang relevan dan t
+[0093] [Bab 2 heading 2] Pengelolaan Pengguna dan Hak Akses
+[0094] [Normal (Web)] Pengelolaan pengguna dan hak akses merupakan bagian penting dalam sistem informasi yang digunakan oleh banyak pengguna dengan peran yang berbeda. Setiap pengguna dalam sistem memiliki peran tertentu yang menentukan hak akses terhadap fitur dan data yang tersedia dalam sistem (Mohammad Al-Shboul et a
+       CITATIONS: ['(Mohammad Al-Shboul et al., 2020)']
+[0095] [Normal (Web)] Pengaturan hak akses bertujuan untuk menjaga keamanan data serta memastikan bahwa setiap pengguna hanya dapat mengakses informasi yang sesuai dengan tanggung jawabnya. Dengan adanya pengelolaan hak akses yang baik, sistem dapat berjalan secara lebih tertib dan terkontrol.
+[0096] [Normal (Web)] Dalam sistem ERP sederhana yang dikembangkan pada kegiatan Kerja Praktik ini, pengguna sistem dibagi ke dalam beberapa peran utama seperti administrator dan karyawan. Administrator memiliki hak akses yang lebih luas terhadap sistem, sedangkan karyawan hanya dapat mengakses fitur tertentu yang berkai
+[0101] [Bab 2 heading 2] Monitoring Aktivitas Kerja
+[0102] [Normal (Web)] Monitoring aktivitas kerja merupakan proses pemantauan terhadap aktivitas yang dilakukan oleh karyawan dalam menjalankan tugasnya. Monitoring ini bertujuan untuk memastikan bahwa setiap aktivitas kerja berjalan sesuai dengan perencanaan serta dapat digunakan sebagai bahan evaluasi kinerja karyawan (
+       CITATIONS: ['(Ayu Putri dan Rudi Ramadhan., 2021)']
+[0103] [Normal (Web)] Dalam perusahaan yang memiliki banyak aktivitas operasional, pencatatan aktivitas kerja yang dilakukan secara manual sering kali menimbulkan berbagai kendala seperti kesulitan dalam pengelolaan data, keterlambatan pelaporan, serta kesulitan dalam melakukan evaluasi kinerja.
+[0104] [Normal (Web)] Dengan adanya sistem ERP sederhana berbasis web, pencatatan aktivitas kerja dapat dilakukan secara terpusat dan terdokumentasi dengan baik sehingga mempermudah manajemen perusahaan dalam melakukan monitoring serta evaluasi terhadap aktivitas operasional perusahaan.
+[0108] [Bab 2 heading 2] Unified Modeling Language (UML)
+[0110] [Normal (Web)] Unified Modeling Language (UML) merupakan bahasa pemodelan standar yang digunakan untuk memvisualisasikan, merancang, serta mendokumentasikan sistem perangkat lunak. UML membantu pengembang sistem dalam memahami struktur serta alur kerja sistem sebelum sistem tersebut diimplementasikan (Grady Booch 
+       CITATIONS: ['(Grady Booch et al., 2021)']
+[0111] [Normal (Web)] Penggunaan UML dalam pengembangan sistem informasi memungkinkan pengembang dan pengguna sistem untuk memahami bagaimana sistem akan bekerja secara keseluruhan. Dengan menggunakan UML, proses perancangan sistem dapat dilakukan secara lebih terstruktur sehingga mempermudah proses implementasi sistem y
+[0112] [Normal (Web)] Dalam pengembangan sistem ERP sederhana berbasis web pada kegiatan Kerja Praktik ini, UML digunakan sebagai alat bantu untuk memodelkan sistem sebelum dilakukan proses implementasi sistem.
+[0116] [Bab 2 heading 2] Metode Rapid Aplication Development (RAD)
+[0118] [Normal] Rapid Application Development (RAD) merupakan metode pengembangan perangkat lunak yang menekankan pada siklus pengembangan yang singkat dengan kualitas yang tetap terjaga. Metode RAD pertama kali diperkenalkan oleh James Martin pada tahun 1991 sebagai alternatif dari metode pengembangan tradisional 
+       CITATIONS: ['(Martin, 1991)']
+       ITALIC_RUN: 'Rapid Application Development'
+       ITALIC_RUN: 'waterfall'
+[0119] [Normal] Menurut Kendall dan Kendall (2019), RAD merupakan pendekatan berorientasi objek untuk pengembangan sistem yang mencakup suatu metode pengembangan serta perangkat-perangkat lunak. Tujuan utama RAD adalah memperpendek waktu yang biasanya diperlukan dalam siklus pengembangan sistem tradisional antara p
+       CITATIONS: ['(2019)']
+[0120] [Normal] Pressman dan Maxim (2019) menegaskan bahwa RAD sangat cocok untuk proyek-proyek yang membutuhkan penyelesaian cepat namun tetap memperhatikan kualitas perangkat lunak. RAD memanfaatkan prototipe dan penggunaan kembali komponen perangkat lunak (reusable components) untuk mempercepat proses pengembang
+       CITATIONS: ['(2019)']
+       ITALIC_RUN: 'reusable components'
+[0125] [Bab 2 heading 2] Tahapan Metode RAD
+[0127] [Normal] Metode RAD terdiri dari empat tahapan utama yang dilaksanakan secara berurutan namun dengan durasi yang relatif singkat. Berikut adalah penjelasan masing-masing tahapan (Martin., 1991; Kendall dan Kendall., 2019):
+       CITATIONS: ['(Martin., 1991; Kendall dan Kendall., 2019)']
+[0129] [List Paragraph] Requirements Planning (Perencanaan Kebutuhan)
+[0130] [Normal] Tahap ini bertujuan untuk mengidentifikasi tujuan sistem, ruang lingkup proyek, dan kebutuhan informasi. Pengguna dan pengembang bekerja sama untuk menentukan kebutuhan fungsional dan non-fungsional sistem. Hasil dari tahap ini berupa daftar kebutuhan yang menjadi acuan pengembangan.
+[0132] [List Paragraph] User Design (Desain Pengguna)
+[0133] [Normal] Tahap ini merupakan tahap perancangan yang dilakukan secara kolaboratif antara pengembang dan pengguna. Prototipe antarmuka dibuat dan dievaluasi secara iteratif hingga desain sesuai dengan kebutuhan. Keunggulan tahap ini adalah penggunaan prototipe visual yang dapat langsung dievaluasi oleh penggun
+[0135] [List Paragraph] Construction (Konstruksi)
+[0136] [Normal] Tahap ini merupakan tahap pembangunan sistem secara intensif berdasarkan desain yang telah disetujui. Pengembang memanfaatkan fitur-fitur framework, komponen siap pakai, dan alat pengembangan modern untuk mempercepat proses pembangunan sistem.
+[0138] [List Paragraph] Cutover (Peralihan)
+[0139] [Normal] Tahap akhir yang mencakup pengujian sistem secara menyeluruh, pelatihan pengguna, konversi data, dan peralihan dari sistem lama ke sistem baru. Pengujian dilakukan untuk memastikan seluruh fitur berjalan sesuai kebutuhan.
+[0140] [Bab 2 heading 2] Kelebihan Metode RAD
+[0142] [Normal] Metode RAD memiliki beberapa kelebihan dibandingkan dengan metode pengembangan tradisional (Pressman dan Maxim., 2019):
+       CITATIONS: ['(Pressman dan Maxim., 2019)']
+[0144] [List Paragraph] Waktu pengembangan yang lebih singkat karena menggunakan pendekatan iteratif dan komponen siap pakai.
+[0146] [List Paragraph] Keterlibatan pengguna yang tinggi memastikan hasil akhir sesuai dengan kebutuhan.
+[0148] [List Paragraph] Fleksibilitas terhadap perubahan kebutuhan selama proses pengembangan.
+[0150] [List Paragraph] Penggunaan prototipe memungkinkan evaluasi dini terhadap desain sistem.
+[0152] [List Paragraph] Cocok untuk proyek dengan skala kecil hingga menengah dengan batasan waktu yang ketat.
+[0156] [Bab 2 heading 2] Arsitektur Model-View-Controller (MVC)
+[0158] [Normal] Model-View-Controller (MVC) merupakan pola arsitektur perangkat lunak yang memisahkan aplikasi menjadi tiga komponen utama yang saling berinteraksi. Menurut Sommerville (2016), pola MVC bertujuan untuk memisahkan logika bisnis dari tampilan antarmuka pengguna sehingga memudahkan pengembangan, penguj
+       CITATIONS: ['(2016)']
+[0159] [Normal] Tiga komponen utama dalam arsitektur MVC adalah sebagai berikut (Pressman dan Maxim., 2019):
+       CITATIONS: ['(Pressman dan Maxim., 2019)']
+[0160] [List Paragraph] Model
+[0161] [Normal] Komponen yang bertanggung jawab terhadap logika bisnis dan pengelolaan data. Model berinteraksi langsung dengan basis data untuk melakukan operasi CRUD (Create, Read, Update, Delete).
+[0164] [List Paragraph] View
+[0165] [Normal] Komponen yang bertanggung jawab terhadap tampilan antarmuka pengguna. View menerima data dari Model melalui Controller dan menampilkannya kepada pengguna.
+[0167] [List Paragraph] Controller
+[0168] [Normal] Komponen yang berfungsi sebagai perantara antara Model dan View. Controller menerima input dari pengguna, memprosesnya melalui Model, dan menentukan View yang akan ditampilkan.
+[0169] [Normal] Penerapan arsitektur MVC pada pengembangan sistem ERP Prototype ini menggunakan framework Laravel yang secara native mendukung pola MVC. Pemisahan komponen ini memastikan kode program lebih terstruktur, mudah dipelihara, dan memungkinkan pengembangan secara paralel oleh tim pengembang.
+[0172] [Bab 2 heading 2] Framework Laravel
+[0173] [Normal] Laravel merupakan framework aplikasi web berbasis PHP yang bersifat open-source dan mengikuti pola arsitektur Model-View-Controller (MVC). Laravel diciptakan oleh Taylor Otwell pada tahun 2011 dengan tujuan menyediakan alternatif yang lebih elegan dan ekspresif untuk pengembangan aplikasi web diband
+       CITATIONS: ['(Otwell., 2024)']
+[0174] [Normal] Laravel menyediakan berbagai fitur bawaan yang mempercepat proses pengembangan, antara lain:
+[0176] [List Paragraph] Eloquent ORM
+[0177] [Normal] Object-Relational Mapping yang memudahkan interaksi dengan basis data melalui pendekatan berorientasi objek. Setiap tabel pada basis data direpresentasikan oleh model Eloquent yang mendefinisikan relasi, atribut, dan operasi data.
+[0178] [List Paragraph] Blade Template Engine
+[0179] [Normal] Mesin template yang menyediakan fitur template inheritance dan data binding untuk membangun antarmuka pengguna secara modular.
+[0180] [List Paragraph] Artisan CLI
+[0181] [Normal] Command-line interface yang menyediakan berbagai perintah untuk mempercepat tugas-tugas pengembangan seperti pembuatan model, controller, migration, dan seeder.
+[0182] [List Paragraph] Migration dan Seeder
+[0183] [Normal] Fitur untuk mengelola struktur basis data secara terversikan (version control) dan mengisi data awal untuk pengujian.
+[0184] [List Paragraph] Middleware
+[0185] [Normal] Mekanisme untuk memfilter permintaan HTTP yang masuk ke aplikasi, digunakan untuk autentikasi, otorisasi, dan proteksi CSRF.
+[0186] [List Paragraph] Routing
+[0187] [Normal] Sistem routing yang fleksibel untuk mendefinisikan URL dan menghubungkannya dengan controller yang sesuai.
+[0189] [Normal] Dalam penelitian ini, sistem ERP Prototype dibangun menggunakan Laravel versi 12.0 dengan PHP 8.2 sebagai bahasa pemrograman server-side.
+[0193] [Bab 2 heading 2] Basis Data MySQL
+[0195] [Normal] MySQL merupakan sistem manajemen basis data relasional (RDBMS) yang bersifat open-source dan merupakan salah satu RDBMS paling populer di dunia. MySQL menggunakan Structured Query Language (SQL) untuk mengelola dan memanipulasi data. Menurut Connolly dan Begg (2015), basis data relasional menyimpan 
+       CITATIONS: ['(2015)']
+[0196] [Normal] Dalam sistem ERP Prototype ini, MySQL digunakan untuk menyimpan seluruh data operasional termasuk data pengguna, role, divisi, aktivitas, dan laporan. Fitur migration pada Laravel memungkinkan pengelolaan struktur basis data secara terversikan sehingga perubahan skema dapat dilacak dan dikelola deng
+[0200] [Bab 2 heading 2] Tailwind CSS
+[0201] [Normal] TailwindCSS merupakan framework CSS berbasis pendekatan utility-first yang memungkinkan pengembang membangun antarmuka pengguna secara cepat dengan menulis class-class utilitas langsung pada elemen HTML. Berbeda dengan framework CSS tradisional yang menyediakan komponen siap pakai, TailwindCSS membe
+       CITATIONS: ['(TailwindCSS Documentation., 2024)']
+[0202] [List Paragraph] Desain responsif bawaan dengan sistem breakpoint yang mudah digunakan.
+[0203] [List Paragraph] Konsistensi desain melalui sistem design token (spacing, warna, typography).
+[0204] [List Paragraph] Ukuran file CSS akhir yang kecil karena fitur tree-shaking yang menghapus class yang tidak digunakan.
+[0205] [List Paragraph] Dukungan dark mode melalui konfigurasi class-based atau media query.
+[0206] [Normal] Dalam penelitian ini, TailwindCSS versi 4.0 digunakan untuk membangun antarmuka pengguna sistem ERP yang responsif, modern, dan mendukung fitur dark mode.
+[0210] [Bab 2 heading 2] Alpine.js
+[0212] [Normal] Alpine.js merupakan framework JavaScript minimalis yang dirancang untuk menambahkan interaktivitas pada halaman web tanpa memerlukan framework JavaScript yang besar seperti React atau Vue.js. Alpine.js menyediakan pendekatan deklaratif untuk menangani state management, event handling, dan manipulasi
+       CITATIONS: ['(Alpine.js Documentation., 2024)']
+[0213] [Normal] Dalam sistem ERP Prototype ini, Alpine.js digunakan untuk mengimplementasikan fitur-fitur interaktif seperti toggle dark mode, dropdown menu, modal dialog, dan notifikasi. Penggunaan Alpine.js sejalan dengan prinsip RAD karena memungkinkan penambahan interaktivitas secara cepat tanpa kompleksitas ya
+[0216] [Bab 2 heading 2] Chart.js
+[0218] [Normal] Chart.js merupakan library JavaScript open-source untuk membuat visualisasi data berbasis grafik pada halaman web. Library ini mendukung berbagai jenis grafik seperti line chart, bar chart, pie chart, doughnut chart, radar chart, dan scatter plot. Chart.js menggunakan elemen HTML5 Canvas untuk meren
+       CITATIONS: ['(Chart.js Documentation., 2024)']
+       ITALIC_RUN: 'line chart, bar chart, pie chart, doughnut chart, radar chart, dan scatter plot'
+[0219] [Normal] Dalam sistem ERP Prototype ini, Chart.js digunakan pada dashboard admin untuk menampilkan grafik line chart yang memvisualisasikan tren aktivitas karyawan dan super admin selama 12 bulan terakhir. Visualisasi data ini membantu manajemen dalam memahami pola aktivitas dan mengambil keputusan berbasis 
+[0222] [Bab 2 heading 2] Laravel Breeze
+[0224] [Normal] Laravel Breeze merupakan paket scaffolding autentikasi resmi dari Laravel yang menyediakan implementasi fitur-fitur autentikasi dasar secara minimal dan sederhana. Fitur yang disediakan mencakup login, registrasi, reset password, verifikasi email, dan konfirmasi password (Laravel Documentation, 2024
+       CITATIONS: ['(Laravel Documentation, 2024)']
+[0225] [Normal] Dalam sistem ERP Prototype ini, Laravel Breeze versi 2.3 digunakan sebagai dasar sistem autentikasi. Proses autentikasi memanfaatkan facade Auth::attempt() untuk memvalidasi kredensial pengguna, session regeneration untuk keamanan, serta redirect berdasarkan role pengguna (Super Admin atau Karyawan)
+[0229] [Bab 2 heading 2] Pengujian Black-Box Testing
+[0231] [Normal] Black-box testing merupakan metode pengujian perangkat lunak yang berfokus pada fungsionalitas sistem dari perspektif pengguna tanpa memperhatikan struktur internal kode program. Menurut Pressman dan Maxim (2019), black-box testing mengevaluasi apakah input yang diberikan menghasilkan output yang se
+       CITATIONS: ['(2019)']
+[0232] [Normal] Sommerville (2016) menjelaskan bahwa black-box testing memiliki beberapa teknik pengujian, antara lain:
+       CITATIONS: ['(2016)']
+[0233] [Normal] 1. Equivalence Partitioning
+[0234] [Normal] Membagi domain input menjadi kelas-kelas ekuivalensi dan menguji satu nilai dari setiap kelas.
+[0235] [Normal] 2. Boundary Value Analysis
+[0236] [Normal] Menguji nilai-nilai pada batas domain input.
+[0237] [Normal] 3. Decision Tabel Testing
+[0238] [Normal] Menggunakan tabel keputusan untuk menguji kombinasi kondisi input.Dalam penelitian ini, metode black-box testing digunakan untuk menguji seluruh fungsionalitas sistem ERP Prototype meliputi proses login, manajemen pengguna, monitoring aktivitas, pembuatan laporan, dan fitur-fitur pendukung lainnya.
+
+================================================================================
+ANALYZING: BAB 3
+================================================================================
+[0000] [Heading 1] METODOLOGI PENELITIAN
+[0002] [HEAD 2 BAB 3] Metode Pengembangan Sistem
+[0004] [Normal] Pengembangan prototipe sistem ERP pada PT. Golden Intan Berlian menggunakan metode Rapid Application Development (RAD). Metode RAD dipilih karena sifatnya yang iteratif dan berfokus pada pembuatan prototipe fungsional dalam waktu singkat, sehingga sangat sesuai dengan kebutuhan proyek Kerja Praktik 
+[0005] [Normal] RAD adalah pendekatan pengembangan sistem informasi yang menekankan pada siklus pengembangan yang pendek, penggunaan teknik iteratif, dan keterlibatan pengguna secara aktif dalam setiap tahap pengembangan. Dengan pendekatan ini, pengembang dapat menghasilkan prototipe yang fungsional secara cepat un
+[0009] [HEAD 3 BAB 3] Fase-Fase Metode RAD
+[0011] [Normal] Metode RAD yang diterapkan terdiri dari empat fase utama:
+[0013] [Caption] Tabel 3.1 Fase-Fase Metode RAD
+[0017] [HEAD 2 BAB 3] Teknik Pengumpulan Data
+[0018] [Normal] Teknik pengumpulan data yang digunakan dalam penelitian ini meliputi tiga metode utama sebagai berikut:
+[0019] [HEAD 3 BAB 3] Observasi.
+[0020] [List Paragraph] Observasi dilakukan secara langsung di lingkungan kerja PT. Golden Intan Berlian untuk mengamati proses pengelolaan data karyawan, pencatatan aktivitas harian, alur komunikasi manajemen-karyawan, dan mekanisme pemantauan kinerja.
+[0022] [HEAD 3 BAB 3] Wawancara.
+[0023] [List Paragraph] Wawancara dilakukan untuk mendapatkan pemahaman mendalam mengenai kebutuhan fungsional, permasalahan sistem manual, dan prioritas fitur.
+[0026] [HEAD 3 BAB 3] Studi Pustaka.
+[0027] [List Paragraph] Studi pustaka dilakukan untuk mempelajari konsep ERP, metode RAD, framework Laravel, dan teknik perancangan basis data relasional melalui berbagai sumber literatur yang relevan.
+       ITALIC_RUN: 'framework'
+[0030] [HEAD 2 BAB 3] Alat dan Bahan Penelitian
+[0031] [Normal] Berikut adalah alat dan bahan yang digunakan dalam pengembangan sistem ERP Prototype ini, yang terdiri dari perangkat keras dan perangkat lunak.
+[0034] [HEAD 3 BAB 3] Perangkat Keras
+[0035] [Normal] Pada Tabel 3.1 berikut menampilkan spesifikasi perangkat keras yang digunakan selama proses pengembangan sistem ERP Prototype.
+[0037] [Caption] Tabel 3.1 Alat dan Bahan Perangkat Keras
+[0039] [HEAD 3 BAB 3] Perangkat Lunak
+[0040] [Normal] Tabel 3.2 menampilkan daftar perangkat lunak beserta versi dan fungsinya yang digunakan dalam pengembangan sistem. Pemilihan perangkat lunak ini disesuaikan dengan kebutuhan pengembangan sistem ERP berbasis web menggunakan framework Laravel.
+[0042] [Caption] Tabel 3.2 Alat dan Bahan Perangkat Lunak
+[0045] [HEAD 2 BAB 3] Analisis Sistem
+[0048] [HEAD 3 BAB 3] Sistem Berjalan
+[0050] [Normal] Sebelum dikembangkannya sistem ERP, PT. Golden Intan Berlian mengelola operasional secara manual menggunakan spreadsheet dan aplikasi pesan instan. Kelemahan: (1) pencatatan aktivitas tanpa format standar, (2) monitoring kinerja tidak real-time, (3) pelaporan memerlukan waktu lama, (4) manajemen aku
+       ITALIC_RUN: 'spreadsheet'
+[0053] [HEAD 3 BAB 3] Sistem yang Diusulkan
+[0054] [Normal] Sistem ERP yang dikembangkan menyediakan platform terpusat mencakup: Modul Autentikasi (RBAC), Modul Dashboard (visualisasi KPI), Modul Manajemen Aktivitas, Modul Laporan, dan Modul User Management.
+[0057] [HEAD 2 BAB 3] Perancangan Sistem
+[0058] [Normal] Perancangan sistem dilakukan menggunakan pendekatan UML (Unified Modeling Language) yang mencakup Use Case Diagram, Activity Diagram, dan Entity Relationship Diagram (ERD). Berikut adalah detail perancangan masing-masing komponen.
+[0062] [HEAD 3 BAB 3] Use Case Diagram
+[0063] [Normal] Use Case Diagram menggambarkan interaksi antara aktor (pengguna) dengan sistem. Dalam sistem ERP Prototype ini terdapat dua aktor utama, yaitu Super Admin dan Karyawan. Gambar 3.1 menampilkan Use Case Diagram yang menunjukkan seluruh fungsionalitas sistem berdasarkan peran masing-masing aktor.
+[0066] [Caption] Gambar 3.1 Use Case Diagram Sistem ERP
+[0068] [Normal] Berikut adalah penjelasan detail use case untuk masing-masing aktor:
+[0069] [List Paragraph] Aktor 1: Super Admin
+[0070] [Normal] Tabel 3.3 menjelaskan daftar use case yang dapat dilakukan oleh Super Admin. Super Admin memiliki hak akses penuh terhadap seluruh fitur sistem, termasuk pengelolaan pengguna, monitoring aktivitas seluruh karyawan, dan pengelolaan laporan.
+[0072] [Caption] Tabel 3.3 Use Case Super Admin
+[0076] [List Paragraph] Aktor 2: Karyawan
+[0077] [Normal] Tabel 3.4 menjelaskan daftar use case yang dapat dilakukan oleh Karyawan. Karyawan memiliki akses terbatas pada fitur pencatatan aktivitas harian, melihat laporan, dan mengelola profil pribadi.
+[0079] [Caption] Tabel 3.4 Tabel Use Case Karyawan
+[0082] [HEAD 3 BAB 3] Activity Diagram
+[0083] [Normal] Tabel 3.4 menjelaskan daftar use case yang dapat dilakukan oleh Karyawan. Karyawan memiliki akses terbatas pada fitur pencatatan aktivitas harian, melihat laporan, dan mengelola profil pribadi.
+[0085] [Caption] Gambar 3.2 Activity Diagram Proses Login
+[0089] [Normal] Gambar 3.3 menampilkan Activity Diagram pencatatan aktivitas yang dilakukan oleh karyawan. Alur dimulai dari pengisian formulir aktivitas, pengunggahan lampiran (opsional), hingga penyimpanan data ke basis data.
+[0091] [Caption] Gambar 3.3 Activity Diagram Pencatatan Aktivitas
+[0093] [Normal] Gambar 3.4 menampilkan Activity Diagram monitoring aktivitas yang dilakukan oleh Super Admin. Admin dapat melihat, memfilter, dan menganalisis seluruh aktivitas karyawan dari berbagai divisi.
+[0095] [Caption] Gambar 3.4 Activity Diagram Monitoring Aktivitas
+[0097] [Normal] Gambar 3.5 menampilkan Activity Diagram pembuatan laporan yang dapat dilakukan oleh Super Admin maupun Karyawan. Proses meliputi pengisian formulir laporan, penentuan scope dan prioritas, hingga penyimpanan laporan.
+[0099] [Caption] Gambar 3.5 Activity Diagram Pembuatan Laporan
+[0101] [Normal] Gambar 3.5 menampilkan Activity Diagram pembuatan laporan yang dapat dilakukan oleh Super Admin maupun Karyawan. Proses meliputi pengisian formulir laporan, penentuan scope dan prioritas, hingga penyimpanan laporan.
+[0104] [Caption] Gambar 3.6 Activity Diagram Proses Logout
+[0108] [HEAD 3 BAB 3] Entity Relationship Diagram (ERD)
+[0109] [Normal] Gambar 3.5 menampilkan Activity Diagram pembuatan laporan yang dapat dilakukan oleh Super Admin maupun Karyawan. Proses meliputi pengisian formulir laporan, penentuan scope dan prioritas, hingga penyimpanan laporan.
+[0111] [Caption] Gambar 3.7 Entity Relationship Diagram Sistem ERP
+       ITALIC_RUN: 'Entity Relationship Diagram'
+[0112] [Normal] Entitas utama: Roles, Divisions, Users, Activities, Daily_Targets, Reports, dan Report_Responses. Relasi meliputi: Roles-Users (1:N), Divisions-Users (1:N), Users-Activities (1:N), Users-Reports (1:N), Divisions-Reports (1:N), Reports-ReportResponses (1:N), Activities-DailyTargets (N:1).
+[0116] [HEAD 2 BAB 3] Perancangan Antarmuka
+[0117] [Normal] Perancangan antarmuka (wireframe) dilakukan untuk memberikan gambaran visual mengenai tata letak dan komponen antarmuka sebelum proses implementasi. Berikut adalah rancangan antarmuka untuk tiga halaman utama sistem.
+[0118] [Normal] Gambar 3.8 menampilkan rancangan halaman login dengan desain split-screen yang menampilkan formulir login di satu sisi dan branding perusahaan di sisi lainnya. Rancangan ini juga dilengkapi dengan fitur toggle tema dark/light mode.
+[0121] [Caption] Gambar 3.8 Rancangan Halaman Login
+[0125] [Normal] Gambar 3.9 menampilkan rancangan dashboard admin yang terdiri dari sidebar navigasi, area KPI cards, dan grafik tren aktivitas. Dashboard ini dirancang untuk memberikan overview lengkap mengenai performa perusahaan kepada Super Admin.
+[0128] [Caption] Gambar 3.9 Rancangan Dashboard Admin
+[0132] [Normal] Gambar 3.9 menampilkan rancangan dashboard admin yang terdiri dari sidebar navigasi, area KPI cards, dan grafik tren aktivitas. Dashboard ini dirancang untuk memberikan overview lengkap mengenai performa perusahaan kepada Super Admin.
+[0135] [Caption] Gambar 3.10 Rancangan Dashboard Karyawan
+[0139] [HEAD 2 BAB 3] Metode Pengujian
+[0141] [Normal] Pengujian sistem dilakukan menggunakan metode Black-Box Testing, yaitu teknik pengujian yang berfokus pada fungsionalitas sistem tanpa memperhatikan struktur internal kode. Metode ini dipilih karena sesuai dengan kebutuhan pengujian prototipe yang mengutamakan validasi fungsionalitas dari perspektif
+[0142] [Normal] Aspek yang diuji meliputi: fungsionalitas autentikasi (login dan logout), operasi CRUD (Create, Read, Update, Delete) pada setiap modul, validasi input pada formulir, responsivitas tampilan pada berbagai ukuran layar, serta konsistensi tema dark/light mode di seluruh halaman sistem.
+
+================================================================================
+ANALYZING: BAB 4
+================================================================================
+[0000] [Heading 1] HASIL DAN PEMBAHASAN
+[0004] [Heading 2 BAB 4] Hasil Implementasi Sistem
+[0006] [Normal] Berdasarkan perancangan yang telah dilakukan pada Bab III, prototipe sistem ERP PT. Golden Intan Berlian berhasil diimplementasikan menggunakan framework Laravel 12 dengan arsitektur Model-View-Controller (MVC). Sistem berjalan pada PHP 8.3 dan MySQL 8.0 di lingkungan server lokal menggunakan Larago
+[0009] [HEAD 3 BAB 4] Implementasi Basis Data
+[0010] [Normal] Basis data sistem ERP Prototype diimplementasikan menggunakan MySQL 8.0 melalui mekanisme migration Laravel. Mekanisme migration memungkinkan pembuatan dan modifikasi struktur tabel basis data secara terprogram dan terversikan, sehingga setiap perubahan skema dapat dilacak melalui sistem kontrol ver
+[0011] [Normal] Tabel 4.1 menampilkan ringkasan seluruh tabel yang terdapat dalam basis data sistem beserta jumlah kolom dan keterangan fungsi masing-masing tabel. Struktur ini dirancang untuk mendukung seluruh fungsionalitas sistem mulai dari manajemen pengguna, pencatatan aktivitas, hingga pengelolaan laporan.
+[0012] [Caption] Tabel 4.1 Basis Data
+[0016] [HEAD 3 BAB 4] Implementasi Arsitektur MVC
+[0017] [Normal] Arsitektur Model-View-Controller (MVC) diimplementasikan secara konsisten pada seluruh komponen sistem. Pemisahan tanggung jawab antara Model, View, dan Controller memastikan kode program terorganisir dengan baik, mudah dipelihara, dan memungkinkan pengembangan fitur secara modular.
+[0019] [List Paragraph] Model (Eloquent ORM)
+[0020] [Normal] Arsitektur Model-View-Controller (MVC) diimplementasikan secara konsisten pada seluruh komponen sistem. Pemisahan tanggung jawab antara Model, View, dan Controller memastikan kode program terorganisir dengan baik, mudah dipelihara, dan memungkinkan pengembangan fitur secara modular.
+[0022] [List Paragraph] Controller
+[0023] [Normal] Arsitektur Model-View-Controller (MVC) diimplementasikan secara konsisten pada seluruh komponen sistem. Pemisahan tanggung jawab antara Model, View, dan Controller memastikan kode program terorganisir dengan baik, mudah dipelihara, dan memungkinkan pengembangan fitur secara modular.
+[0025] [Caption] Tabel 4.2 Arsitektur MVC
+[0029] [List Paragraph] View
+[0030] [Normal] Arsitektur Model-View-Controller (MVC) diimplementasikan secara konsisten pada seluruh komponen sistem. Pemisahan tanggung jawab antara Model, View, dan Controller memastikan kode program terorganisir dengan baik, mudah dipelihara, dan memungkinkan pengembangan fitur secara modular.
+[0035] [Heading 2 BAB 4] Implementasi Antarmuka
+[0036] [Normal] Arsitektur Model-View-Controller (MVC) diimplementasikan secara konsisten pada seluruh komponen sistem. Pemisahan tanggung jawab antara Model, View, dan Controller memastikan kode program terorganisir dengan baik, mudah dipelihara, dan memungkinkan pengembangan fitur secara modular.
+[0038] [HEAD 3 BAB 4] Halaman Login
+[0039] [Normal] Arsitektur Model-View-Controller (MVC) diimplementasikan secara konsisten pada seluruh komponen sistem. Pemisahan tanggung jawab antara Model, View, dan Controller memastikan kode program terorganisir dengan baik, mudah dipelihara, dan memungkinkan pengembangan fitur secara modular.
+[0042] [Caption] Gambar 4.1 Tampilan Login (Dark Mode)
+[0044] [Caption] Gambar 4.2 Tampilan Login (Light Mode)
+[0045] [Normal] Arsitektur Model-View-Controller (MVC) diimplementasikan secara konsisten pada seluruh komponen sistem. Pemisahan tanggung jawab antara Model, View, dan Controller memastikan kode program terorganisir dengan baik, mudah dipelihara, dan memungkinkan pengembangan fitur secara modular.
+[0048] [Caption] Gambar 4.3 Tampilan Pesan Error Login
+[0049] [Normal] Arsitektur Model-View-Controller (MVC) diimplementasikan secara konsisten pada seluruh komponen sistem. Pemisahan tanggung jawab antara Model, View, dan Controller memastikan kode program terorganisir dengan baik, mudah dipelihara, dan memungkinkan pengembangan fitur secara modular.
+[0054] [HEAD 3 BAB 4] Dashboard Admin
+[0055] [Normal] Dashboard admin merupakan halaman utama yang ditampilkan setelah Super Admin berhasil login. Halaman ini menyajikan ringkasan informasi penting dalam bentuk KPI cards dan grafik tren aktivitas. Gambar 4.4 menampilkan bagian atas dashboard yang berisi empat kartu KPI (Total Karyawan, Total Aktivitas,
+[0058] [Caption] Gambar 4.4 Dashboard Admin (KPI)
+[0060] [Caption] Gambar 4.5 Dashboard Admin (Grafik)
+[0061] [HEAD 3 BAB 4] User Management
+[0062] [Normal] Dashboard admin merupakan halaman utama yang ditampilkan setelah Super Admin berhasil login. Halaman ini menyajikan ringkasan informasi penting dalam bentuk KPI cards dan grafik tren aktivitas. Gambar 4.4 menampilkan bagian atas dashboard yang berisi empat kartu KPI (Total Karyawan, Total Aktivitas,
+[0065] [Caption] Gambar 4.6 Halaman User Management
+[0067] [Caption] Gambar 4.7 Modal Tambah User
+[0071] [HEAD 3 BAB 4] Monitoring Aktivitas
+[0073] [Normal] Halaman Monitoring Aktivitas memungkinkan Super Admin untuk memantau seluruh aktivitas yang dicatat oleh karyawan dari berbagai divisi. Gambar 4.8 menampilkan bagian atas halaman yang berisi KPI cards ringkasan aktivitas dan grafik bar chart aktivitas mingguan, sedangkan Gambar 4.9 menampilkan tabel
+[0076] [Caption] Gambar 4.8 Monitoring Aktivitas (KPI & Grafik)
+[0078] [Caption] Gambar 4.9 Tabel Monitoring Aktivitas
+[0081] [HEAD 3 BAB 4] Halaman Reports
+[0083] [List Paragraph] Halaman Monitoring Aktivitas memungkinkan Super Admin untuk memantau seluruh aktivitas yang dicatat oleh karyawan dari berbagai divisi. Gambar 4.8 menampilkan bagian atas halaman yang berisi KPI cards ringkasan aktivitas dan grafik bar chart aktivitas mingguan, sedangkan Gambar 4.9 menampilkan tabel
+[0086] [Caption] Gambar 4.10 Halaman Reports Admin
+[0088] [Caption] Gambar 4.11 Halaman Reports Karyawan
+[0091] [Caption] Gambar 4.12 Modal Buat Laporan Baru
+[0095] [HEAD 3 BAB 4] Dashboard & Aktivitas Karyawan
+[0097] [Normal] Dashboard karyawan menyajikan ringkasan kinerja personal karyawan. Gambar 4.13 dan 4.14 menampilkan tampilan dashboard karyawan yang berisi KPI cards personal (total aktivitas, aktivitas bulan ini, tingkat penyelesaian), grafik tren aktivitas bulanan, dan daftar aktivitas terbaru. Tampilan ini diran
+[0100] [Caption] Gambar 4.13 Dashboard Karyawan (1)
+[0103] [Caption] Gambar 4.14 Dashboard Karyawan (2)
+[0106] [Caption] Gambar 4.15 Halaman Aktivitas Karyawan (1)
+[0109] [Caption] Gambar 4.16 Halaman Aktivitas Karyawan (2)
+[0112] [Caption] Gambar 4.17 Modal Pencatatan Aktivitas
+[0116] [Heading 2 BAB 4] Implementasi Fitur Keamanan
+[0117] [Normal] Dashboard karyawan menyajikan ringkasan kinerja personal karyawan. Gambar 4.13 dan 4.14 menampilkan tampilan dashboard karyawan yang berisi KPI cards personal (total aktivitas, aktivitas bulan ini, tingkat penyelesaian), grafik tren aktivitas bulanan, dan daftar aktivitas terbaru. Tampilan ini diran
+[0120] [HEAD 3 BAB 4] Role-Based Access Control (RBAC).
+[0121] [Normal] Dashboard karyawan menyajikan ringkasan kinerja personal karyawan. Gambar 4.13 dan 4.14 menampilkan tampilan dashboard karyawan yang berisi KPI cards personal (total aktivitas, aktivitas bulan ini, tingkat penyelesaian), grafik tren aktivitas bulanan, dan daftar aktivitas terbaru. Tampilan ini diran
+[0122] [HEAD 3 BAB 4] Session Management.
+[0123] [Normal] Dashboard karyawan menyajikan ringkasan kinerja personal karyawan. Gambar 4.13 dan 4.14 menampilkan tampilan dashboard karyawan yang berisi KPI cards personal (total aktivitas, aktivitas bulan ini, tingkat penyelesaian), grafik tren aktivitas bulanan, dan daftar aktivitas terbaru. Tampilan ini diran
+[0125] [HEAD 3 BAB 4] Password Security.
+[0126] [List Paragraph] Dashboard karyawan menyajikan ringkasan kinerja personal karyawan. Gambar 4.13 dan 4.14 menampilkan tampilan dashboard karyawan yang berisi KPI cards personal (total aktivitas, aktivitas bulan ini, tingkat penyelesaian), grafik tren aktivitas bulanan, dan daftar aktivitas terbaru. Tampilan ini diran
+[0134] [Heading 2 BAB 4] Implementasi Tema Dark/Light Mode
+[0136] [Caption] Tabel 4.3 Pengujian Modul Autentikasi
+[0137] [Heading 2 BAB 4] Hasil Pengujian (Black-Box Testing)
+[0139] [Normal] Pengujian sistem dilakukan menggunakan metode Black-Box Testing yang berfokus pada validasi fungsionalitas sistem dari perspektif pengguna akhir. Pengujian mencakup seluruh modul utama sistem dengan total lebih dari 30 skenario pengujian. Berikut adalah hasil pengujian untuk setiap modul.
+[0140] [Normal] Tabel 4.4 menampilkan hasil pengujian modul autentikasi yang mencakup skenario login dengan kredensial valid dan tidak valid, proses logout, penanganan tombol back setelah logout, dan toggle tema pada halaman login. Seluruh skenario menghasilkan status valid yang menunjukkan bahwa modul autentikasi 
+[0141] [Caption] Tabel 4.4 Pengujian Modul Autentikasi
+[0145] [Normal] Tabel 4.5 menampilkan hasil pengujian dashboard admin yang memvalidasi tampilan KPI cards, rendering grafik Chart.js, fungsi toggle tema, dan perilaku sidebar yang dapat di-collapse.
+[0146] [Caption] Tabel 4.5 Pengujian Dashboard Admin
+[0150] [Normal] Tabel 4.6 menampilkan hasil pengujian modul User Management yang mencakup operasi CRUD pengguna, validasi duplikasi email, reset password, serta fitur filter dan pencarian.
+[0152] [Caption] Tabel 4.6 Pengujian User Management
+[0154] [Normal] Tabel 4.7 menampilkan hasil pengujian modul monitoring aktivitas yang memvalidasi tampilan daftar aktivitas, fitur filter berdasarkan divisi, status, dan tanggal, serta rendering grafik mingguan.
+[0159] [Caption] Tabel 4.7 Pengujian Monitoring Aktivitas
+[0161] [Normal] Tabel 4.8 menampilkan hasil pengujian modul laporan yang mencakup pembuatan laporan untuk scope perusahaan dan divisi, penghapusan laporan, serta tampilan detail laporan melalui modal popup.
+[0165] [Caption] Tabel 4.8 Pengujian Modul Laporan
+[0167] [Normal] Tabel 4.9 menampilkan hasil pengujian modul aktivitas karyawan yang memvalidasi pencatatan aktivitas baru, pengunggahan file lampiran, perubahan status aktivitas, dan fitur filter.
+[0168] [Caption] Tabel 4.9 Pengujian Aktivitas Karyawan
+[0172] [Heading 2 BAB 4] Pembahasan
+[0174] [HEAD 3 BAB 4] Kelebihan Sistem
+[0175] [Normal] Berdasarkan hasil implementasi dan pengujian yang telah dilakukan, sistem ERP Prototype yang dikembangkan memiliki beberapa kelebihan utama sebagai berikut:
+[0176] [Normal] 1. Arsitektur Terstruktur —
+[0177] [Normal] Penerapan pola MVC pada framework Laravel memastikan kode program terorganisir dengan baik dan mudah dipelihara. Pemisahan tanggung jawab antara Model, View, dan Controller memudahkan proses debugging dan pengembangan fitur baru.
+[0178] [Normal] 2. Keamanan Berlapis — Sistem menerapkan beberapa lapisan keamanan yang mencakup RBAC (Role-Based Access Control), proteksi CSRF, password hashing menggunakan Bcrypt, session invalidation pada saat logout, serta penambahan header no-cache untuk mencegah akses halaman melalui cache browser.
+[0179] [Normal] 3. User Experience Premium — Antarmuka pengguna dirancang dengan estetika modern menggunakan teknik glassmorphism, gradient accent, dan micro-animations yang memberikan pengalaman pengguna yang menyenangkan dan profesional.
+[0180] [Normal] 4. Dual Theme System — Sistem mendukung dua mode tampilan (dark mode dan light mode) yang dapat diaktifkan pada seluruh halaman termasuk halaman login, memberikan fleksibilitas kepada pengguna untuk memilih tampilan yang paling nyaman.
+[0181] [Normal] 5. Sidebar Responsif — Sidebar navigasi dapat di-collapse untuk memberikan ruang tampilan yang lebih luas tanpa menimbulkan horizontal scroll, sehingga sistem tetap nyaman digunakan pada berbagai ukuran layar.
+[0184] [HEAD 3 BAB 4] Keterbatasan Sistem
+[0185] [Normal] Meskipun sistem telah berfungsi dengan baik sesuai hasil pengujian, terdapat beberapa keterbatasan yang perlu diperhatikan untuk pengembangan selanjutnya:
+[0186] [Normal] 1. Sistem masih berupa prototipe (prototype) yang belum sepenuhnya production-ready untuk digunakan dalam lingkungan operasional nyata.
+[0187] [Normal] 2. Data yang digunakan pada sistem merupakan data dummy untuk keperluan demonstrasi dan pengujian, belum menggunakan data operasional perusahaan yang sesungguhnya.
+[0188] [Normal] 3. Sistem berjalan pada lingkungan server lokal (localhost) menggunakan Laragon dan belum dikonfigurasi untuk deployment ke server produksi.
+[0189] [Normal] 4. Beberapa fitur lanjutan seperti backup otomatis basis data dan ekspor laporan dalam format PDF belum diimplementasikan pada versi prototipe ini.
+[0193] [HEAD 3 BAB 4] Kesesuaian dengan Metode RAD
+[0195] [Normal] Tabel 4.10 menampilkan ringkasan kesesuaian implementasi sistem dengan empat fase metode Rapid Application Development (RAD). Tabel ini menunjukkan bahwa seluruh fase RAD telah dilaksanakan dengan baik, mulai dari perencanaan kebutuhan yang menghasilkan 15 use case dan 7 tabel basis data, perancanga
+[0197] [Caption] Tabel 4.10 Kesesuaian dengan Metode RAD
+
+================================================================================
+ANALYZING: BAB 5
+================================================================================
+[0000] [Heading 1] KESIMPULAN DAN SARAN
+[0004] [BAB 5 HEAD 2] Kesimpulan
+[0006] [List Paragraph] Berdasarkan hasil perancangan, implementasi, dan pengujian Sistem Enterprise Resource Planning (ERP) Prototype di PT. Golden Intan Berlian yang telah diuraikan pada bab-bab sebelumnya, dapat ditarik beberapa kesimpulan sebagai berikut.
+[0007] [List Paragraph] Sistem ERP Prototype telah berhasil dibangun berbasis web menggunakan framework Laravel 12 dengan arsitektur Model-View-Controller (MVC) dan basis data MySQL. Antarmuka pengguna dirancang secara responsif menggunakan TailwindCSS 4.0 dan Alpine.js, sehingga menghasilkan pengalaman pengguna yang moder
+[0008] [List Paragraph] Sistem yang dibangun telah mampu mengintegrasikan beberapa proses bisnis utama, meliputi pengelolaan data pengguna, pemantauan aktivitas secara otomatis, serta pembuatan laporan ke dalam satu platform terpusat. Integrasi ini secara langsung memecahkan permasalahan inefisiensi waktu, risiko kesalahan
+[0009] [List Paragraph] Hasil pengujian menggunakan metode Black Box Testing menunjukkan bahwa seluruh fungsionalitas utama sistem telah berjalan dengan baik sesuai skenario dan spesifikasi kebutuhan yang diharapkan, mencakup sistem autentikasi, manajemen pengguna, pencatatan log aktivitas, pembuatan laporan, serta validas
+[0011] [BAB 5 HEAD 2] Saran
+[0013] [List Paragraph] Untuk pengembangan dan penyempurnaan sistem di masa yang akan datang, terdapat beberapa saran yang dapat dipertimbangkan.
+[0014] [List Paragraph] Dari sisi fungsionalitas, fitur Karyawan perlu diimplementasikan secara menyeluruh, mencakup pencatatan aktivitas harian yang lebih spesifik, modul penugasan (task management), serta sistem notifikasi komunikasi antara Super Admin dan Karyawan. Selain itu, proteksi hak akses perlu diperkuat dengan m
+[0015] [List Paragraph] Dari sisi infrastruktur dan skalabilitas, penyimpanan lampiran laporan sebaiknya dialihkan dari local storage ke layanan cloud storage seperti Amazon S3 atau Google Cloud Storage guna mendukung keamanan dan skalabilitas data jangka panjang. Modul Reports Center juga perlu disempurnakan dengan penamb
+[0016] [List Paragraph] Terakhir, pengujian kinerja secara komprehensif—meliputi stress testing dan load testing—perlu dilakukan untuk memastikan keandalan sistem dalam menangani jumlah akses dan volume data aktivitas pengguna yang besar secara bersamaan, sebelum sistem ini dipertimbangkan untuk diterapkan dalam lingkungan
