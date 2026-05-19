@@ -11,6 +11,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        // Trust all proxies (required for Render reverse proxy / load balancer)
+        // This ensures Laravel correctly detects HTTPS and client IP
+        $middleware->trustProxies(at: '*');
+
         $middleware->alias([
             'auth' => \App\Http\Middleware\Authenticate::class,
             'role' => \App\Http\Middleware\CheckRole::class,
