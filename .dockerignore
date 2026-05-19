@@ -1,0 +1,68 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Dependencies (will be installed in Docker)
+/vendor
+/node_modules
+
+# Environment files (SENSITIVE - never include!)
+.env
+.env.backup
+.env.production
+.env.local
+
+# IDE & Editor
+/.idea
+/.vscode
+/.fleet
+/.nova
+/.zed
+.phpactor.json
+.editorconfig
+
+# Build artifacts (will be rebuilt in Docker)
+/public/build
+/public/hot
+/public/storage
+
+# Cache & logs
+/storage/framework/cache/data/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+/storage/logs/*
+/bootstrap/cache/*
+
+# Testing
+/.phpunit.cache
+.phpunit.result.cache
+/tests
+
+# OS files
+.DS_Store
+Thumbs.db
+*.log
+
+# Documentation & non-essential
+/diagrams
+/wireframes
+/bab_terpisah
+*.docx
+*.pdf
+*.pptx
+
+# Python files
+__pycache__/
+*.pyc
+*.py
+
+# Security - keys and certificates
+*.key
+*.pem
+*.p12
+
+# Docker
+Dockerfile
+docker-compose*.yml
+.dockerignore
