@@ -14,13 +14,14 @@ WORKDIR /app
 COPY package.json package-lock.json* ./
 
 # Install Node dependencies
-RUN npm install
+RUN npm ci
 
 # Copy source files needed for Vite build
 COPY resources/ resources/
 COPY vite.config.js ./
 COPY tailwind.config.js* ./
 COPY postcss.config.js* ./
+COPY public/ public/
 
 # Build frontend assets
 RUN npm run build
@@ -72,7 +73,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libzip-dev \
     libicu-dev \
     libcurl4-openssl-dev \
-    default-mysql-client \
     libpq-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) \
@@ -80,7 +80,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         pdo_mysql \
         pdo_pgsql \
         pgsql \
-        mysqli \
         mbstring \
         exif \
         pcntl \
@@ -123,12 +122,8 @@ RUN mkdir -p \
     storage/framework/views \
     storage/logs \
     bootstrap/cache \
-    database \
     && chmod -R 775 storage bootstrap/cache \
     && chown -R www-data:www-data storage bootstrap/cache
-
-# Create SQLite database file (fallback if no MySQL configured)
-RUN touch database/database.sqlite
 
 # Create startup script
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
