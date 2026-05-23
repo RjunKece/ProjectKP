@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         DivisionSeeder::class,
         SuperAdminSeeder::class,
         UserSeeder::class,
+        DailyTargetSeeder::class,
         ActivitySeeder::class,
         ReportSeeder::class,
     ]);

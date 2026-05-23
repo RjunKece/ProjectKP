@@ -29,7 +29,7 @@ class KaryawanReportController extends Controller
             ->where('status', 'ready')
             ->with(['creator', 'responses' => fn($q) => $q->where('user_id', $user->id)])
             ->withCount('responses')
-            ->orderByRaw("FIELD(priority, 'urgent', 'high', 'normal', 'low')")
+            ->orderByRaw("CASE priority WHEN 'urgent' THEN 1 WHEN 'high' THEN 2 WHEN 'normal' THEN 3 WHEN 'low' THEN 4 ELSE 5 END")
             ->latest()
             ->paginate(10, ['*'], 'company_page');
 
