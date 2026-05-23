@@ -16,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
     {
         // Force HTTPS scheme in production (Render uses reverse proxy)
         // This ensures all generated URLs, assets, and redirects use https://
-        if ($this->app->environment('production')) {
+        if ($this->app->environment('production') || env('FORCE_HTTPS', false)) {
             URL::forceScheme('https');
         }
     }

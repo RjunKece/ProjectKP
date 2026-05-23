@@ -26,6 +26,9 @@ COPY public/ public/
 # Build frontend assets
 RUN npm run build
 
+# Verify build output exists
+RUN ls -la public/build/ && echo "✅ Vite build successful"
+
 # -----------------------------------------------------------------------------
 # Stage 2: Install PHP dependencies (Composer)
 # -----------------------------------------------------------------------------
@@ -102,6 +105,11 @@ RUN echo "opcache.enable=1" >> "$PHP_INI_DIR/conf.d/opcache.ini" \
     && echo "opcache.interned_strings_buffer=8" >> "$PHP_INI_DIR/conf.d/opcache.ini" \
     && echo "opcache.max_accelerated_files=10000" >> "$PHP_INI_DIR/conf.d/opcache.ini" \
     && echo "opcache.validate_timestamps=0" >> "$PHP_INI_DIR/conf.d/opcache.ini"
+
+# PHP upload & memory limits for ERP usage
+RUN echo "upload_max_filesize=10M" >> "$PHP_INI_DIR/conf.d/uploads.ini" \
+    && echo "post_max_size=12M" >> "$PHP_INI_DIR/conf.d/uploads.ini" \
+    && echo "memory_limit=256M" >> "$PHP_INI_DIR/conf.d/uploads.ini"
 
 # Set working directory
 WORKDIR /var/www/html

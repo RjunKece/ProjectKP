@@ -1,0 +1,63 @@
+# =============================================================================
+# Render Blueprint — Laravel ERP Prototype
+# https://render.com/docs/blueprint-spec
+# =============================================================================
+# This file enables one-click deploy and auto-deploy from GitHub.
+
+services:
+  - type: web
+    name: projectkp
+    runtime: docker
+    repo: https://github.com/RjunKece/ProjectKP.git
+    branch: main
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /up
+    envVars:
+      # ── Laravel Core ──
+      - key: APP_NAME
+        value: ERP-Prototype
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false"
+      - key: APP_URL
+        value: https://projectkp.onrender.com
+      - key: APP_KEY
+        generateValue: true   # Render auto-generates a random string
+      # ── HTTPS / Assets ──
+      - key: ASSET_URL
+        value: https://projectkp.onrender.com
+      - key: FORCE_HTTPS
+        value: "true"
+      # ── Database (Supabase PostgreSQL) ──
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_HOST
+        sync: false          # Set manually in Render dashboard
+      - key: DB_PORT
+        value: "6543"
+      - key: DB_DATABASE
+        value: postgres
+      - key: DB_USERNAME
+        sync: false          # Set manually in Render dashboard
+      - key: DB_PASSWORD
+        sync: false          # Set manually in Render dashboard
+      - key: DB_SSLMODE
+        value: require
+      # ── Session / Cache / Queue ──
+      - key: SESSION_DRIVER
+        value: file
+      - key: SESSION_SECURE_COOKIE
+        value: "true"
+      - key: SESSION_SAME_SITE
+        value: lax
+      - key: CACHE_STORE
+        value: file
+      - key: QUEUE_CONNECTION
+        value: sync
+      # ── Logging ──
+      - key: LOG_CHANNEL
+        value: stderr
+      - key: LOG_LEVEL
+        value: error
