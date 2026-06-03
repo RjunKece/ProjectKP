@@ -41,6 +41,10 @@ return new class extends Migration
 
     public function up(): void
     {
+        if (DB::connection()->getDriverName() !== 'pgsql') {
+            return;
+        }
+
         foreach ($this->tables as $table) {
             // Skip if table doesn't exist (safety)
             $exists = DB::select("SELECT to_regclass('public.{$table}') IS NOT NULL AS exists");
@@ -73,6 +77,10 @@ return new class extends Migration
 
     public function down(): void
     {
+        if (DB::connection()->getDriverName() !== 'pgsql') {
+            return;
+        }
+
         foreach ($this->tables as $table) {
             $exists = DB::select("SELECT to_regclass('public.{$table}') IS NOT NULL AS exists");
             if (!$exists[0]->exists) {

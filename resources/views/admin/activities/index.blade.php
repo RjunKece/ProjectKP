@@ -3,6 +3,13 @@
 
 @section('content')
 
+@if(!empty($heavyAnalytics))
+<div class="mb-6 px-5 py-3.5 rounded-xl bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 text-amber-800 dark:text-amber-200 text-sm">
+    ⚡ Data aktivitas &gt; {{ \App\Support\ActivityAnalytics::HEAVY_ANALYTICS_LIMIT }} baris — grafik heatmap/top performers dinonaktifkan.
+    Jalankan <code class="text-xs bg-amber-100 dark:bg-amber-900/40 px-1 rounded">php artisan erp:clean-operational-data --force</code> di production untuk performa penuh.
+</div>
+@endif
+
 {{-- ================= HEADER ================= --}}
 <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-8">
     <div>
@@ -131,18 +138,10 @@
         </div>
         <div class="space-y-2.5">
             @php
-                $topPerformers = \App\Models\Activity::selectRaw('user_id, COUNT(*) as total')
-                    ->whereMonth('tanggal', now()->month)
-                    ->whereYear('tanggal', now()->year)
-                    ->groupBy('user_id')
-                    ->orderByDesc('total')
-                    ->limit(5)
-                    ->with('user.division')
-                    ->get();
                 $topMax = $topPerformers->first()->total ?? 1;
                 $medals = ['🥇','🥈','🥉','4','5'];
             @endphp
-            @forelse($topPerformers as $i => $tp)
+            @forelse($topPerformers ?? [] as $i => $tp)
                 <div class="flex items-center gap-3 p-2.5 rounded-xl {{ $i === 0 ? 'bg-gradient-to-r from-[#d4af37]/5 to-transparent border border-[#d4af37]/20' : 'hover:bg-slate-50 dark:hover:bg-slate-800/30' }} transition">
                     <span class="text-base w-6 text-center shrink-0">{{ $medals[$i] ?? ($i+1) }}</span>
                     <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white text-[11px] font-bold shrink-0">
@@ -164,7 +163,7 @@
                     </div>
                 </div>
             @empty
-                <p class="text-xs text-slate-400 py-6 text-center">Belum ada data bulan ini</p>
+                <p class="text-xs text-slate-400 py-6 text-center">Belum ada data aktivitas</p>
             @endforelse
         </div>
     </div>
@@ -186,16 +185,6 @@
                 <span class="text-[9px] text-slate-400">More</span>
             </div>
         </div>
-        @php
-            $heatmap = [];
-            $heatMax = 1;
-            for ($i = 29; $i >= 0; $i--) {
-                $d = now()->subDays($i)->toDateString();
-                $c = \App\Models\Activity::whereDate('tanggal', $d)->count();
-                $heatmap[] = ['date' => $d, 'count' => $c, 'label' => \Carbon\Carbon::parse($d)->format('d M')];
-                if ($c > $heatMax) $heatMax = $c;
-            }
-        @endphp
         <div class="grid grid-cols-10 gap-1.5">
             @foreach($heatmap as $cell)
                 @php
@@ -236,9 +225,10 @@
 
 </div>
 
-{{-- Chart.js Scripts --}}
+{{-- Chart.js Scripts (hanya jika ada data & tidak mode heavy) --}}
+@if($totalActivities > 0 && empty($heavyAnalytics))
 @push('scripts')
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+@include('partials.chart-vite')
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const isDark = document.documentElement.classList.contains('dark');
@@ -303,6 +293,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 @endpush
+@endif
 
 {{-- ================= FILTER BAR ================= --}}
 <form method="GET" class="erp-card p-4 mb-6">

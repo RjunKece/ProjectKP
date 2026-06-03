@@ -24,7 +24,7 @@ services:
       - key: APP_URL
         value: https://projectkp.onrender.com
       - key: APP_KEY
-        generateValue: true   # Render auto-generates a random string
+        sync: false          # Set once in Render dashboard — jangan regenerate tiap deploy
       # ── HTTPS / Assets ──
       - key: ASSET_URL
         value: https://projectkp.onrender.com

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ActivityController;
@@ -25,6 +26,9 @@ Route::get('/', function () {
 */
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
+
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [RegisterController::class, 'register'])->name('register.submit');
 
 /*
 |--------------------------------------------------------------------------
@@ -105,6 +109,12 @@ Route::put('/users/{user}',
 
         Route::delete('/reports/{report}', [ReportController::class, 'destroy'])
             ->name('reports.destroy');
+            
+        // ===== TEMPORARY CLEANUP ROUTE =====
+        Route::get('/force-cleanup-database-now', function () {
+            \Illuminate\Support\Facades\Artisan::call('erp:clean-operational-data', ['--force' => true]);
+            return "DATABASE SUPABASE BERHASIL DIBERSIHKAN: " . \Illuminate\Support\Facades\Artisan::output();
+        });
     });
 
 /*

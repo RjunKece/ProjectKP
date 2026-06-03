@@ -76,7 +76,15 @@
     </div>
 
     <div class="erp-card p-6">
-        <canvas id="myActivityChart" height="80"></canvas>
+        @if($hasChartData ?? false)
+            <canvas id="myActivityChart" height="80"></canvas>
+        @else
+            <div class="flex flex-col items-center justify-center py-12 text-center">
+                <div class="w-14 h-14 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-2xl mb-3">📊</div>
+                <p class="text-sm font-medium text-slate-600 dark:text-slate-400">Belum ada aktivitas</p>
+                <p class="text-xs text-slate-400 mt-1">Grafik akan muncul setelah Anda mencatat aktivitas</p>
+            </div>
+        @endif
     </div>
 </section>
 
@@ -175,11 +183,13 @@
 </section>
 
 {{-- ================= CHART SCRIPT ================= --}}
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+@push('scripts')
+@include('partials.chart-vite')
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     const ctx = document.getElementById('myActivityChart');
-    if (!ctx) return;
+    const hasChartData = @json($hasChartData ?? false);
+    if (!ctx || !hasChartData) return;
 
     const isDark = document.documentElement.classList.contains('dark');
     const gridColor = isDark ? 'rgba(148,163,184,0.1)' : 'rgba(0,0,0,0.06)';
@@ -231,5 +241,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
+@endpush
 
 @endsection

@@ -8,6 +8,7 @@ use App\Models\ReportResponse;
 use App\Models\Activity;
 use App\Models\Division;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ReportController extends Controller
 {
@@ -18,18 +19,32 @@ class ReportController extends Controller
      */
     public function index(Request $request)
     {
-        $totalReports = Report::count();
+        $reportStats = DB::table('reports')
+            ->selectRaw('COUNT(*) as total')
+            ->selectRaw('SUM(CASE WHEN EXTRACT(MONTH FROM created_at) = ? AND EXTRACT(YEAR FROM created_at) = ? THEN 1 ELSE 0 END) as this_month', [now()->month, now()->year])
+            ->selectRaw("SUM(CASE WHEN scope = 'company' THEN 1 ELSE 0 END) as company")
+            ->selectRaw("SUM(CASE WHEN scope = 'division' THEN 1 ELSE 0 END) as division")
+            ->selectRaw("SUM(CASE WHEN status = 'generated' THEN 1 ELSE 0 END) as pending")
+            ->first();
 
-        $generatedThisMonth = Report::whereMonth('created_at', now()->month)
-            ->whereYear('created_at', now()->year)
-            ->count();
+        if (DB::connection()->getDriverName() !== 'pgsql') {
+            $reportStats = DB::table('reports')
+                ->selectRaw('COUNT(*) as total')
+                ->selectRaw('SUM(CASE WHEN MONTH(created_at) = ? AND YEAR(created_at) = ? THEN 1 ELSE 0 END) as this_month', [now()->month, now()->year])
+                ->selectRaw("SUM(CASE WHEN scope = 'company' THEN 1 ELSE 0 END) as company")
+                ->selectRaw("SUM(CASE WHEN scope = 'division' THEN 1 ELSE 0 END) as division")
+                ->selectRaw("SUM(CASE WHEN status = 'generated' THEN 1 ELSE 0 END) as pending")
+                ->first();
+        }
 
-        $companyReports = Report::ofCompany()->count();
-        $divisionReports = Report::ofDivision()->count();
-        $pendingReports = Report::where('status', 'generated')->count();
+        $totalReports       = (int) ($reportStats->total ?? 0);
+        $generatedThisMonth = (int) ($reportStats->this_month ?? 0);
+        $companyReports     = (int) ($reportStats->company ?? 0);
+        $divisionReports    = (int) ($reportStats->division ?? 0);
+        $pendingReports     = (int) ($reportStats->pending ?? 0);
 
         // Filter by scope
-        $query = Report::with(['creator', 'division', 'responses']);
+        $query = Report::with(['creator', 'division'])->withCount('responses');
 
         if ($request->filled('scope')) {
             $query->where('scope', $request->scope);

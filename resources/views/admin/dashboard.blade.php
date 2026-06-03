@@ -34,6 +34,13 @@
     </div>
 </section>
 
+@if($totalActivities > \App\Support\ActivityAnalytics::HEAVY_ANALYTICS_LIMIT)
+<div class="mb-6 px-5 py-3.5 rounded-xl bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 text-amber-800 dark:text-amber-200 text-sm">
+    ⚡ Database masih berisi banyak log lama (~{{ number_format($totalActivities) }} aktivitas). Chart dinonaktifkan agar dashboard cepat.
+    Bersihkan production via Supabase SQL <code class="text-xs px-1 rounded bg-amber-100 dark:bg-amber-900/40">TRUNCATE activities, reports, report_responses</code> atau artisan cleanup.
+</div>
+@endif
+
 {{-- ================= KPI STRIP ================= --}}
 <section class="mb-8">
     <div class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-6 gap-4">
@@ -117,7 +124,15 @@
                     </div>
                 </div>
             </div>
-            <canvas id="activityChart" height="85"></canvas>
+            @if($hasChartData)
+                <canvas id="activityChart" height="85"></canvas>
+            @else
+                <div class="flex flex-col items-center justify-center py-16 text-center">
+                    <div class="w-14 h-14 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-2xl mb-3">📊</div>
+                    <p class="text-sm font-medium text-slate-600 dark:text-slate-400">Belum ada data aktivitas</p>
+                    <p class="text-xs text-slate-400 mt-1">Grafik akan muncul setelah aktivitas tercatat di sistem</p>
+                </div>
+            @endif
         </div>
     </div>
 
@@ -128,18 +143,26 @@
                 <h3 class="text-base font-bold text-slate-900 dark:text-white">🏢 Distribusi Divisi</h3>
                 <p class="text-xs text-slate-500 mt-0.5">Karyawan per divisi</p>
             </div>
-            <div class="flex justify-center">
-                <canvas id="divisionChart" width="220" height="220"></canvas>
-            </div>
-            <div class="mt-4 grid grid-cols-2 gap-x-4 gap-y-1.5">
-                @foreach($divisionLabels as $i => $label)
-                <div class="flex items-center gap-2 text-xs">
-                    <span class="w-2 h-2 rounded-full shrink-0" style="background: {{ $divisionColors[$i % count($divisionColors)] }}"></span>
-                    <span class="text-slate-600 dark:text-slate-400 truncate">{{ $label }}</span>
-                    <span class="ml-auto font-semibold text-slate-900 dark:text-white">{{ $divisionData[$i] }}</span>
+            @if($hasDivisionChartData)
+                <div class="flex justify-center">
+                    <canvas id="divisionChart" width="220" height="220"></canvas>
                 </div>
-                @endforeach
-            </div>
+                <div class="mt-4 grid grid-cols-2 gap-x-4 gap-y-1.5">
+                    @foreach($divisionLabels as $i => $label)
+                    <div class="flex items-center gap-2 text-xs">
+                        <span class="w-2 h-2 rounded-full shrink-0" style="background: {{ $divisionColors[$i % count($divisionColors)] }}"></span>
+                        <span class="text-slate-600 dark:text-slate-400 truncate">{{ $label }}</span>
+                        <span class="ml-auto font-semibold text-slate-900 dark:text-white">{{ $divisionData[$i] }}</span>
+                    </div>
+                    @endforeach
+                </div>
+            @else
+                <div class="flex flex-col items-center justify-center py-12 text-center">
+                    <div class="w-14 h-14 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-2xl mb-3">🏢</div>
+                    <p class="text-sm font-medium text-slate-600 dark:text-slate-400">Belum ada karyawan per divisi</p>
+                    <p class="text-xs text-slate-400 mt-1">Distribusi akan tampil setelah karyawan terdaftar</p>
+                </div>
+            @endif
         </div>
     </div>
 
@@ -186,7 +209,10 @@
                 </span>
             </div>
             @empty
-            <p class="text-sm text-slate-400 text-center py-8">Belum ada aktivitas tercatat</p>
+            <div class="flex flex-col items-center py-8 text-center">
+                <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Belum ada data aktivitas</p>
+                <p class="text-xs text-slate-400 mt-1">Aktivitas karyawan akan tampil di sini</p>
+            </div>
             @endforelse
         </div>
     </div>
@@ -268,7 +294,13 @@
             <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">📑</div>
             <div>
                 <h4 class="font-semibold text-slate-900 dark:text-white group-hover:text-[#d4af37] transition">Reports</h4>
-                <p class="text-xs text-slate-500">{{ $totalReports }} laporan</p>
+                <p class="text-xs text-slate-500">
+                    @if($totalReports > 0)
+                        {{ $totalReports }} laporan
+                    @else
+                        Belum ada laporan
+                    @endif
+                </p>
             </div>
         </a>
         <a href="{{ route('profile.index') }}" class="erp-card p-5 group flex items-center gap-4">
@@ -282,17 +314,20 @@
 </section>
 
 {{-- ================= CHART SCRIPTS ================= --}}
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+@if($hasChartData || $hasDivisionChartData)
+@push('scripts')
+@include('partials.chart-vite')
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     const isDark = document.documentElement.classList.contains('dark');
     const gridColor = isDark ? 'rgba(148,163,184,0.08)' : 'rgba(0,0,0,0.04)';
     const textColor = isDark ? '#64748b' : '#94a3b8';
+    const hasChartData = @json($hasChartData);
+    const hasDivisionChartData = @json($hasDivisionChartData);
 
     // ===== ACTIVITY LINE CHART =====
     const actCtx = document.getElementById('activityChart');
-    if (actCtx) {
+    if (actCtx && hasChartData) {
         new Chart(actCtx, {
             type: 'line',
             data: {
@@ -342,7 +377,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // ===== DIVISION DOUGHNUT CHART =====
     const divCtx = document.getElementById('divisionChart');
-    if (divCtx) {
+    if (divCtx && hasDivisionChartData) {
         new Chart(divCtx, {
             type: 'doughnut',
             data: {
@@ -378,5 +413,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 </script>
+@endpush
+@endif
 
 @endsection

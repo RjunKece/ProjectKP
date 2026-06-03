@@ -1,3 +1,8 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+@source "../**/*.blade.php";
+@source "../../storage/framework/views/*.php";
+
 /* =========================================================
    ERP GLOBAL DESIGN SYSTEM — PREMIUM DARK/LIGHT THEME
    PT. Golden Intan Berlian

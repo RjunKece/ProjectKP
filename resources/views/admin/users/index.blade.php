@@ -76,8 +76,8 @@
                 <svg class="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
             </div>
         </div>
-        <h3 class="text-2xl font-extrabold text-indigo-600">{{ $users->where('role.nama_role', 'karyawan')->count() }}</h3>
-        <p class="text-[11px] text-slate-500 mt-1">Karyawan Ditampilkan</p>
+        <h3 class="text-2xl font-extrabold text-indigo-600">{{ $employeeCount }}</h3>
+        <p class="text-[11px] text-slate-500 mt-1">Karyawan Terdaftar</p>
     </div>
 </div>
 
@@ -153,9 +153,14 @@
                 </td>
                 {{-- ROLE --}}
                 <td class="px-6 py-4">
-                    @if($isAdmin)
+                    @php $roleName = optional($user->role)->nama_role ?? 'karyawan'; @endphp
+                    @if($roleName === 'super_admin')
                         <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold bg-[#d4af37]/10 text-[#92710a] dark:text-[#f5e6b3] border border-[#d4af37]/15 dark:border-[#d4af37]/20">
                             ⭐ Super Admin
+                        </span>
+                    @elseif($roleName === 'admin')
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold bg-purple-50 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300 border border-purple-100 dark:border-purple-800">
+                            🛡️ Admin
                         </span>
                     @else
                         <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 border border-blue-100 dark:border-blue-800">
@@ -176,12 +181,8 @@
                         Active
                     </span>
                 </td>
-                {{-- ACTIVITY COUNT --}}
-                <td class="px-6 py-4 text-center">
-                    @php $actCount = \App\Models\Activity::where('user_id', $user->id)->count(); @endphp
-                    <span class="font-bold text-slate-900 dark:text-white">{{ $actCount }}</span>
-                    <span class="text-[10px] text-slate-400 block">log</span>
-                </td>
+                {{-- ACTIVITY COUNT (dihitung on-demand di halaman monitoring) --}}
+                <td class="px-6 py-4 text-center text-slate-400 text-xs">—</td>
                 {{-- ACTION --}}
                 <td class="px-6 py-4 text-right">
                     <div class="inline-flex items-center gap-2">
@@ -216,6 +217,12 @@
             @endforelse
         </tbody>
     </table>
+
+    @if($users->hasPages())
+        <div class="px-6 py-4 border-t border-slate-200 dark:border-slate-700">
+            {{ $users->links() }}
+        </div>
+    @endif
 </div>
 
 {{-- ================= MODALS ================= --}}
@@ -230,6 +237,18 @@ function openModal(id){
 }
 function closeModal(id){
     document.getElementById(id)?.classList.add('hidden')
+}
+
+function handleRoleChange(select) {
+    const divisionSelect = document.getElementById('divisionSelect');
+    if (!divisionSelect) return;
+    const selected = select.options[select.selectedIndex]?.text?.toLowerCase() || '';
+    const isSuperAdmin = selected.includes('super admin');
+    divisionSelect.required = !isSuperAdmin;
+    divisionSelect.disabled = isSuperAdmin;
+    if (isSuperAdmin) {
+        divisionSelect.value = '';
+    }
 }
 function openResetModal(userId){
     const form = document.getElementById('resetForm');

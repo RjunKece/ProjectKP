@@ -226,7 +226,7 @@
                         </td>
 
                         <td class="px-5 py-3">
-                            @php $resCount = $report->responses->count(); @endphp
+                            @php $resCount = $report->responses_count; @endphp
                             @if($resCount > 0)
                                 <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400">
                                     💬 {{ $resCount }}
