@@ -27,6 +27,11 @@ php artisan view:clear
 php artisan config:clear
 php artisan cache:clear
 
+# Clear stale session files to prevent 419 Page Expired errors
+echo "  Clearing stale sessions..."
+rm -rf storage/framework/sessions/* 2>/dev/null || true
+mkdir -p storage/framework/sessions
+
 if [ "${APP_ENV}" = "production" ]; then
     echo "  Caching routes (production)..."
     php artisan route:cache 2>/dev/null || true
