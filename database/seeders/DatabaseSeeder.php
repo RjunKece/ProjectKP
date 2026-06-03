@@ -7,8 +7,9 @@ use Illuminate\Database\Seeder;
 class DatabaseSeeder extends Seeder
 {
     /**
-     * Seed struktur dasar saja (roles, divisions, super admin, daily targets).
-     * Data dummy aktivitas/laporan TIDAK di-seed — gunakan: php artisan erp:clean-operational-data --force
+     * Seed struktur dasar + demo data minimal untuk production.
+     * Data dummy berat TIDAK di-seed.
+     * Cleanup: php artisan erp:clean-operational-data --force --seed-demo
      */
     public function run(): void
     {
@@ -17,7 +18,7 @@ class DatabaseSeeder extends Seeder
             DivisionSeeder::class,
             SuperAdminSeeder::class,
             DailyTargetSeeder::class,
+            ProductionDemoSeeder::class,
         ]);
     }
-
 }

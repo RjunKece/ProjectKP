@@ -16,17 +16,22 @@ class ProfileController extends Controller
         $user = auth()->user();
         $user->load(['role', 'division']);
 
-        $totalActivities = Activity::where('user_id', $user->id)->count();
+        // Single combined query instead of 2 separate counts
+        $stats = \Illuminate\Support\Facades\DB::table('activities')
+            ->where('user_id', $user->id)
+            ->selectRaw('COUNT(*) as total')
+            ->selectRaw('SUM(CASE WHEN tanggal >= ? AND tanggal < ? THEN 1 ELSE 0 END) as monthly', [
+                now()->startOfMonth(), now()->startOfMonth()->addMonth()
+            ])
+            ->first();
 
-        $monthlyActivities = Activity::where('user_id', $user->id)
-            ->whereMonth('tanggal', now()->month)
-            ->whereYear('tanggal', now()->year)
-            ->count();
+        $totalActivities   = (int) ($stats->total ?? 0);
+        $monthlyActivities = (int) ($stats->monthly ?? 0);
 
         $recentActivities = Activity::where('user_id', $user->id)
             ->orderBy('tanggal', 'desc')
             ->take(5)
-            ->get();
+            ->get(['id', 'tanggal', 'deskripsi', 'status']);
 
         $isAdmin = optional($user->role)->nama_role === 'super_admin';
 

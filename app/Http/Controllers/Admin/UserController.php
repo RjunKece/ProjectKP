@@ -152,9 +152,10 @@ class UserController extends Controller
 
         $karyawan = (int) ($roleCounts['karyawan'] ?? 0);
         $admins   = (int) ($roleCounts['super_admin'] ?? 0) + (int) ($roleCounts['admin'] ?? 0);
+        $total    = $roleCounts->sum();
 
         return [
-            'totalUsers'    => User::count(),
+            'totalUsers'    => $total,
             'activeUsers'   => $karyawan,
             'adminAccounts' => $admins,
             'employeeCount' => $karyawan,

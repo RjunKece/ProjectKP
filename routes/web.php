@@ -110,11 +110,8 @@ Route::put('/users/{user}',
         Route::delete('/reports/{report}', [ReportController::class, 'destroy'])
             ->name('reports.destroy');
             
-        // ===== TEMPORARY CLEANUP ROUTE =====
-        Route::get('/force-cleanup-database-now', function () {
-            \Illuminate\Support\Facades\Artisan::call('erp:clean-operational-data', ['--force' => true]);
-            return "DATABASE SUPABASE BERHASIL DIBERSIHKAN: " . \Illuminate\Support\Facades\Artisan::output();
-        });
+        // NOTE: Database cleanup dilakukan via artisan command:
+        // php artisan erp:clean-operational-data --force
     });
 
 /*

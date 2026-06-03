@@ -61,3 +61,6 @@ services:
         value: stderr
       - key: LOG_LEVEL
         value: error
+      # ── Database Cleanup (set "true" once to clean dummy data, then set "false") ──
+      - key: ERP_CLEAN_OPERATIONAL_ON_BOOT
+        value: "true"

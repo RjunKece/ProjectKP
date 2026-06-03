@@ -9,7 +9,8 @@ class CleanOperationalData extends Command
 {
     protected $signature = 'erp:clean-operational-data
                             {--force : Skip confirmation prompt}
-                            {--truncate : TRUNCATE (PostgreSQL, jauh lebih cepat dari DELETE)}';
+                            {--truncate : TRUNCATE (PostgreSQL, jauh lebih cepat dari DELETE)}
+                            {--seed-demo : Seed minimal demo data setelah cleanup}';
 
     protected $description = 'Hapus aktivitas, laporan, dan log operasional (pertahankan users, roles, divisions)';
 
@@ -43,6 +44,16 @@ class CleanOperationalData extends Command
 
         $this->newLine();
         $this->info('Data operasional berhasil dikosongkan. Dashboard & monitoring akan load jauh lebih cepat.');
+
+        // Seed demo data jika diminta
+        if ($this->option('seed-demo') || env('ERP_SEED_DEMO_ON_BOOT', false)) {
+            $this->newLine();
+            $this->info('Seeding minimal demo data...');
+            $this->call('db:seed', [
+                '--class' => 'Database\\Seeders\\ProductionDemoSeeder',
+                '--force' => true,
+            ]);
+        }
 
         return self::SUCCESS;
     }

@@ -48,8 +48,12 @@ fi
 # Optional one-time cleanup of dummy operational data (set ERP_CLEAN_OPERATIONAL_ON_BOOT=true)
 if [ "$ERP_CLEAN_OPERATIONAL_ON_BOOT" = "true" ]; then
     echo "[4b/6] Cleaning operational data (activities, reports)..."
-    php artisan erp:clean-operational-data --force || true
+    php artisan erp:clean-operational-data --force --seed-demo || true
 fi
+
+# Seed base data if tables are empty (safe for first deploy)
+echo "[5/6] Checking seeder..."
+php artisan db:seed --force 2>/dev/null || true
 
 # Verify build assets exist
 if [ -d "public/build" ]; then

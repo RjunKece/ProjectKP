@@ -8,6 +8,7 @@ use App\Models\DailyTarget;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class KaryawanActivityController extends Controller
@@ -31,36 +32,53 @@ class KaryawanActivityController extends Controller
 
         $activities = $query->with('target')->orderBy('tanggal', 'desc')->paginate(15);
 
-        // KPIs
-        $totalActivities = Activity::where('user_id', $user->id)->count();
-        $todayActivities = Activity::where('user_id', $user->id)
-            ->whereDate('tanggal', today())->count();
-        $monthlyActivities = Activity::where('user_id', $user->id)
-            ->whereMonth('tanggal', now()->month)
-            ->whereYear('tanggal', now()->year)->count();
-        $weeklyActivities = Activity::where('user_id', $user->id)
-            ->whereBetween('tanggal', [
-                Carbon::now()->startOfWeek(),
-                Carbon::now()->endOfWeek()
-            ])->count();
+        // KPIs — single combined query instead of 4 separate COUNT queries
+        $weekStart = Carbon::now()->startOfWeek();
+        $weekEnd   = Carbon::now()->endOfWeek();
+        $now       = now();
+
+        $kpis = DB::table('activities')
+            ->where('user_id', $user->id)
+            ->selectRaw('COUNT(*) as total')
+            ->selectRaw('SUM(CASE WHEN tanggal >= ? AND tanggal <= ? THEN 1 ELSE 0 END) as today_count', [
+                $now->copy()->startOfDay(), $now->copy()->endOfDay()
+            ])
+            ->selectRaw('SUM(CASE WHEN tanggal >= ? AND tanggal < ? THEN 1 ELSE 0 END) as monthly_count', [
+                $now->copy()->startOfMonth(), $now->copy()->startOfMonth()->addMonth()
+            ])
+            ->selectRaw('SUM(CASE WHEN tanggal >= ? AND tanggal <= ? THEN 1 ELSE 0 END) as weekly_count', [
+                $weekStart, $weekEnd
+            ])
+            ->first();
+
+        $totalActivities   = (int) ($kpis->total ?? 0);
+        $todayActivities   = (int) ($kpis->today_count ?? 0);
+        $monthlyActivities = (int) ($kpis->monthly_count ?? 0);
+        $weeklyActivities  = (int) ($kpis->weekly_count ?? 0);
 
         // Division info
         $divisionName = optional($user->division)->nama_divisi ?? '';
         $divisionId   = $user->division_id;
 
-        // Daily targets for this division
+        // Daily targets for this division — batch query to avoid N+1
         $dailyTargets = [];
         if ($divisionId) {
             $dailyTargets = DailyTarget::where('division_id', $divisionId)
                 ->where('is_active', true)
-                ->get()
-                ->map(function ($target) use ($user) {
-                    // Count how many times this target was done today
-                    $doneToday = Activity::where('user_id', $user->id)
-                        ->where('target_id', $target->id)
-                        ->whereDate('tanggal', today())
-                        ->count();
+                ->get();
 
+            if ($dailyTargets->isNotEmpty()) {
+                // Single query: get today's done count per target_id
+                $targetDoneCounts = DB::table('activities')
+                    ->where('user_id', $user->id)
+                    ->whereIn('target_id', $dailyTargets->pluck('id'))
+                    ->whereBetween('tanggal', [today()->startOfDay(), today()->endOfDay()])
+                    ->select('target_id', DB::raw('COUNT(*) as done'))
+                    ->groupBy('target_id')
+                    ->pluck('done', 'target_id');
+
+                $dailyTargets = $dailyTargets->map(function ($target) use ($targetDoneCounts) {
+                    $doneToday = (int) ($targetDoneCounts[$target->id] ?? 0);
                     $target->done_today = $doneToday;
                     $target->progress   = $target->target_count > 0
                         ? min(100, round(($doneToday / $target->target_count) * 100))
@@ -68,6 +86,7 @@ class KaryawanActivityController extends Controller
 
                     return $target;
                 });
+            }
         }
 
         return view('karyawan.activities.index', compact(
